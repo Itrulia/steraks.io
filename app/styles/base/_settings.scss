@@ -1,0 +1,11 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  -webkit-touch-callout: none;
+}

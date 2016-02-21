@@ -1,0 +1,55 @@
+doctype html
+html(ng-app="app")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="viewport" content="width=device-width,initial-scale=1")
+
+        meta(name="theme-color" content="#2F3553")
+
+        link(href="/styles/app.css" rel="stylesheet")
+        link(href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,300italic,400italic,500italic' rel='stylesheet')
+
+
+        script(src="/scripts/libs/font.js")
+        script.
+            new Font({
+                font: '/fonts/material-icons.css',
+                className: 'material--icons'
+            });
+
+            new Font({
+                font: '/fonts/ionicon-icons.css',
+                className: 'ionicon--icons'
+            });
+
+    body.highlight--grey(ng-cloak)
+        sidemenu
+
+        header.header
+            .header__input-wrapper(ng-controller="SearchController as ctrl")
+                form(ng-submit="ctrl.search()")
+                    input.header__input(type="text" ng-model="ctrl.summoner" placeholder="Summoner" name="summoner" autofocus)
+                    button.header__input-addon
+                        span.icon--material search
+
+        ui-view
+
+        footer.footer
+            .footer__riot.container
+                p.baseline--none
+                    | Solqueue isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
+            .footer__copyright
+                .container
+                    span &copy; Karl Merkli 2015
+
+        script(src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js")
+        script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js")
+        script(src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js")
+        script(src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.5.0/lodash.min.js")
+        script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js")
+        script(src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js")
+        script(src="//cdnjs.cloudflare.com/ajax/libs/angular-chart.js/0.8.8/angular-chart.min.js")
+        script(src="/scripts/libs/notification.js")
+        script(src="/scripts/templates.js")
+        script(src="/scripts/app.js")

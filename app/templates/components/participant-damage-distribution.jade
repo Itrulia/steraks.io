@@ -1,0 +1,11 @@
+.widget
+    .widget__header
+        span Damage distribution
+    .widget__body.damage-distribution
+        canvas(
+            class="chart chart-doughnut"
+            chart-options="::{'animation': false}"
+            chart-legend="true"
+            chart-data="[ctrl.participant.stats.trueDamageDealtToChampions, ctrl.participant.stats.physicalDamageDealtToChampions, ctrl.participant.stats.magicDamageDealtToChampions]"
+            chart-labels="::['True Damage', 'Physical Damage','Magic Damage']"
+        )

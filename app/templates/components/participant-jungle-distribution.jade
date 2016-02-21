@@ -1,0 +1,11 @@
+.widget
+    .widget__header
+        span Jungle Creeps Distribution
+    .widget__body.jungle-distribution
+        canvas(
+            class="chart chart-doughnut"
+            chart-options="::{'animation': false}"
+            chart-legend="true"
+            chart-data="[ctrl.participant.stats.neutralMinionsKilledTeamJungle, ctrl.participant.stats.neutralMinionsKilledEnemyJungle]"
+            chart-labels="::['Own Jungle', 'Enemy Jungle']"
+        )

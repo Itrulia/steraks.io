@@ -1,0 +1,28 @@
+.match-award {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+
+  @media (min-width: 840px) {
+    border-right: 1px solid $divider;
+
+    &:last-child {
+      border-right-width: 0;
+    }
+  }
+}
+
+.match-award__title {
+  padding-right: 0.75rem;
+  margin-right: 0.75rem;
+  margin-bottom: 0;
+  font-size: 1.5em;
+  font-weight: 500;
+  border-right: 2px solid $divider;
+}
+
+.match-award__avatar {
+  border-radius: 50%;
+  width: 3.375rem;
+  height: 3.375rem;
+}

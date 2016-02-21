@@ -1,0 +1,31 @@
+.highlight--grey {
+  background: #FAFAFA;
+  color: $primary-text;
+}
+
+// primary
+.highlight--primary {
+  color: $icon-text;
+  background: $primary;
+}
+
+.highlight--dark-primary {
+  background: $dark-primary;
+}
+
+.highlight--light-primary {
+  background: $light-primary;
+}
+
+// secondary
+.highlight--secondary {
+  background: $secondary;
+}
+
+.highlight--dark-secondary {
+  background: $dark-secondary;
+}
+
+.highlight--light-secondary {
+  background: $light-secondary;
+}

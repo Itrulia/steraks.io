@@ -1,0 +1,44 @@
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  line-height: 1.5;
+  font-size: 1em;
+  font-weight: 300;
+}
+
+small {
+  font-size: 0.75em;
+}
+
+strong {
+  font-weight: 400;
+}
+
+em {
+  font-style: italic;
+}
+
+// states
+.text--primary {
+  color: $primary-text;
+}
+
+.text--secondary {
+  color: $secondary-text;
+}
+
+// baseline
+%baseline {
+  margin-bottom: 1.5rem;
+}
+
+.baseline {
+  @extend %baseline;
+}
+
+.baseline--none {
+  margin-bottom: 0;
+}

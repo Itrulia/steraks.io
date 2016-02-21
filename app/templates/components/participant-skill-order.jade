@@ -1,0 +1,15 @@
+.widget
+    .widget__header
+        span Skill Order
+    .widget__body
+        table.skill-order
+            thead
+                th.skill-order__cell Champion Level
+                th.skill-order__cell(ng-repeat="level in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18] track by $index") {{ ::level }}
+            tbody
+                tr(ng-repeat="(index, spell) in ctrl.participant.spells track by index")
+                    td.skill-order__cell.skill-order__skill-name
+                        span.skill-order__skill-key {{ spell.spellKey }}
+                        | {{ spell.spellName }}
+                    td.skill-order__cell(ng-repeat="level in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]")
+                        .skill-order__skilled(ng-if="::ctrl.skillOrder[level - 1] && ctrl.skillOrder[level - 1].skillSlot === (index+1)")

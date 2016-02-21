@@ -1,0 +1,145 @@
+.score {
+  font-size: 14px;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.score__headers {
+  display: flex;
+  font-weight: 500;
+  padding: 4px;
+}
+
+.score__header {
+  text-align: center;
+}
+
+.score__header--champion,
+.score__entry--champion {
+  flex-grow: 1;
+}
+
+.score__header--cs,
+.score__entry--cs,
+.score__header--wards,
+.score__entry--wards {
+  width: 50px;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.score__header--kda,
+.score__entry--kda {
+  width: 75px;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.score__header--summoner-spells,
+.score__entry--summoner-spells {
+  width: 65px;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.score__header--items,
+.score__entry--items {
+  width: 234px;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.score__header--gold,
+.score__entry--gold {
+  width: 40px;
+  margin-left: 12px;
+}
+
+.score__header--champion {
+  text-align: left;
+}
+
+.score__header--kda {
+
+}
+
+.score__header--summoner-spells {
+
+}
+
+.score__header--items {
+
+}
+
+.score__header--gold {
+
+}
+
+.score__row {
+  display: flex;
+  width: 100%;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.score__row--selected {
+  background: #FAFAFA;
+}
+
+.score__entry {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.score__entry--champion {
+  justify-content: flex-start;
+}
+
+.score__entry--cs,
+.score__entry--wards {
+  font-size: 0.75em;
+  flex-flow: row wrap;
+}
+
+.score__entry--kda {
+  flex-flow: row wrap;
+}
+
+.score__entry--summoner-spells {
+
+}
+
+.score__entry--items {
+
+}
+
+.score__entry--gold {
+
+}
+
+.score__wards-bought,
+.score__cs {
+  width: 100%;
+  text-align: center;
+}
+
+.score__img {
+  width: 30px;
+  height: 30px;
+  border-radius: 2px;
+  margin-right: 4px;
+
+  &:last-child {
+    margin: 0;
+  }
+}
+
+.score__name {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

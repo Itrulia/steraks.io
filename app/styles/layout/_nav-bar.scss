@@ -1,0 +1,13 @@
+.nav-bar {
+  color: $icon-text;
+  background: $primary;
+  height: 3.125rem;
+  display: flex;
+  align-items: center;
+}
+
+.nav-bar__hamburger {
+  font-size: 2.2rem;
+  padding: 0 1rem 0 0.5rem;
+  line-height: 0; // inline-block fix
+}

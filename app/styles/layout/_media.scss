@@ -1,0 +1,26 @@
+.media {
+  display: flex;
+}
+
+.media--fit {
+  display: inline-flex;
+}
+
+.media__figure {
+  margin-right: 1.5rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+  line-height: 1;
+  font-size: 2rem;
+}
+
+.media__body {
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  + .media__figure {
+    margin-left: 1.5rem;
+    margin-right: 0;
+    flex-grow: 0;
+  }
+}

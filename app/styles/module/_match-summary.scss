@@ -1,0 +1,197 @@
+.match-summary {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $divider;
+  border-left-width: 5px;
+  background-color: $dark-secondary;
+  margin-bottom: 1.5rem;
+  color: $primary-text;
+
+  &:hover {
+    background-color: darken($dark-secondary, 3%);
+
+    .match-summary__header {
+      background-color: darken($secondary, 3%);
+    }
+  }
+}
+
+.match-summary--won {
+  border-left-color: #4EA1ED;
+}
+
+.match-summary--loss {
+  border-left-color: #CF4545;
+}
+
+.match-summary__header {
+  width: 100%;
+  font-size: 0.75em;
+  border-bottom: 1px solid $divider;
+  padding: 0.35em 0.75em;
+  display: flex;
+  justify-content: space-between;
+  background-color: $secondary;
+}
+
+.match-summary__body {
+  display: flex;
+  padding: 0.2em 0.75em;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.match-summary__footer {
+  display: flex;
+  font-size: 0.75em;
+  padding: 0.35em 0.75em;
+  border-top: 1px solid $divider;
+}
+
+.match-summary__wrapper {
+  display: flex;
+  align-items: center;
+
+  & > :last-child {
+    margin-right: 0;
+  }
+}
+
+.match-summary__champion {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-right: 4px;
+  font-size: 0.75em;
+}
+
+.match-summary__champion-name {
+  padding-top: 0.5em;
+}
+
+.match-summary__champion-avatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 2px;
+}
+
+.match-summary__spell-list {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1em;
+  height: 68px;
+  justify-content: space-between;
+}
+
+.match-summary__spell {
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.match-summary__stats {
+  text-align: center;
+  margin-right: 1em;
+  width: 88px;
+}
+
+.match-summary__stats__kda {
+  font-size: 0.8em;
+}
+
+.match-summary__item-list {
+  display: flex;
+  flex-flow: column wrap;
+  width: calc(4 * 32px + 3 * 4px);
+  height: calc(2 * 32px + 1 * 4px);
+  align-items: center;
+  justify-content: center;
+}
+
+.match-summary__item {
+  width: 32px;
+  height: 32px;
+  border-radius: 2px;
+
+  // reordering item slots
+  &:nth-child(1) {
+    margin-right: 4px;
+    margin-bottom: 4px;
+    order: 0;
+  }
+
+  &:nth-child(2) {
+    margin-right: 4px;
+    margin-bottom: 4px;
+    order: 2;
+  }
+
+  &:nth-child(3) {
+    margin-right: 4px;
+    margin-bottom: 4px;
+    order: 4;
+  }
+
+  &:nth-child(4) {
+    margin-right: 4px;
+    order: 1;
+  }
+
+  &:nth-child(5) {
+    margin-right: 4px;
+    order: 3;
+  }
+
+  &:nth-child(6) {
+    margin-right: 4px;
+    order: 5;
+  }
+
+  &:nth-child(7) {
+    order: 6;
+  }
+}
+
+.match-summary__player-list {
+  display: flex;
+  flex-flow: column wrap;
+  height: calc(5 * 18px + 4 * 2px);
+  line-height: 1;
+  justify-content: space-between;
+  font-size: 0.75em;
+  margin-right: 5px;
+}
+
+.match-summary__player {
+  display: flex;
+  align-items: center;
+}
+
+.match-summary__player__champion {
+  height: 18px;
+  width: 18px;
+  margin-right: 5px;
+}
+
+.match-summary__player__name {
+  width: 75px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 1.3em;
+
+  .match-summary__player--me & {
+    font-weight: 400;
+  }
+}
+
+.match-summary__spinner {
+  .spinner {
+    margin-top: 28px;
+    margin-bottom: 28px;
+  }
+}

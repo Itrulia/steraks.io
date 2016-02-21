@@ -1,0 +1,22 @@
+.badge {
+  display: inline-block;
+  padding: 0.3em 0.6em;
+  font-size: 0.75em;
+  border-radius: 1em;
+  line-height: 1;
+  margin-left: 0.3125rem;
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:empty {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+.badge--important {
+  background-color: #AD4545;
+}

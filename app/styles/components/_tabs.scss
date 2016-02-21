@@ -1,0 +1,22 @@
+.tabs {
+  background: $secondary;
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid $divider;
+  font-weight: 400;
+}
+
+.tab__header {
+  display: inline-block;
+  font-size: 0.875rem;
+  padding: 1rem 0.75rem;
+  text-transform: uppercase;
+  color: inherit;
+  text-decoration: inherit;
+  border-bottom: 2px solid transparent;
+}
+
+.tab__header--is-active {
+  border-bottom-color: #333;
+}

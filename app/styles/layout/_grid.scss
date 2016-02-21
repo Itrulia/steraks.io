@@ -1,0 +1,55 @@
+@mixin grid($prefix: "", $gutter: 0.75rem) {
+  .#{$prefix}grid__col--auto {
+    width: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+
+  .#{$prefix}grid__col--fix {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  @for $index from 0 through 12 {
+
+    @if ($index > 0) {
+      .#{$prefix}grid__col--#{$index}{
+        flex-grow: 0;
+        flex-shrink: 0;
+        padding-left: $gutter;
+        padding-right: $gutter;
+        width: (100%/12)*$index;
+      }
+    }
+
+    .#{$prefix}grid__col--order--#{$index}{
+      order: $index;
+    }
+  }
+}
+
+.grid {
+  display: flex;
+  align-items: stretch;
+  flex-flow: row wrap;
+
+  .container > &,
+  & > & {
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+  }
+}
+
+.grid--center {
+  justify-content: center;
+}
+
+@include grid('', 0.75rem);
+
+@media (min-width: 840px) {
+  @include grid('t-', 0.75rem);
+}
+
+@media (min-width: 940px) {
+  @include grid('d-', 0.75rem);
+}

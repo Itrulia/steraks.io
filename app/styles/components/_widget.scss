@@ -1,0 +1,33 @@
+.widget {
+  border: 1px solid $divider;
+  color: $secondary-text;
+  margin-bottom: 1.5rem;
+}
+
+.widget__header {
+  font-size: 0.875em;
+  padding: 1em 1.25em;
+  line-height: 1;
+  border-bottom: 1px solid $divider;
+  font-weight: 400;
+  background: $secondary;
+}
+
+.widget__body {
+  font-size: 0.75em;
+  background: $dark-secondary;
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.widget__item {
+  border-bottom: 1px solid $divider;
+  line-height: 1;
+  padding: 4px;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}

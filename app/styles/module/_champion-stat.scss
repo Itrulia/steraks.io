@@ -1,0 +1,57 @@
+.champion-stat {
+  display: flex;
+  align-items: center;
+  line-height: 1.5em;
+  color: #555e5e;
+}
+
+.champion-stat__champion {
+  width: 42px;
+  height: 42px;
+  margin-right: 1em;
+  border-radius: 3px;
+}
+
+.champion-stat__info {
+  display: flex;
+  flex-flow: column wrap;
+  flex-grow: 1;
+
+  &__name {
+    font-weight: 400;
+  }
+
+  &__cs {
+    color: #777;
+  }
+}
+
+.champion-stat__kda {
+  text-align: center;
+  display: flex;
+  flex-flow: column wrap;
+  flex-grow: 1;
+
+  &__kda {
+    font-weight: 400;
+  }
+
+  &__stats {
+    color: #777;
+  }
+}
+
+.champion-stat__played {
+  text-align: center;
+  display: flex;
+  flex-flow: column wrap;
+  flex-grow: 1;
+
+  &__winrate {
+    font-weight: 400;
+  }
+
+  &__played {
+    color: #777;
+  }
+}

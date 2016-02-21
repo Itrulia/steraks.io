@@ -1,0 +1,17 @@
+.footer {
+  background: $primary;
+}
+.footer__riot {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-size: 0.75em;
+  color: $icon-text;
+}
+
+.footer__copyright {
+  background: $dark-primary;
+  color: $icon-text;
+  font-size: 0.75em;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}

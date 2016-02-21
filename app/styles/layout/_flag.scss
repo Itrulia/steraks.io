@@ -1,0 +1,27 @@
+.flag {
+  display: flex;
+  align-items: center;
+}
+
+.flag--fit {
+  display: inline-flex;
+}
+
+.flag__figure {
+  margin-right: 1.5rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+  line-height: 1;
+  font-size: 2rem;
+}
+
+.flag__body {
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  + .flag__figure {
+    margin-left: 1.5rem;
+    margin-right: 0;
+    flex-grow: 0;
+  }
+}

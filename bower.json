@@ -1,0 +1,22 @@
+{
+  "name": "MatchHistory",
+  "version": "0.0.0",
+  "authors": [
+    "Karl Merkli <info@karl-merkli.ch>"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.22",
+    "angular": "~1.4.8"
+  }
+}

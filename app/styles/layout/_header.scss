@@ -1,0 +1,40 @@
+.header {
+  background: $primary;
+  padding: 2rem 0;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.header__input-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  padding: 0 0.75rem;
+}
+
+.header__input {
+  display: block;
+  padding: 1rem 2rem 1rem 1rem;
+  font-size: 1.1rem;
+  line-height: 1.25rem;
+  background: $light-primary;
+  width: 100%;
+  border: 0;
+  border-radius: 2px;
+  outline: none;
+}
+
+.header__input-addon {
+  position: absolute;
+  padding: 0;
+  display: block;
+  right: 1.5rem;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  background: transparent;
+  border: 0;
+  line-height: 0;
+  font-size: 1.5rem;
+}

@@ -1,0 +1,27 @@
+.icon--material {
+  font-family: 'Material Icons';
+  display: none;
+  cursor: default;
+  height: 1em;
+  line-height: 1;
+  vertical-align: middle;
+  width: 1em;
+  word-wrap: normal;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+
+  .font-material--icons-loaded & {
+    display: inline-block;
+  }
+
+  a &,
+  button & {
+    cursor: inherit;
+  }
+}

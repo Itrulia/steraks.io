@@ -1,0 +1,30 @@
+.highlight--secondary
+    .summoner.container
+        .flag
+            .flag__figure
+                img.summoner__avatar(ng-src="http://sk2.op.gg/images/profile_icons/profileIcon{{ ctrl.summoner.profileIconId }}.jpg")
+            .flag__body
+                h1.summoner__name {{ ctrl.summoner.name }}
+                span {{ ctrl.league }}
+
+    .tabs
+        .container
+            a.tab__header(ui-sref="summoner.index({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
+                | Summary
+            a.tab__header(ui-sref="summoner.matchHistory({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
+                | Matches
+            a.tab__header(ui-sref="summoner.index2({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
+                | Champions
+            a.tab__header(ui-sref="summoner.index2({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
+                | Synergie
+            a.tab__header(ui-sref="summoner.index2({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
+                | Runes
+            a.tab__header(ui-sref="summoner.index2({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
+                | Masteries
+            a.tab__header(ui-sref="summoner.index2({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
+                | Counters
+            a.tab__header(ui-sref="summoner.index2({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
+                | Pentakills
+
+main.container
+    ui-view

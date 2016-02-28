@@ -35,8 +35,16 @@ em {
   margin-bottom: 1.5rem;
 }
 
+%baseline--small {
+  margin-bottom: 0.75rem;
+}
+
 .baseline {
   @extend %baseline;
+}
+
+.baseline--small {
+  @extend %baseline--small;
 }
 
 .baseline--none {

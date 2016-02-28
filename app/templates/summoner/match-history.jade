@@ -1,7 +1,10 @@
 .grid
     .grid__col--12.t-grid__col--4
-        summoner-rank(summoner="ctrl.summoner")
-        summoner-champion-stats(summoner="ctrl.summoner")
+        .grid
+            .grid__col--12.m-grid__col--6.t-grid__col--12
+                summoner-rank(summoner="ctrl.summoner")
+            .grid__col--12.m-grid__col--6.t-grid__col--12
+                summoner-champion-stats(summoner="ctrl.summoner")
     .grid__col--12.t-grid__col--8
         spinner(ng-if="ctrl.loading")
         a(ui-sref="match({matchId: match.matchId})" ng-repeat="(index, match) in ctrl.matches track by match.matchId")

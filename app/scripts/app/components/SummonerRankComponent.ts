@@ -4,6 +4,9 @@ module App.Component {
         public bindings = {summoner: '<'};
         public controllerAs = 'ctrl';
         public controller = ['$scope', 'SummonerService', function($scope, SummonerService: App.Service.SummonerService) {
+            this.tier = null;
+            this.name = null;
+            this.rank = [];
 
             SummonerService.getRank(this.summoner.id).then((rank) => {
                 this.tier = rank.tier.toLowerCase();

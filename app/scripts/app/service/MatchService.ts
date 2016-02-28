@@ -12,15 +12,15 @@ module App.Service {
         }
 
         public setMatchStaticData(match:any) {
-            var realm = this.StaticService.getRealm();
-            var champions = this.StaticService.getChampions();
-            var items = this.StaticService.getItems();
-            var spells = this.StaticService.getSummonerSpells();
+            var realm:any = this.StaticService.getRealm();
+            var champions:any = this.StaticService.getChampions();
+            var items:any = this.StaticService.getItems();
+            var spells:any = this.StaticService.getSummonerSpells();
 
             // champions
             this.$q.all([realm, champions]).then((response) => {
-                var realm = response[0];
-                var champions = response[1];
+                realm = response[0];
+                champions = response[1];
 
                 angular.forEach(match.participants, (participant) => {
                     participant.championName = champions[participant.championId].name;
@@ -30,8 +30,8 @@ module App.Service {
 
             // items
             this.$q.all([realm, items]).then((response) => {
-                var realm = response[0];
-                var items = response[1];
+                realm = response[0];
+                items = response[1];
 
                 angular.forEach(match.participants, (participant) => {
                     var baseurl = realm.cdn + '/' + realm.dd + '/img/item/';
@@ -70,8 +70,8 @@ module App.Service {
 
             // spells
             this.$q.all([realm, spells]).then((response) => {
-                var realm = response[0];
-                var spells = response[1];
+                realm = response[0];
+                spells = response[1];
 
                 angular.forEach(match.participants, (participant) => {
                     participant.spell1Name = spells[participant.spell1Id].name;
@@ -84,14 +84,14 @@ module App.Service {
         }
 
         public setTimelineStaticData(match:any) {
-            var realm = this.StaticService.getRealm();
-            var champions = this.StaticService.getChampions();
-            var items = this.StaticService.getItems();
+            var realm:any = this.StaticService.getRealm();
+            var champions:any = this.StaticService.getChampions();
+            var items:any = this.StaticService.getItems();
 
             this.$q.all([realm, champions, items]).then((response) => {
-                var realm = response[0];
-                var champions = response[1];
-                var items = response[2];
+                realm = response[0];
+                champions = response[1];
+                items = response[2];
 
                 angular.forEach(match.timeline.frames, (frame:any) => {
 

@@ -13,7 +13,7 @@ module Summoner.Controller {
             SummonerService.getMatches(summoner.id).then((matches:Array<any>) => {
                 var matchPromises = [];
 
-                _.forEach(matches.slice(0, 10), (match, index) => {
+                _.forEach(matches.slice(0, 100), (match, index) => {
                     matchPromises.push(this.MatchService.getMatch(match.matchId).then((match) => {
                         this.matches[index] = match;
                     }));

@@ -1,10 +1,35 @@
-@media (max-width: 840px) {
-  .hide-mobile {
+@media (max-width: 620px) {
+  .hide--very-small {
     display: none;
     visibility: hidden;
   }
 }
 
-@media (min-width: 940px) {
+@media (max-width: 840px) {
+  .hide--small {
+    display: none;
+    visibility: hidden;
+  }
+}
 
+@media (max-width: 940px) {
+  .hide--normal {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+
+@media (max-width: 1440px) {
+  .hide--big {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hide--very-big {
+    display: none;
+    visibility: hidden;
+  }
 }

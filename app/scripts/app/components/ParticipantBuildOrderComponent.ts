@@ -4,13 +4,10 @@ module App.Component {
         public bindings = {participant: '<', match: '<'};
         public controllerAs = 'ctrl';
         public controller = ['$scope', function ($scope) {
-            this.skillOrder = [];
-
             $scope.$watch('ctrl.participant', () => {
-                var buyOrder = {};
+                var buildOrder = {};
 
                 if (this.match !== null) {
-                    console.log(this);
                     _.forEach(this.match.timeline.frames, (frame:any) => {
                         if (!frame.hasOwnProperty('events') || frame.events === null) return;
 
@@ -33,12 +30,12 @@ module App.Component {
                         });
 
                         if (items.length !== 0) {
-                            buyOrder[items[0].timestamp] = items;
+                            buildOrder[items[0].timestamp] = items;
                         }
                     });
                 }
 
-                this.buyOrder = buyOrder;
+                this.buildOrder = buildOrder;
             });
         }];
     }

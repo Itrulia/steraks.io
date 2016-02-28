@@ -36,16 +36,9 @@
 
 .match-summary__body {
   display: flex;
-  padding: 0.2em 0.75em;
+  padding: 0.375em;
   align-items: center;
   justify-content: space-between;
-}
-
-.match-summary__footer {
-  display: flex;
-  font-size: 0.75em;
-  padding: 0.35em 0.75em;
-  border-top: 1px solid $divider;
 }
 
 .match-summary__wrapper {
@@ -70,52 +63,88 @@
 }
 
 .match-summary__champion-avatar {
-  width: 68px;
-  height: 68px;
   border-radius: 2px;
+  height: calc(2 * 22px + 1 * 4px);
+  width: calc(2 * 22px + 1 * 4px);
+
+  @media (min-width: 620px) {
+    height: calc(2 * 28px + 1 * 4px);
+    width: calc(2 * 28px + 1 * 4px);
+  }
+
+  @media (min-width: 840px) {
+    height: calc(2 * 32px + 1 * 4px);
+    width: calc(2 * 32px + 1 * 4px);
+  }
 }
 
 .match-summary__spell-list {
   display: flex;
   flex-direction: column;
   margin-right: 1em;
-  height: 68px;
   justify-content: space-between;
+  height: calc(2 * 22px + 1 * 4px);
+
+  @media (min-width: 620px) {
+    height: calc(2 * 28px + 1 * 4px);
+  }
+
+  @media (min-width: 840px) {
+    height: calc(2 * 32px + 1 * 4px);
+  }
 }
 
 .match-summary__spell {
   width: 20px;
   height: 20px;
   border-radius: 2px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 }
 
 .match-summary__stats {
   text-align: center;
   margin-right: 1em;
+  flex-grow: 1;
+  font-size: 0.875em;
   width: 88px;
 }
 
 .match-summary__stats__kda {
-  font-size: 0.8em;
+  font-size: 0.85714em;
 }
 
 .match-summary__item-list {
   display: flex;
   flex-flow: column wrap;
-  width: calc(4 * 32px + 3 * 4px);
-  height: calc(2 * 32px + 1 * 4px);
   align-items: center;
   justify-content: center;
+  width: calc(4 * 22px + 3 * 4px);
+  height: calc(2 * 22px + 1 * 4px);
+
+  @media (min-width: 620px) {
+    width: calc(4 * 28px + 3 * 4px);
+    height: calc(2 * 28px + 1 * 4px);
+  }
+
+  @media (min-width: 840px) {
+    width: calc(4 * 32px + 3 * 4px);
+    height: calc(2 * 32px + 1 * 4px);
+  }
 }
 
 .match-summary__item {
-  width: 32px;
-  height: 32px;
+  width: 22px;
+  height: 22px;
   border-radius: 2px;
+
+  @media (min-width: 620px) {
+    width: 28px;
+    height: 28px;
+  }
+
+  @media (min-width: 840px) {
+    width: 32px;
+    height: 32px;
+  }
 
   // reordering item slots
   &:nth-child(1) {

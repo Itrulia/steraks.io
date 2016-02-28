@@ -1,0 +1,43 @@
+.button {
+  font-size: 1em;
+  line-height: 1;
+  cursor: pointer;
+  font-weight: 500;
+  display: inline-flex;
+  flex-flow: row wrap;
+  border-radius: 2px;
+}
+
+.button__text {
+  border-radius: 2px 0 0 2px;
+  padding: 0.375rem 0.625rem;
+  flex-grow: 1;
+}
+
+.button__addon {
+  border-radius: 0 2px 2px 0;
+  padding: 0.375rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button--primary {
+  color: #FFF;
+  background: $accent;
+
+  .button__addon {
+    background: #4191EA;
+  }
+}
+
+.button[disabled],
+.button--is-disabled {
+  color: $disabled-text;
+  background: $disabled;
+  cursor: not-allowed;
+
+  .button__addon {
+    background: $light-disabled;
+  }
+}

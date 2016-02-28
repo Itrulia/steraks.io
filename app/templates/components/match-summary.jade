@@ -13,7 +13,7 @@
             .match-summary__spell-list
                 img.match-summary__spell(ng-src="{{ ::ctrl.player.spell1Avatar }}" title="{{ ::ctrl.player.spell1Name }}")
                 img.match-summary__spell(ng-src="{{ ::ctrl.player.spell2Avatar }}" title="{{ ::ctrl.player.spell2Name }}")
-                img.match-summary__spell(src="http://vignette3.wikia.nocookie.net/leagueoflegends/images/5/58/Thunderlord%27s_Decree_mastery_2016.png/revision/latest?cb=20151103094742" title="Tunderlord's Decree")
+                img.match-summary__spell.hide--very-small(src="http://vignette3.wikia.nocookie.net/leagueoflegends/images/5/58/Thunderlord%27s_Decree_mastery_2016.png/revision/latest?cb=20151103094742" title="Tunderlord's Decree")
 
         .match-summary__wrapper
             .match-summary__stats
@@ -22,17 +22,15 @@
                 span  {{ ::ctrl.player.stats.assists }}
                 br
 
-                span.match-summary__stats__kda {{ ::ctrl.player.stats.KDA }} KDA
-
-                div(ng-if="player.stats.pentaKills > 0")
-                    hr
-                    span.badge.badge--important Pentakill
+                span.match-summary__stats__kda(ng-class="::{'kda--bad': $root.KDA(ctrl.player.stats) < 2, 'kda--average': $root.KDA(ctrl.player.stats) >= 2 && $root.KDA(ctrl.player.stats) < 4, 'kda--good': $root.KDA(ctrl.player.stats) >= 4 && $root.KDA(ctrl.player.stats) < 6, 'kda--great': $root.KDA(ctrl.player.stats) >= 6}")
+                    | {{ ::$root.KDA(ctrl.player.stats) | number: 1  }}
+                    | KDA
 
         .match-summary__wrapper
             .match-summary__item-list
                 img.match-summary__item(ng-repeat="item in ctrl.player.stats.items track by $index" ng-src="{{ ::item.itemAvatar }}" title="{{ ::item.itemName }}")
 
-        .match-summary__wrapper.hide-mobile
+        .match-summary__wrapper.hide--very-small
             .match-summary__player-list(ng-repeat="teamId in [100,200] track by $index" ng-class="::{'match-summary__player-list--blue': teamId === 100, 'match-summary__player-list--red': teamId === 200}")
                 .match-summary__player(
                     ng-repeat="participant in ::ctrl.match.participants | filter: {teamId: teamId} track by $index"

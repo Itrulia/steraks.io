@@ -1,0 +1,6 @@
+.grid
+    .grid__col--3.t-grid__col--2.d-grid__col--1.baseline--small(
+        ng-repeat="counter in ctrl.counters track by counter.championId"
+    )
+        a(ui-sref="summoner.matches.against({championId: counter.championName})")
+            summoner-counter(counter="counter")

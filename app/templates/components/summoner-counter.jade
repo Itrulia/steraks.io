@@ -1,0 +1,5 @@
+.counter__wrapper
+    img.counter__avatar(ng-src="{{ ::ctrl.counter.championAvatar }}" title="{{ ::ctrl.counter.championName }}")
+    .counter__percentage(ng-class="::{'counter__percentage--positive': ctrl.counter.percent >= 0.5}")
+        | {{ ctrl.counter.percent * 100 | number:1 }}%
+    .counter__games {{ ctrl.counter.games }}

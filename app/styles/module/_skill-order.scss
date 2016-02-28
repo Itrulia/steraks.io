@@ -11,12 +11,7 @@
   text-align: center;
 
   &:first-child {
-    display: none;
     width: auto;
-
-    @media (min-width: 940px) {
-      display: table-cell;
-    }
   }
 
   &:last-child {

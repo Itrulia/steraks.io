@@ -7,41 +7,55 @@ module App.Resource {
         }
 
         public getSummoner(summonerId:number) {
-            return this.$http.get('http://vanilla.app/summoner/' + summonerId).then(function (response:angular.IHttpPromiseCallbackArg<any>) {
+            return this.$http.get('http://46.101.208.242/summoner/' + summonerId).then(function (response:angular.IHttpPromiseCallbackArg<any>) {
                 return response.data;
             });
         }
 
         public getRank(summonerId:number) {
-            return this.$http.get('http://vanilla.app/summoner/' + summonerId + '/rank')
+            return this.$http.get('http://46.101.208.242/summoner/' + summonerId + '/rank')
                 .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
                     return response.data;
                 });
         }
 
         public getMasteries(summonerId:number) {
-            return this.$http.get('http://vanilla.app/summoner/' + summonerId + '/masteries')
+            return this.$http.get('http://46.101.208.242/summoner/' + summonerId + '/masteries')
                 .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
                     return response.data;
                 });
         }
 
         public getRunes(summonerId:number) {
-            return this.$http.get('http://vanilla.app/summoner/' + summonerId + '/runes')
+            return this.$http.get('http://46.101.208.242/summoner/' + summonerId + '/runes')
                 .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
                     return response.data;
                 });
         }
 
         public getStats(summonerId:number) {
-            return this.$http.get('http://vanilla.app/summoner/' + summonerId + '/stats')
+            return this.$http.get('http://46.101.208.242/summoner/' + summonerId + '/stats')
                 .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
                     return response.data;
                 });
         }
 
         public getMatches(summonerId:number) {
-            return this.$http.get('http://vanilla.app/summoner/' + summonerId + '/matches')
+            return this.$http.get('http://46.101.208.242/summoner/' + summonerId + '/matches')
+                .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
+                    return response.data;
+                });
+        }
+
+        public getCounters(summonerId:number) {
+            return this.$http.get('http://46.101.208.242/summoner/' + summonerId + '/counters')
+                .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
+                    return response.data;
+                });
+        }
+
+        public getSynergies(summonerId:number) {
+            return this.$http.get('http://46.101.208.242/summoner/' + summonerId + '/synergy')
                 .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
                     return response.data;
                 });

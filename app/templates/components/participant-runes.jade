@@ -1,0 +1,12 @@
+.widget
+    .widget__header
+        span Runes
+    .widget__body
+        .widget__item(ng-repeat="rune in ctrl.runes")
+            .rune
+                .rune__figure
+                    span.rune__rank {{ ::rune.rank }}x
+                    img.rune__image(ng-src="{{ ::rune.runeAvatar }}")
+                .rune__text
+                    span.rune__name {{ ::rune.runeName }}
+                    span.rune__description {{ ::rune.runeDescription }}

@@ -22,14 +22,14 @@ module App.Component {
                         }
                     });
 
-                    var champions = StaticService.getChampions();
-                    var realm = StaticService.getRealm();
+                    var realm:any = StaticService.getRealm();
+                    var champions:any = StaticService.getChampions();
 
                     $q.all([realm, champions]).then((response) => {
-                        var realm = response[0];
-                        var champions = response[1];
+                        realm = response[0];
+                        champions = response[1];
 
-                        this.participant.spells = _.map(champions[this.participant.championId].spells, (spell, index) => {
+                        this.participant.spells = _.map(champions[this.participant.championId].spells, (spell:any, index) => {
                             var key:string = null;
 
                             switch(index) {

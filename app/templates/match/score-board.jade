@@ -1,24 +1,33 @@
 .score(ng-repeat="teamId in [100,200]" ng-class="::{'score--blue': teamId === 100, 'score--red': teamId === 200}")
     .score__headers
         span.score__header.score__header--champion {{ ::teamId | team }} Team
-        span.score__header.score__header--cs.hide-mobile CS
-        span.score__header.score__header--wards.hide-mobile Wards
+        span.score__header.score__header--cs.hide--very-small CS
+        span.score__header.score__header--wards.hide--very-small Wards
         span.score__header.score__header--kda KDA
         span.score__header.score__header--summoner-spells Spells
-        span.score__header.score__header--items Items
-        span.score__header.score__header--gold.hide-mobile Gold
+        span.score__header.score__header--gold.hide--very-small Gold
 
     .score__row(ng-click="::ctrl.selectParticipant(participant)" ng-class="{'score__row--selected': ctrl.selected.player.summonerId === participant.player.summonerId}" ng-repeat="participant in ::ctrl.match.participants | filter: {teamId: teamId}")
         .score__entry.score__entry--champion
-            img(class="score__img" ng-src="{{ ::participant.championAvatar }}")
-            a(class="score__name" ui-sref="summoner.index({summonerId: participant.player.summonerName})") {{ ::participant.player.summonerName }}
-            span.label.hide-mobile(ng-class="::'label--' + getPosition(participant)") {{ ::getPosition(participant) }}
+            .flag
+                .flag__figure
+                    img.score__img.score__avatar(ng-src="{{ ::participant.championAvatar }}")
+                .flag__body
+                    a.score__name(ui-sref="summoner.index({summonerId: participant.player.summonerName})")
+                        | {{ ::participant.player.summonerName }}
+                    span.label.hide--very-small(ng-class="::'label--' + getPosition(participant)")
+                        | {{ ::getPosition(participant) }}
 
-        .score__entry.score__entry--cs.hide-mobile
-            span.score__cs {{ participant.stats.minionsKilled + participant.stats.neutralMinionsKilled }}
-            span {{ ::ctrl.match | csPerMinute: participant }}/m
+                    .score__items
+                        img.score__img.score__item(ng-src="{{ ::item.itemAvatar }}" title="{{ ::item.itemName }}" ng-repeat="item in ::participant.stats.items")
 
-        .score__entry.score__entry--wards.hide-mobile
+        .score__entry.score__entry--cs.hide--very-small
+            span.score__cs
+                | {{ participant.stats.minionsKilled + participant.stats.neutralMinionsKilled }}
+            span
+                | {{ ::ctrl.match | csPerMinute: participant }}/m
+
+        .score__entry.score__entry--wards.hide--very-small
             span.score__wards-bought {{ participant.stats.visionWardsBoughtInGame }}
             span {{ ::participant.stats.wardsPlaced }} / {{ ::participant.stats.wardsKilled }}
 
@@ -29,8 +38,5 @@
             img(class="score__img" ng-src="{{ ::participant.spell1Avatar }}" title="{{ ::participant.spell1Name }}")
             img(class="score__img" ng-src="{{ ::participant.spell2Avatar }}" title="{{ ::participant.spell2Name }}")
 
-        .score__entry.score__entry--items
-            img(class="score__img" ng-src="{{ ::item.itemAvatar }}" title="{{ ::item.itemName }}" ng-repeat="item in ::participant.stats.items")
-
-        .score__entry.score__entry--gold.hide-mobile
+        .score__entry.score__entry--gold.hide--very-small
             span {{ ::participant.stats.goldEarned }}

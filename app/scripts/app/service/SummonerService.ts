@@ -65,6 +65,34 @@ module App.Service {
             return this.$q.when(data)
         }
 
+        public getCounters(summonerId:number) {
+            var cacheKey = 'summoner:' + summonerId + ':counters';
+            var data:any = this.CacheService.pull(cacheKey);
+
+            if (data === null) {
+                data = this.SummonerResource.getCounters(summonerId).then((counters) => {
+                    this.CacheService.remember(cacheKey, counters);
+                    return counters;
+                })
+            }
+
+            return this.$q.when(data)
+        }
+
+        public getSynergies(summonerId:number) {
+            var cacheKey = 'summoner:' + summonerId + ':synergies';
+            var data:any = this.CacheService.pull(cacheKey);
+
+            if (data === null) {
+                data = this.SummonerResource.getSynergies(summonerId).then((synergies) => {
+                    this.CacheService.remember(cacheKey, synergies);
+                    return synergies;
+                })
+            }
+
+            return this.$q.when(data)
+        }
+
         public getRunes(summonerId:number) {
             var cacheKey = 'summoner:' + summonerId + ':runes';
             var data:any = this.CacheService.pull(cacheKey);
@@ -83,13 +111,31 @@ module App.Service {
             return this.SummonerResource.getMatches(summonerId);
         }
 
-        public setStatsStaticData(stats:any) {
-            var champions = this.StaticService.getChampions();
-            var realm = this.StaticService.getRealm();
+        public setCounterSynergyStaticData(counters:any) {
+            var champions:any = this.StaticService.getChampions();
+            var realm:any = this.StaticService.getRealm();
 
             this.$q.all([realm, champions]).then((response) => {
-                var realm = response[0];
-                var champions = response[1];
+                realm = response[0];
+                champions = response[1];
+
+                _.forEach(counters, (counter) => {
+                    var champion = champions[counter.championId];
+                    if (champion) {
+                        counter.championName = champion.name;
+                        counter.championAvatar = realm.cdn + '/' + realm.dd + '/img/champion/' + champion.image.full;
+                    }
+                });
+            });
+        }
+
+        public setStatsStaticData(stats:any) {
+            var champions:any = this.StaticService.getChampions();
+            var realm:any = this.StaticService.getRealm();
+
+            this.$q.all([realm, champions]).then((response) => {
+                realm = response[0];
+                champions = response[1];
 
                 _.forEach(stats, (stat) => {
                     var champion = champions[stat.id];

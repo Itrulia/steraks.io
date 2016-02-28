@@ -35,8 +35,8 @@
 
   .container > &,
   & > & {
-    margin-left: -0.75rem;
-    margin-right: -0.75rem;
+    margin-left: -0.375rem;
+    margin-right: -0.375rem;
   }
 }
 
@@ -44,12 +44,20 @@
   justify-content: center;
 }
 
-@include grid('', 0.75rem);
+@include grid('', 0.375rem);
+
+@media (min-width: 620px) {
+  @include grid('m-', 0.375rem);
+}
 
 @media (min-width: 840px) {
-  @include grid('t-', 0.75rem);
+  @include grid('t-', 0.375rem);
 }
 
 @media (min-width: 940px) {
-  @include grid('d-', 0.75rem);
+  @include grid('d-', 0.375rem);
+}
+
+@media (min-width: 1440px) {
+  @include grid('b-', 0.375rem);
 }

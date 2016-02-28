@@ -1,8 +1,8 @@
 .nav-bar
     button.nav-bar__hamburger
-        span.icon--material(ng-click="sideMenuOpen = true") menu
+        span.icon--material(ng-click="ctrl.sideMenuOpen = true") menu
 
-.sidemenu(ng-class="{'sidemenu--is-open': sideMenuOpen}")
+.sidemenu(ng-class="{'sidemenu--is-open': ctrl.sideMenuOpen}")
     .sidemenu__header
     a.sidemenu__item(ui-sref="index" ui-sref-active="sidemenu__item--is-active")
         .flag
@@ -11,4 +11,4 @@
             .flag__body
                 span Home
 
-.sidemenu__overlay(ng-class="{'sidemenu__overlay--is-open': sideMenuOpen}" ng-click="sideMenuOpen = false")
+.sidemenu__overlay(ng-class="{'sidemenu__overlay--is-open': ctrl.sideMenuOpen}" ng-click="ctrl.sideMenuOpen = false")

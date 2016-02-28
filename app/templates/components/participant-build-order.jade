@@ -1,8 +1,8 @@
 .widget
     .widget__header
-        span Items ({{ ::ctrl.selected.stats.goldSpent }} Gold Spent)
+        span Items ({{ ::ctrl.participant.stats.goldSpent }} Gold Spent)
     .widget__body
         .build-order
-            .build-order__frame(ng-repeat="frame in ctrl.buyOrder")
+            .build-order__frame(ng-repeat="frame in ctrl.buildOrder")
                 img.build-order__item(ng-src="{{ ::item.itemAvatar }}" title="{{ ::item.itemName }}" ng-repeat="item in ::frame")
                 .build-order__into(ng-if="!$last")

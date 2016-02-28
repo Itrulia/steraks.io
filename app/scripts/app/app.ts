@@ -34,6 +34,8 @@ app.filter('team', App.Filter.team);
 app.filter('gameLength', App.Filter.gameLength);
 
 //
+app.directive('stickToTop', App.Directive.StickToTopDirective.instance);
+//
 app.component('spinner', new App.Component.SpinnerComponent());
 
 app.component('matchSummary', new App.Component.MatchSummaryComponent());
@@ -41,11 +43,13 @@ app.component('matchAward', new App.Component.MatchAwardComponent());
 
 app.component('summonerRank', new App.Component.SummonerRankComponent());
 app.component('summonerChampionStats', new App.Component.SummonerChampionStatsComponent());
+app.component('summonerCounter', new App.Component.SummonerCounterComponent());
 
 app.component('participantJungleDistribution', new App.Component.ParticipantJungleDistribution());
 app.component('participantDamageDistribution', new App.Component.ParticipantDamageDistribution());
 app.component('participantSkillOrder', new App.Component.ParticipantSkillOrder());
 app.component('participantBuildOrder', new App.Component.ParticipantBuildOrder());
+app.component('participantRunes', new App.Component.ParticipantRunes());
 
 app.config(['$locationProvider', '$httpProvider', '$compileProvider', function ($locationProvider, $httpProvider, $compileProvider) {
     $locationProvider.html5Mode({
@@ -95,6 +99,20 @@ app.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider
 }]);
 
 app.run(['$rootScope', ($rootScope:any) => {
+
+    $rootScope.KDA = (stats:any) => {
+
+        if (stats.hasOwnProperty('kills')) {
+            return (stats.kills + stats.assists) / Math.max(1, stats.deaths);
+        }
+
+        if (stats.hasOwnProperty('totalChampionKills')) {
+            return (stats.totalChampionKills + stats.totalAssists) / Math.max(1, stats.totalDeathsPerSession);
+        }
+
+        return '';
+    };
+
     $rootScope.getPosition = (player:any) => {
         var lane = player.timeline.lane.toLowerCase();
         var role = player.timeline.role.toLowerCase();

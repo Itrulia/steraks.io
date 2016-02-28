@@ -7,7 +7,7 @@ module App.Resource {
         }
 
         public getMatch(matchId:number) {
-            return this.$http.get('http://vanilla.app/match/' + matchId)
+            return this.$http.get('http://46.101.208.242/match/' + matchId)
                 .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
                     return response.data;
                 });

@@ -1,0 +1,44 @@
+.counter {
+
+}
+
+.counter__wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.counter__avatar {
+  width: 100%;
+  height: auto;
+}
+
+.counter__games {
+  color: $icon-text;
+  line-height: 1;
+  font-weight: 500;
+  font-size: 0.75em;
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 0.375rem 0.625rem;
+}
+
+.counter__percentage {
+  color: lighten(#F00, 10%);
+  line-height: 1;
+  font-weight: 500;
+  font-size: 0.75em;
+  text-align: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 0.375rem 0.625rem;
+  background: rgba(0,0,0,0.375);
+}
+
+.counter__percentage--positive {
+  color: lighten(#2daf7f, 10%);
+}

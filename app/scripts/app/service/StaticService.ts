@@ -30,6 +30,27 @@ module App.Service {
             return this.$q.when(data)
         }
 
+        public getRunes() {
+            var cacheKey = 'static:runes';
+            var data:any = this.CacheService.pull(cacheKey);
+
+            if (typeof this.promises.runes !== 'undefined') {
+                data = this.promises.runes;
+            } else if (data === null) {
+                data = this.StaticResource.getRunes();
+                data.then((runes) => {
+                    this.CacheService.remember(cacheKey, runes);
+                    return runes;
+                }).finally(() => {
+                    delete this.promises.runes;
+                });
+
+                this.promises.runes = data;
+            }
+
+            return this.$q.when(data)
+        }
+
         public getChampions() {
             var cacheKey = 'static:champions';
             var data:any = this.CacheService.pull(cacheKey);

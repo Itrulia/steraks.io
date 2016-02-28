@@ -7,8 +7,8 @@ module App.Component {
         public controller = ['$scope', 'SummonerService', function($scope, SummonerService: App.Service.SummonerService) {
             this.champions = [];
 
-            SummonerService.getStats(this.summoner.id).then((stats) => {
-                var stats = _.filter(stats, (champion:any) => {
+            SummonerService.getStats(this.summoner.id).then((stats:any) => {
+                stats = _.filter(stats, (champion:any) => {
                     return champion.id !== 0;
                 });
 

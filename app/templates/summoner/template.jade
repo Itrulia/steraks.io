@@ -1,28 +1,33 @@
 .highlight--secondary
     .summoner.container
-        .flag
+        .flag.flag--fit
             .flag__figure
-                img.summoner__avatar(ng-src="http://sk2.op.gg/images/profile_icons/profileIcon{{ ctrl.summoner.profileIconId }}.jpg")
+                img.summoner__avatar(ng-src="//ddragon.leagueoflegends.com/cdn/6.3.1/img/profileicon/{{ ctrl.summoner.profileIconId }}.png")
             .flag__body
                 h1.summoner__name {{ ctrl.summoner.name }}
                 span {{ ctrl.league }}
+            .flag__figure
+                button.button.button--primary(title="Follow {{ ctrl.summoner.name }} to be kept up2date about his games" type="button")
+                    .button__text Follow
+                    .button__addon
+                        span.icon--material favorite_border
 
-    .tabs
+    .tabs(stick-to-top)
         .container
             a.tab__header(ui-sref="summoner.index({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
                 | Summary
-            a.tab__header(ui-sref="summoner.matchHistory({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
+            a.tab__header(ui-sref="summoner.matches({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
                 | Matches
             a.tab__header(ui-sref="summoner.index2({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
                 | Champions
-            a.tab__header(ui-sref="summoner.index2({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
-                | Synergie
+            a.tab__header(ui-sref="summoner.counters({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
+                | Counters
+            a.tab__header(ui-sref="summoner.synergy({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
+                | Synergizes
             a.tab__header(ui-sref="summoner.index2({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
                 | Runes
             a.tab__header(ui-sref="summoner.index2({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
                 | Masteries
-            a.tab__header(ui-sref="summoner.index2({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
-                | Counters
             a.tab__header(ui-sref="summoner.index2({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
                 | Pentakills
 

@@ -1,0 +1,33 @@
+.rune {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+}
+
+.rune__figure {
+  display: flex;
+  align-items: center;
+  margin-right: 0.75rem;
+}
+
+.rune__image {
+  width: 50px;
+}
+
+.rune__rank {
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+.rune__text {
+  line-height: 1.5;
+}
+
+.rune__name {
+  display: block;
+  font-weight: 500;
+}
+
+.rune__description {
+  display: block;
+}

@@ -42,13 +42,6 @@
   margin-right: 12px;
 }
 
-.score__header--items,
-.score__entry--items {
-  width: 234px;
-  margin-left: 12px;
-  margin-right: 12px;
-}
-
 .score__header--gold,
 .score__entry--gold {
   width: 40px;
@@ -57,22 +50,6 @@
 
 .score__header--champion {
   text-align: left;
-}
-
-.score__header--kda {
-
-}
-
-.score__header--summoner-spells {
-
-}
-
-.score__header--items {
-
-}
-
-.score__header--gold {
-
 }
 
 .score__row {
@@ -106,18 +83,6 @@
   flex-flow: row wrap;
 }
 
-.score__entry--summoner-spells {
-
-}
-
-.score__entry--items {
-
-}
-
-.score__entry--gold {
-
-}
-
 .score__wards-bought,
 .score__cs {
   width: 100%;
@@ -125,10 +90,20 @@
 }
 
 .score__img {
-  width: 30px;
-  height: 30px;
+  width: 22px;
+  height: 22px;
   border-radius: 2px;
   margin-right: 4px;
+
+  @media (min-width: 620px) {
+    width: 28px;
+    height: 28px;
+  }
+
+  @media (min-width: 840px) {
+    width: 32px;
+    height: 32px;
+  }
 
   &:last-child {
     margin: 0;
@@ -138,8 +113,24 @@
 .score__name {
   color: inherit;
   text-decoration: none;
+  font-size: 1rem;
+  padding-bottom: 0.75rem;
 
   &:hover {
     text-decoration: underline;
   }
+}
+
+.score__avatar {
+  width: 68px;
+  height: 68px;
+}
+
+.score__items {
+  padding-top: 0.25rem;
+}
+
+.score__item {
+  width: 28px;
+  height: 28px;
 }

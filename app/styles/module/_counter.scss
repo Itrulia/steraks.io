@@ -1,28 +1,15 @@
 .counter {
-
+  display: flex;
 }
 
 .counter__wrapper {
-  width: 100%;
+  flex-grow: 1;
   position: relative;
 }
 
 .counter__avatar {
   width: 100%;
   height: auto;
-}
-
-.counter__games {
-  color: $icon-text;
-  line-height: 1;
-  font-weight: 500;
-  font-size: 0.75em;
-  text-align: right;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  padding: 0.375rem 0.625rem;
 }
 
 .counter__percentage {
@@ -41,4 +28,22 @@
 
 .counter__percentage--positive {
   color: lighten(#2daf7f, 10%);
+}
+
+.counter__text {
+  width: 8em;
+  flex-grow: 1;
+  flex-shrink: 0;
+  font-size: 0.75em;
+  color: $primary-text;
+  padding: 0 0.375rem;
+  line-height: 1;
+}
+
+.counter__games {
+
+}
+
+.counter__name {
+  padding-bottom: 0.25rem;
 }

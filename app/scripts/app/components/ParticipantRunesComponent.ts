@@ -1,5 +1,5 @@
 module App.Component {
-    export class ParticipantRunes {
+    export class ParticipantRunesComponent {
         public templateUrl = 'components/participant-runes.html';
         public bindings = {participant: '<'};
         public controllerAs = 'ctrl';

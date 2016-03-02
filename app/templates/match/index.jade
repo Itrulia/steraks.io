@@ -6,9 +6,8 @@
                 span Winning Team: {{ ctrl.getWinningTeamId() | team }} Team
             .match__info__entry
                 span Game Length: {{ ctrl.match.matchDuration | gameLength }}
-        .widget__body.match__stats.match__widget
+        .widget__body
             div(ng-include="'match/score-board.html'")
-                spinner
     .grid.grid--center
         .grid__col--12.d-grid__col--5
             participant-damage-distribution(participant="ctrl.selected")

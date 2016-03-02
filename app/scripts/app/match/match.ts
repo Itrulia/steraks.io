@@ -5,13 +5,11 @@
 /// <reference path='filters/Position.ts' />
 /// <reference path='filters/Keystone.ts' />
 
-
 var MatchApp:angular.IModule = angular.module('matchHistory', ['ui.router', 'chart.js']);
 MatchApp.controller('MatchController', Match.Controller.MatchController);
 MatchApp.filter('matchMode', Match.Filter.mode);
 MatchApp.filter('csPerMinute', Match.Filter.csPerMinute);
 MatchApp.filter('position', Match.Filter.position);
-MatchApp.filter('keystone', Match.Filter.keystone);
 
 MatchApp.config(['$stateProvider', function ($stateProvider:angular.ui.IStateProvider) {
     $stateProvider.state('match', {
@@ -19,9 +17,6 @@ MatchApp.config(['$stateProvider', function ($stateProvider:angular.ui.IStatePro
         templateUrl: 'match/index.html',
         controller: 'MatchController',
         controllerAs: 'ctrl',
-        resolve: {
-
-        },
         data: {
             auth: null
         }

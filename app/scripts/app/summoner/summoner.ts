@@ -3,7 +3,10 @@
 /// <reference path='SummonerProfileController.ts' />
 /// <reference path='SummonerCounterController.ts' />
 /// <reference path='SummonerSynergyController.ts' />
+/// <reference path='SummonerChampionsController.ts' />
 /// <reference path='SummonerMatchHistoryController.ts' />
+/// <reference path='SummonerChampionController.ts' />
+/// <reference path='SummonerRunesController.ts' />
 
 var summonerApp:angular.IModule = angular.module('summoner', ['ui.router']);
 summonerApp.controller('SummonerController', Summoner.Controller.SummonerController);
@@ -11,6 +14,9 @@ summonerApp.controller('SummonerProfileController', Summoner.Controller.Summoner
 summonerApp.controller('SummonerMatchHistoryController', Summoner.Controller.SummonerMatchHistoryController);
 summonerApp.controller('SummonerCounterController', Summoner.Controller.SummonerCounterController);
 summonerApp.controller('SummonerSynergyController', Summoner.Controller.SummonerSynergyController);
+summonerApp.controller('SummonerChampionsController', Summoner.Controller.SummonerChampionsController);
+summonerApp.controller('SummonerChampionController', Summoner.Controller.SummonerChampionController);
+summonerApp.controller('SummonerRunesController', Summoner.Controller.SummonerRunesController);
 
 summonerApp.config(['$stateProvider', function ($stateProvider:angular.ui.IStateProvider) {
 
@@ -21,7 +27,7 @@ summonerApp.config(['$stateProvider', function ($stateProvider:angular.ui.IState
         controller: 'SummonerController',
         controllerAs: 'ctrl',
         resolve: {
-            summoner: ['$stateParams', 'SummonerService', function ($stateParams:angular.ui.IStateParamsService, SummonerService:App.Service.SummonerService) {
+            summoner: ['$stateParams', 'SummonerService', function ($stateParams:any, SummonerService:App.Service.SummonerService) {
                 return SummonerService.getSummoner($stateParams.summonerId);
             }],
             league: ['SummonerService', 'summoner', function (SummonerService:App.Service.SummonerService, summoner) {
@@ -42,6 +48,18 @@ summonerApp.config(['$stateProvider', function ($stateProvider:angular.ui.IState
         controller: 'SummonerProfileController',
         controllerAs: 'ctrl'
     })
+    .state('summoner.runes', {
+        url: '/runes',
+        templateUrl: 'summoner/runes.html',
+        controller: 'SummonerRunesController',
+        controllerAs: 'ctrl'
+    })
+    .state('summoner.champions', {
+        url: '/champions',
+        templateUrl: 'summoner/champions.html',
+        controller: 'SummonerChampionsController',
+        controllerAs: 'ctrl'
+    })
     .state('summoner.counters', {
         url: '/counters',
         templateUrl: 'summoner/counters.html',
@@ -57,18 +75,33 @@ summonerApp.config(['$stateProvider', function ($stateProvider:angular.ui.IState
 
     // matches
     $stateProvider.state('summoner.matches', {
+        template: '<ui-view></ui-view>'
+    })
+    .state('summoner.matches.history', {
         url: '/matches',
         templateUrl: 'summoner/match-history.html',
         controller: 'SummonerMatchHistoryController',
         controllerAs: 'ctrl'
     })
     .state('summoner.matches.as', {
-        url: '/as/:championId'
+        url: '/matches/as/:championId',
+        templateUrl: 'summoner/match-history.html',
+        controller: 'SummonerChampionController',
+        controllerAs: 'ctrl',
+        resolve: {
+            champion: ['$stateParams', 'StaticService', function ($stateParams:any, StaticService:App.Service.StaticService) {
+                return StaticService.getChampions().then((champions) => {
+                    return _.filter(champions, {'name': $stateParams.championId})[0];
+                });
+            }]
+        }
     })
     .state('summoner.matches.with', {
-        url: '/with/:championId'
+        url: '/matches/with/:championId',
+        templateUrl: 'summoner/match-history.html'
     })
     .state('summoner.matches.against', {
-        url: '/against/:championId'
+        url: '/matches/against/:championId',
+        templateUrl: 'summoner/match-history.html'
     });
 }]);

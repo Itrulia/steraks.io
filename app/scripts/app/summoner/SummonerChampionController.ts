@@ -4,15 +4,16 @@ module Summoner.Controller {
     'use strict';
     // @ngInject
 
-    export class SummonerMatchHistoryController {
+    export class SummonerChampionController {
         public loading = true;
         public matches = {};
 
-        constructor(private $scope, private $q:angular.IQService, private MatchService:App.Service.MatchService, private SummonerService:App.Service.SummonerService, public summoner:any) {
+        constructor(private $scope, private $q:angular.IQService, private MatchService:App.Service.MatchService, private SummonerService:App.Service.SummonerService, public summoner:any, public champion:any) {
             SummonerService.getMatches(summoner.id).then((matches:Array<any>) => {
-                var matchPromises = [];
+                matches = _.filter(matches, {champion: champion.id});
 
-                _.forEach(matches.slice(0, 10), (match, index) => {
+                var matchPromises = [];
+                _.forEach(matches, (match, index) => {
                     matchPromises.push(this.MatchService.getMatch(match.matchId).then((match) => {
                         this.matches[index] = match;
                     }));

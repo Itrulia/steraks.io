@@ -44,13 +44,16 @@ app.component('matchAward', new App.Component.MatchAwardComponent());
 app.component('summonerRank', new App.Component.SummonerRankComponent());
 app.component('summonerChampionStats', new App.Component.SummonerChampionStatsComponent());
 app.component('summonerCounter', new App.Component.SummonerCounterComponent());
+app.component('summonerChampion', new App.Component.SummonerChampionComponent());
+app.component('summonerRunes', new App.Component.SummonerRunesComponent());
 
 app.component('participantJungleDistribution', new App.Component.ParticipantJungleDistribution());
 app.component('participantDamageDistribution', new App.Component.ParticipantDamageDistribution());
 app.component('participantSkillOrder', new App.Component.ParticipantSkillOrder());
 app.component('participantBuildOrder', new App.Component.ParticipantBuildOrder());
-app.component('participantRunes', new App.Component.ParticipantRunes());
+app.component('participantRunes', new App.Component.ParticipantRunesComponent());
 
+//
 app.config(['$locationProvider', '$httpProvider', '$compileProvider', function ($locationProvider, $httpProvider, $compileProvider) {
     $locationProvider.html5Mode({
         enabled: true,
@@ -100,6 +103,7 @@ app.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider
 
 app.run(['$rootScope', ($rootScope:any) => {
 
+    // I am too lazy to refactor
     $rootScope.KDA = (stats:any) => {
 
         if (stats.hasOwnProperty('kills')) {

@@ -23,9 +23,13 @@
 /// <reference path='components/SpinnerComponent.ts' />
 /// <reference path='components/MatchSummaryComponent.ts' />
 /// <reference path='components/MatchAwardComponent.ts' />
+
 /// <reference path='components/SummonerChampionStatsComponent.ts' />
 /// <reference path='components/SummonerRankComponent.ts' />
 /// <reference path='components/SummonerCounterComponent.ts' />
+/// <reference path='components/SummonerChampionComponent.ts' />
+/// <reference path='components/SummonerRunesComponent.ts' />
+
 /// <reference path='components/ParticipantJungleDistributionComponent.ts' />
 /// <reference path='components/ParticipantDamageDistributionComponent.ts' />
 /// <reference path='components/ParticipantBuildOrderComponent.ts' />

@@ -9,8 +9,6 @@ module Match.Controller {
         public matchId:any;
         public loading:Boolean;
         public selected:any;
-        public buyOrder:Array<any>;
-        public skillOrder:Array<any>;
         public firstBlood;
         public mostDamage;
         public mostWards;
@@ -34,6 +32,7 @@ module Match.Controller {
 
         public selectParticipant(participant:any) {
             this.selected = participant;
+            console.log(this.selected);
         }
 
         public getWinningTeamId() {

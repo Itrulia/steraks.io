@@ -32,7 +32,6 @@ module Match.Controller {
 
         public selectParticipant(participant:any) {
             this.selected = participant;
-            console.log(this.selected);
         }
 
         public getWinningTeamId() {

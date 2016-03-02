@@ -44,7 +44,7 @@ summonerApp.config(['$stateProvider', function ($stateProvider:angular.ui.IState
     })
     .state('summoner.index', {
         url: '',
-        templateUrl: 'summoner/index.html',
+        templateUrl: 'summoner/summary.html',
         controller: 'SummonerProfileController',
         controllerAs: 'ctrl'
     })
@@ -75,7 +75,7 @@ summonerApp.config(['$stateProvider', function ($stateProvider:angular.ui.IState
 
     // matches
     $stateProvider.state('summoner.matches', {
-        template: '<ui-view></ui-view>'
+        template: '<div ui-view=""></div>'
     })
     .state('summoner.matches.history', {
         url: '/matches',

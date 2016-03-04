@@ -7,56 +7,56 @@ module App.Resource {
         }
 
         public getSummoner(summonerId:number, region:string = 'euw') {
-            return this.$http.get('http://46.101.208.242/' + region + '/summoner/' + summonerId)
+            return this.$http.get('http://vanilla.app/' + region + '/summoner/' + summonerId)
                 .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
                     return response.data;
                 });
         }
 
         public getRank(summonerId:number, region:string = 'euw') {
-            return this.$http.get('http://46.101.208.242/' + region + '/summoner/' + summonerId + '/rank')
+            return this.$http.get('http://vanilla.app/' + region + '/summoner/' + summonerId + '/rank')
                 .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
                     return response.data;
                 });
         }
 
         public getMasteries(summonerId:number, region:string = 'euw') {
-            return this.$http.get('http://46.101.208.242/' + region + '/summoner/' + summonerId + '/masteries')
+            return this.$http.get('http://vanilla.app/' + region + '/summoner/' + summonerId + '/masteries')
                 .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
                     return response.data;
                 });
         }
 
         public getRunes(summonerId:number, region:string = 'euw') {
-            return this.$http.get('http://46.101.208.242/' + region + '/summoner/' + summonerId + '/runes')
+            return this.$http.get('http://vanilla.app/' + region + '/summoner/' + summonerId + '/runes')
                 .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
                     return response.data;
                 });
         }
 
         public getStats(summonerId:number, region:string = 'euw') {
-            return this.$http.get('http://46.101.208.242/' + region + '/summoner/' + summonerId + '/stats')
+            return this.$http.get('http://vanilla.app/' + region + '/summoner/' + summonerId + '/stats')
                 .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
                     return response.data;
                 });
         }
 
         public getMatches(summonerId:number, region:string = 'euw') {
-            return this.$http.get('http://46.101.208.242/' + region + '/summoner/' + summonerId + '/matches')
+            return this.$http.get('http://vanilla.app/' + region + '/summoner/' + summonerId + '/matches')
                 .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
                     return response.data;
                 });
         }
 
         public getCounters(summonerId:number, region:string = 'euw') {
-            return this.$http.get('http://46.101.208.242/' + region + '/summoner/' + summonerId + '/counters')
+            return this.$http.get('http://vanilla.app/' + region + '/summoner/' + summonerId + '/counters')
                 .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
                     return response.data;
                 });
         }
 
         public getSynergies(summonerId:number, region:string = 'euw') {
-            return this.$http.get('http://46.101.208.242/' + region + '/summoner/' + summonerId + '/synergy')
+            return this.$http.get('http://vanilla.app/' + region + '/summoner/' + summonerId + '/synergy')
                 .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
                     return response.data;
                 });

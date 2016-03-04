@@ -54,6 +54,12 @@ summonerApp.config(['$stateProvider', function ($stateProvider:angular.ui.IState
         controller: 'SummonerRunesController',
         controllerAs: 'ctrl'
     })
+    .state('summoner.masteries', {
+        url: '/masteries',
+        templateUrl: 'summoner/masteries.html',
+        controller: 'SummonerMasteriesController',
+        controllerAs: 'ctrl'
+    })
     .state('summoner.champions', {
         url: '/champions',
         templateUrl: 'summoner/champions.html',

@@ -3,6 +3,6 @@
         img.counter__avatar(ng-src="{{ ::ctrl.champion.championAvatar }}" title="{{ ::ctrl.champion.championName }}")
     .counter__text
         .counter__name
-            span {{ ctrl.champion.championName }}
+            span {{ ::ctrl.champion.championName }}
         .counter__games
-            span {{ ctrl.champion.total }} Game
+            span {{ ::ctrl.champion.total }} {{ ::ctrl.champion.total == 1 ? 'Game' : 'Games' }}

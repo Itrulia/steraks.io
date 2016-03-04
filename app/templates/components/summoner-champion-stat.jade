@@ -2,7 +2,9 @@
     .widget__header
         span Most Played Champions
     .widget__body
-        .widget__item(ng-repeat="champion in ctrl.champions track by $index")
+        .widget__item(ng-if="ctrl.loading")
+            spinner
+        .widget__item(ng-repeat="champion in ctrl.champions track by $index" ng-if="!ctrl.loading")
             .champion-stat
                 img.champion-stat__champion(ng-src="{{ ::champion.championAvatar }}")
                 .champion-stat__info

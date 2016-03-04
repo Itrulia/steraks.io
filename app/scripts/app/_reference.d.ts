@@ -24,6 +24,8 @@
 /// <reference path='components/MatchSummaryComponent.ts' />
 /// <reference path='components/MatchAwardComponent.ts' />
 
+/// <reference path='components/MasteryPageComponent.ts' />
+
 /// <reference path='components/SummonerChampionStatsComponent.ts' />
 /// <reference path='components/SummonerRankComponent.ts' />
 /// <reference path='components/SummonerCounterComponent.ts' />

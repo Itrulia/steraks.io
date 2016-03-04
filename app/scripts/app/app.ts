@@ -41,6 +41,8 @@ app.component('spinner', new App.Component.SpinnerComponent());
 app.component('matchSummary', new App.Component.MatchSummaryComponent());
 app.component('matchAward', new App.Component.MatchAwardComponent());
 
+app.component('masteryPage', new App.Component.MasteryPageComponent());
+
 app.component('summonerRank', new App.Component.SummonerRankComponent());
 app.component('summonerChampionStats', new App.Component.SummonerChampionStatsComponent());
 app.component('summonerCounter', new App.Component.SummonerCounterComponent());
@@ -114,7 +116,7 @@ app.run(['$rootScope', ($rootScope:any) => {
             return (stats.totalChampionKills + stats.totalAssists) / Math.max(1, stats.totalDeathsPerSession);
         }
 
-        return '';
+        return 0;
     };
 
     $rootScope.getPosition = (player:any) => {

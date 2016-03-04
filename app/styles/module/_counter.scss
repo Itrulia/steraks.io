@@ -12,38 +12,37 @@
   height: auto;
 }
 
-.counter__percentage {
-  color: lighten(#F00, 10%);
-  line-height: 1;
-  font-weight: 500;
-  font-size: 0.75em;
-  text-align: right;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  padding: 0.375rem 0.625rem;
-  background: rgba(0,0,0,0.375);
-}
-
-.counter__percentage--positive {
-  color: lighten(#2daf7f, 10%);
-}
-
 .counter__text {
-  width: 8em;
+  width: 6em;
   flex-grow: 1;
   flex-shrink: 0;
   font-size: 0.75em;
   color: $primary-text;
   padding: 0 0.375rem;
   line-height: 1;
-}
 
-.counter__games {
+  @media (min-width: 600px) {
+    width: 7em;
+  }
 
+  @media (min-width: 840px) {
+    width: 8em;
+  }
 }
 
 .counter__name {
   padding-bottom: 0.25rem;
+}
+
+.counter__games {
+  padding-bottom: 0.25rem;
+}
+
+.counter__percentage {
+  color: lighten(#F00, 10%);
+  font-weight: 500;
+}
+
+.counter__percentage--positive {
+  color: darken(#0F0, 15%);
 }

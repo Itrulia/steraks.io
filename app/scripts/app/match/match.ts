@@ -3,7 +3,6 @@
 /// <reference path='filters/MatchMode.ts' />
 /// <reference path='filters/MinionsPerMinute.ts' />
 /// <reference path='filters/Position.ts' />
-/// <reference path='filters/Keystone.ts' />
 
 var MatchApp:angular.IModule = angular.module('matchHistory', ['ui.router', 'chart.js']);
 MatchApp.controller('MatchController', Match.Controller.MatchController);

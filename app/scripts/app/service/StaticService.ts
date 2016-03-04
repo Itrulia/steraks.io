@@ -51,6 +51,27 @@ module App.Service {
             return this.$q.when(data)
         }
 
+        public getMasteries() {
+            var cacheKey = 'static:masteries';
+            var data:any = this.CacheService.pull(cacheKey);
+
+            if (typeof this.promises.masteries !== 'undefined') {
+                data = this.promises.masteries;
+            } else if (data === null) {
+                data = this.StaticResource.getMasteries();
+                data.then((masteries) => {
+                    this.CacheService.remember(cacheKey, masteries);
+                    return masteries;
+                }).finally(() => {
+                    delete this.promises.masteries;
+                });
+
+                this.promises.masteries = data;
+            }
+
+            return this.$q.when(data)
+        }
+
         public getChampions() {
             var cacheKey = 'static:champions';
             var data:any = this.CacheService.pull(cacheKey);

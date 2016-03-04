@@ -14,14 +14,16 @@ module Summoner.Controller {
 
                 var matchPromises = [];
                 _.forEach(matches, (match, index) => {
-                    matchPromises.push(this.MatchService.getMatch(match.matchId).then((match) => {
+                    var promise = this.MatchService.getMatch(match.matchId).then((match) => {
                         this.matches[index] = match;
-                    }));
+                    });
+
+                    matchPromises.push(promise);
                 });
 
-                this.$q.all(matchPromises).then(() => {
-                  this.loading = false;
-                })
+                this.$q.all(matchPromises).finally(() => {
+                    this.loading = false;
+                });
             });
         }
     }

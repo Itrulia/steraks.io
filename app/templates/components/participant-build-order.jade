@@ -3,6 +3,8 @@
         span Items ({{ ctrl.participant.stats.goldSpent }} Gold Spent)
     .widget__body
         .build-order
-            .build-order__frame(ng-repeat="frame in ctrl.buildOrder")
-                img.build-order__item(ng-src="{{ ::item.itemAvatar }}" title="{{ ::item.itemName }}" ng-repeat="item in ::frame")
-                .build-order__into(ng-if="!$last")
+            .build-order__frame(ng-repeat="(timestamp, frame) in ctrl.buildOrder")
+                .build-order__items
+                    img.build-order__item(ng-src="{{ ::item.itemAvatar }}" title="{{ ::item.itemName }}" ng-repeat="item in ::frame")
+                    .build-order__into
+                .build-order__timestamp {{ timestamp | date: 'm:ss'}}

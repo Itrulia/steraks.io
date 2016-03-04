@@ -13,7 +13,7 @@ module Match.Controller {
         public mostDamage;
         public mostWards;
 
-        constructor(private $scope:angular.IScope, private $stateParams:angular.ui.IStateParamsService, private MatchService:App.Service.MatchService) {
+        constructor(private $scope:angular.IScope, private $stateParams:any, private MatchService:App.Service.MatchService) {
             this.loading = true;
             this.match = null;
             this.matchId = $stateParams.matchId;

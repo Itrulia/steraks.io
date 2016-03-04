@@ -1,7 +1,11 @@
 .score {
   font-size: 0.875rem;
   width: 100%;
-  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .score__headers {
@@ -89,7 +93,7 @@
   height: 22px;
   border-radius: 2px;
 
-  @media (min-width: 620px) {
+  @media (min-width: 600px) {
     width: 28px;
     height: 28px;
   }
@@ -118,7 +122,7 @@
   width: 28px;
   height: 28px;
 
-  @media (min-width: 620px) {
+  @media (min-width: 600px) {
     width: 38px;
     height: 38px;
   }
@@ -138,7 +142,7 @@
 .score__summoner-spell:first-child {
   margin-bottom: 0.125rem;
 
-  @media (min-width: 620px) {
+  @media (min-width: 600px) {
     margin-bottom: 0.25rem;
   }
 }
@@ -147,7 +151,7 @@
   width: 18px;
   height: 18px;
 
-  @media (min-width: 620px) {
+  @media (min-width: 600px) {
     width: 24px;
     height: 24px;
   }
@@ -167,7 +171,7 @@
   width: 100%;
   height: calc(2 * 22px + 1 * 2px);
 
-  @media (min-width: 620px) {
+  @media (min-width: 600px) {
     height: calc(2 * 28px + 1 * 2px);
   }
 
@@ -183,7 +187,7 @@
   height: 22px;
   border-radius: 2px;
 
-  @media (min-width: 620px) {
+  @media (min-width: 600px) {
     width: 28px;
     height: 28px;
   }
@@ -242,7 +246,7 @@
   flex-flow: row wrap;
   margin-left: 0.125rem;
 
-  @media (min-width: 620px) {
+  @media (min-width: 600px) {
     margin-left: 0.375rem;
   }
 }

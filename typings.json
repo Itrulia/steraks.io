@@ -1,6 +1,7 @@
 {
   "ambientDependencies": {
     "angular": "github:DefinitelyTyped/DefinitelyTyped/angularjs/angular.d.ts#1c4a34873c9e70cce86edd0e61c559e43dfa5f75",
+    "angular-ui-router": "github:DefinitelyTyped/DefinitelyTyped/angular-ui-router/angular-ui-router.d.ts#655f8c1bf3c71b0e1ba415b36309604f79326ac8",
     "jquery": "github:DefinitelyTyped/DefinitelyTyped/jquery/jquery.d.ts#f29bf726a60674dbf24bab06a26403a3871c3f21",
     "lodash": "github:DefinitelyTyped/DefinitelyTyped/lodash/lodash.d.ts#7b7aa2027a8fb6219a8bcf1b6bb12bcd0ff9539d",
     "moment": "github:DefinitelyTyped/DefinitelyTyped/moment/moment.d.ts#b090bcf9ba9f756ec8ff53e7707269729172a325"

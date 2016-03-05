@@ -1,6 +1,10 @@
 spinner(ng-if="ctrl.loading")
-error(text="'No games have been found'" ng-if="!ctrl.loading && !ctrl.error && ctrl.counters.length == 0")
-.grid(ng-if="!ctrl.loading")
+.grid.grid--center(ng-if="!ctrl.loading")
+    .grid__col--0.d-grid__col--2(ng-if="!ctrl.loading && !ctrl.error && ctrl.counters.length == 0")
+    .grid__col--12.d-grid__col--8(ng-if="!ctrl.loading && !ctrl.error && ctrl.counters.length == 0")
+        error(text="'No games have been found'")
+    .grid__col--0.d-grid__col--2(ng-if="!ctrl.loading && !ctrl.error && ctrl.counters.length == 0")
+
     .grid__col--6.m-grid__col--4.t-grid__col--3.d-grid__col--2.baseline--small(
         ng-repeat="counter in ctrl.counters track by counter.championId"
     )

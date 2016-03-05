@@ -32,15 +32,6 @@
   display: flex;
   align-items: stretch;
   flex-flow: row wrap;
-
-  .container > &,
-  .container > [ui-view] > &,
-  .container > ui-view > &,
-  & > &,
-  [class*="grid__col--"] > & {
-    margin-left: -0.375rem;
-    margin-right: -0.375rem;
-  }
 }
 
 .grid--center {

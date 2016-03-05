@@ -13,7 +13,7 @@
             .match-summary__spell-list
                 img.match-summary__spell(ng-src="{{ ::ctrl.player.spell1Avatar }}" title="{{ ::ctrl.player.spell1Name }}")
                 img.match-summary__spell(ng-src="{{ ::ctrl.player.spell2Avatar }}" title="{{ ::ctrl.player.spell2Name }}")
-                img.match-summary__spell.hide--very-small(src="http://vignette3.wikia.nocookie.net/leagueoflegends/images/5/58/Thunderlord%27s_Decree_mastery_2016.png/revision/latest?cb=20151103094742" title="Tunderlord's Decree")
+                img.match-summary__spell.hide--very-small(src="{{ ::ctrl.player.keystone.masteryAvatar }}" title="{{ ::ctrl.player.keystone.masteryName }}")
 
         .match-summary__wrapper
             .match-summary__stats

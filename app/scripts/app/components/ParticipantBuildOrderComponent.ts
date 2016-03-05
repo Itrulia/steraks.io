@@ -23,7 +23,7 @@ module App.Component {
                         });
 
                         _.forEach(undo, (event:any) => {
-                            var index = _.findIndex(items, (bought) => {
+                            var index = _.findIndex(items, (bought:any) => {
                                 return bought.itemId === event.itemBefore;
                             });
 

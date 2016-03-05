@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Karl Merkli -- Lead Developer -- https://twitter.com/KarlMerkli
+
+# THANKS
+
+    Riot Games
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    Normalize.css, AngularJs

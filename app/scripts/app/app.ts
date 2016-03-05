@@ -11,6 +11,7 @@ var app:angular.IModule = angular.module('app', [
 
 app.service('MatchResource', App.Resource.MatchResource);
 app.service('MatchService', App.Service.MatchService);
+app.service('MatchStaticDataService', App.Service.MatchStaticDataService);
 
 app.service('RankingStatsResource', App.Resource.RankingStatsResource);
 app.service('RankingStatsService', App.Service.RankingStatsService);
@@ -23,11 +24,12 @@ app.service('SummonerService', App.Service.SummonerService);
 
 app.service('CacheService', App.Service.CacheService);
 app.service('AuthenticationService', App.Service.AuthenticationService);
+app.service('KeystoneMasteryService', App.Service.KeystoneMasteryService);
 
 //
-app.factory('ServerErrorInterceptor', App.Interceptor.TokenInterceptor.instance);
-app.factory('NeedAuthenticationInterceptor', App.Interceptor.NeedAuthenticationInterceptor.instance);
-app.factory('TokenInterceptor', App.Interceptor.TokenInterceptor.instance);
+app.factory('ServerErrorInterceptor', App.Interceptor.ServerErrorInterceptor);
+app.factory('NeedAuthenticationInterceptor', App.Interceptor.NeedAuthenticationInterceptor);
+app.factory('TokenInterceptor', App.Interceptor.TokenInterceptor);
 
 //
 app.filter('team', App.Filter.team);

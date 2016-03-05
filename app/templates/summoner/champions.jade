@@ -1,7 +1,7 @@
 spinner(ng-if="ctrl.loading")
 .grid(ng-if="!ctrl.loading")
     .grid__col--0.d-grid__col--2(ng-if="!ctrl.loading && !ctrl.error && ctrl.champions.length == 0")
-    .grid__col--12.d-grid__col--8(ng-if="!ctrl.loading && !ctrl.error && ctrl.champions.length == 0")
+    .grid__col--12.d-grid__col--8.baseline(ng-if="!ctrl.loading && !ctrl.error && ctrl.champions.length == 0")
         error(text="'No games have been found'")
     .grid__col--0.d-grid__col--2(ng-if="!ctrl.loading && !ctrl.error && ctrl.champions.length == 0")
 

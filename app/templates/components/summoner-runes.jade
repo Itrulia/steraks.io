@@ -2,6 +2,7 @@
     .widget__header
         span {{ ctrl.page.name }}
     .widget__body
+        error(text="'Rune page is empty'" ng-if="ctrl.page.slots.length == 0")
         .widget__item(ng-repeat="rune in ctrl.page.slots")
             .rune
                 .rune__figure

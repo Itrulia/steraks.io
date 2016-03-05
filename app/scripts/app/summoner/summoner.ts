@@ -31,14 +31,18 @@ summonerApp.config(['$stateProvider', function ($stateProvider:angular.ui.IState
                 return SummonerService.getSummoner($stateParams.summonerId);
             }],
             league: ['SummonerService', 'summoner', function (SummonerService:App.Service.SummonerService, summoner) {
-                return SummonerService.getRank(summoner.id).then((rank) => {
-                    var tier = rank.tier.charAt(0).toUpperCase() + rank.tier.slice(1).toLowerCase();
-                    var division = rank.entries.filter((rank:any) => {
-                        return rank.playerOrTeamId == summoner.id;
-                    })[0].division;
+                return SummonerService.getRank(summoner.id)
+                    .then((rank) => {
+                        var tier = rank.tier.charAt(0).toUpperCase() + rank.tier.slice(1).toLowerCase();
+                        var division = rank.entries.filter((rank:any) => {
+                            return rank.playerOrTeamId == summoner.id;
+                        })[0].division;
 
-                    return [tier, division].join(' ');
-                });
+                        return [tier, division].join(' ');
+                    })
+                    .catch(() => {
+                        return 'UNRANKED';
+                    });
             }]
         }
     })

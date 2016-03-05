@@ -2,9 +2,11 @@
 
 /// <reference path='service/CacheService.ts' />
 /// <reference path='service/AuthenticationService.ts' />
+/// <reference path='service/KeystoneMasteryService.ts' />
 
 /// <reference path='resource/MatchResource.ts' />
 /// <reference path='service/MatchService.ts' />
+/// <reference path='service/MatchStaticDataService.ts' />
 
 /// <reference path='resource/RankingStatsResource.ts' />
 /// <reference path='service/RankingStatsService.ts' />

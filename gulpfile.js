@@ -69,9 +69,13 @@ gulp.task('copy', function () {
 gulp.task('styles', function () {
 	return gulp.src(paths.styles.app)
 		.pipe($.plumber())
+        .pipe($.sourcemaps.init())
 		.pipe($.sass().on('error', $.sass.logError))
 		.pipe($.postcss(postProcessor))
-		.pipe(gulp.dest(paths.styles.dist));
+        .pipe($.cleanCss())
+        .pipe($.sourcemaps.write('.'))
+		.pipe(gulp.dest(paths.styles.dist))
+        .pipe($.size({title: 'styles'}));
 });
 
 gulp.task('styles:lint', function () {
@@ -80,24 +84,37 @@ gulp.task('styles:lint', function () {
 		.pipe($.postcss([
 			require('stylelint')(),
 			require('postcss-reporter')({clearMessages: true, throwError: true})
-		], {syntax: require('postcss-scss')}))
+		], {syntax: require('postcss-scss')}));
 });
 
 gulp.task('index', function () {
 	return gulp.src(paths.index.app)
 		.pipe($.plumber())
 		.pipe($.if('*.jade', $.jade()))
-		.pipe(gulp.dest(paths.index.dist));
+		.pipe(gulp.dest(paths.index.dist))
+        .pipe($.size({title: 'index'}));
 });
 
 gulp.task('templates', function () {
 	return gulp.src(paths.templates.app)
 		.pipe($.plumber())
 		.pipe($.if('*.jade', $.jade()))
+        .pipe($.htmlmin({
+            removeComments: true,
+            collapseWhitespace: true,
+            collapseBooleanAttributes: true,
+            removeAttributeQuotes: true,
+            removeRedundantAttributes: true,
+            removeEmptyAttributes: true,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            removeOptionalTags: true
+        }))
 		.pipe($.angularTemplatecache({
 			standalone: true
 		}))
-		.pipe(gulp.dest(paths.templates.dist));
+		.pipe(gulp.dest(paths.templates.dist))
+        .pipe($.size({title: 'templates'}));
 });
 
 gulp.task('typescript', function () {
@@ -106,27 +123,40 @@ gulp.task('typescript', function () {
 		.pipe($.typescript({
 			out: 'app.js'
 		}))
-		.pipe($.stripLine('reference path'))
+		.pipe($.stripLine('/// <reference path='))
 		.pipe($.ngAnnotate())
-		.pipe(gulp.dest(paths.typescript.dist));
+        .pipe($.uglify())
+		.pipe(gulp.dest(paths.typescript.dist))
+        .pipe($.size({title: 'scripts'}));
 });
 
 gulp.task('javascript', function () {
 	return gulp.src(paths.javascript.app)
 		.pipe($.plumber())
-		.pipe(gulp.dest(paths.javascript.dist));
+        .pipe($.newer(paths.javascript.dist))
+        .pipe($.sourcemaps.init())
+        .pipe($.uglify())
+        .pipe($.sourcemaps.write('.'))
+		.pipe(gulp.dest(paths.javascript.dist))
+        .pipe($.size({title: 'javascript'}));
 });
 
 gulp.task('images', function () {
 	return gulp.src(paths.images.app)
 		.pipe($.plumber())
-		.pipe(gulp.dest(paths.images.dist));
+        .pipe($.cache($.imagemin({
+            progressive: true,
+            interlaced: true
+        })))
+        .pipe(gulp.dest(paths.images.dist))
+        .pipe($.size({title: 'images'}));
 });
 
 gulp.task('fonts', function () {
 	return gulp.src(paths.fonts.app)
 		.pipe($.plumber())
-		.pipe(gulp.dest(paths.fonts.dist));
+		.pipe(gulp.dest(paths.fonts.dist))
+        .pipe($.size({title: 'fonts'}));
 });
 
 gulp.task('watch', function () {

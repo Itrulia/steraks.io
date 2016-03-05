@@ -13,7 +13,7 @@ module Match.Controller {
         public mostDamage;
         public mostWards;
 
-        constructor(private $scope:angular.IScope, private $stateParams:any, private MatchService:App.Service.MatchService) {
+        constructor(private $scope:angular.IScope, private $stateParams:any, private MatchService:App.Service.MatchService, private MatchStaticDataService:App.Service.MatchStaticDataService) {
             this.loading = true;
             this.match = null;
             this.matchId = $stateParams.matchId;
@@ -25,8 +25,8 @@ module Match.Controller {
                 that.loading = false;
                 that.selectParticipant(that.match.participants[0]);
 
-                this.MatchService.setMatchStaticData(this.match);
-                this.MatchService.setTimelineStaticData(this.match);
+                this.MatchStaticDataService.setMatchStaticData(this.match);
+                this.MatchStaticDataService.setTimelineStaticData(this.match);
             });
         }
 

@@ -2,48 +2,36 @@ module App.Interceptor {
     'use strict';
     // @ngInject
 
-    export class ServerErrorInterceptor {
-        constructor(private $q, private $injector) {
+    export function ServerErrorInterceptor($q, $injector) {
+        return {
+            response: (response) => {
+                return response;
+            },
+            responseError: (response) => {
+                var $:any = jQuery;
 
-        }
+                if (response.status === 400) {
+                    var authenticationService = $injector.get('authenticationService');
+                    var $state = $injector.get('$state');
 
-        public response(response) {
-            return response;
-        }
+                    $.notification({
+                        message: 'Your session has expired.',
+                        type: 'important'
+                    });
 
-        public responseError(response) {
-            var $:any = jQuery;
+                    authenticationService.logout();
+                    $state.go('login');
+                } else if (response.status >= 500 || response.status < 100) {
+                    $.notification({
+                        message: 'Server Error',
+                        type: 'important'
+                    });
+                }
 
-            if (response.status === 400) {
-                var authenticationService = this.$injector.get('authenticationService');
-                var $state = this.$injector.get('$state');
-
-                $.notification({
-                    message: 'Your session has expired.',
-                    type: 'important'
-                });
-
-                authenticationService.logout();
-                $state.go('login');
-            } else if (response.status === 500 || response.status === 0) {
-                $.notification({
-                    message: 'Server Error',
-                    type: 'important'
-                });
+                return $q.reject(response);
             }
-
-            return this.$q.reject(response);
-        }
-
-        public static instance()
-        {
-            var factory = ($q, $injector) => {
-                return new ServerErrorInterceptor($q, $injector);
-            };
-
-            factory.$inject = ['$q', '$injector'];
-
-            return factory;
-        }
+        };
     }
+
+    ServerErrorInterceptor.$inject = ['$q', '$injector'];
 }

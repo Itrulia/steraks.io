@@ -2,6 +2,5 @@ spinner(ng-if="ctrl.loading")
 .grid(ng-if="!ctrl.loading")
     .grid__col--12.m-grid__col--6.d-grid__col--4.baseline--small(
         ng-repeat="page in ctrl.runes track by $index"
-        ng-if="page.slots.length > 0"
     )
         summoner-runes(page="page")

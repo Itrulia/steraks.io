@@ -1,0 +1,21 @@
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  background: $dark-secondary;
+  border: 1px solid $divider;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  line-height: 1;
+  color: $secondary-text;
+}
+
+.error__icon {
+  font-size: 3.5em;
+  margin-bottom: 0.75rem;
+}
+
+.error__text {
+  font-weight: 400;
+}

@@ -1,4 +1,5 @@
 spinner(ng-if="ctrl.loading")
+error(text="'No games have been found'" ng-if="!ctrl.loading && ctrl.games.length == 0")
 .grid(ng-if="!ctrl.loading")
     .grid__col--6.m-grid__col--4.t-grid__col--3.d-grid__col--2.baseline--small(
         ng-repeat="counter in ctrl.counters track by counter.championId"

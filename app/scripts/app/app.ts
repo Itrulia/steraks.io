@@ -36,6 +36,7 @@ app.filter('gameLength', App.Filter.gameLength);
 //
 app.directive('stickToTop', App.Directive.StickToTopDirective.instance);
 //
+app.component('error', new App.Component.ErrorComponent());
 app.component('spinner', new App.Component.SpinnerComponent());
 
 app.component('matchSummary', new App.Component.MatchSummaryComponent());

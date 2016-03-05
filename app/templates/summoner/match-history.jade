@@ -5,5 +5,6 @@
                 summoner-champion-stats(summoner="ctrl.summoner")
     .grid__col--12.t-grid__col--8
         spinner(ng-if="ctrl.loading")
+        error(text="'No matches have been found'" ng-if="!ctrl.loading && ctrl.matches.length == 0")
         a(ui-sref="match({matchId: match.matchId})" ng-repeat="(index, match) in ctrl.matches track by match.matchId")
             match-summary(match="match" summoner="ctrl.summoner")

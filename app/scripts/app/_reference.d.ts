@@ -20,7 +20,9 @@
 
 /// <reference path='directives/StickToTopDirective.ts' />
 
+/// <reference path='components/ErrorComponent.ts' />
 /// <reference path='components/SpinnerComponent.ts' />
+
 /// <reference path='components/MatchSummaryComponent.ts' />
 /// <reference path='components/MatchAwardComponent.ts' />
 

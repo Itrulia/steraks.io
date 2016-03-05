@@ -9,21 +9,23 @@ module Summoner.Controller {
         public matches = {};
 
         constructor(private $scope, private $q:angular.IQService, private MatchService:App.Service.MatchService, private SummonerService:App.Service.SummonerService, public summoner:any) {
-            SummonerService.getMatches(summoner.id).then((matches:Array<any>) => {
-                var matchPromises = [];
+            SummonerService.getMatches(summoner.id)
+                .then((matches:Array<any>) => {
+                    var matchPromises = [];
 
-                _.forEach(matches.slice(0, 10), (match, index) => {
-                    var promise = this.MatchService.getMatch(match.matchId).then((match) => {
-                        this.matches[index] = match;
+                    _.forEach(matches.slice(0, 10), (match, index) => {
+                        var promise = this.MatchService.getMatch(match.matchId).then((match) => {
+                            this.matches[index] = match;
+                        });
+
+                        matchPromises.push(promise);
                     });
 
-                    matchPromises.push(promise);
+                    return this.$q.all(matchPromises);
+                })
+                .finally(() => {
+                    this.loading = false;
                 });
-
-                this.$q.all(matchPromises).finally(() => {
-                  this.loading = false;
-                });
-            });
         }
     }
 }

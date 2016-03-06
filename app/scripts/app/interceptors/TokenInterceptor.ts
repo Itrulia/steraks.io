@@ -1,9 +1,9 @@
-module App.Interceptor {
+module App {
     'use strict';
     // @ngInject
 
     export function TokenInterceptor($q, $injector) {
-        var authenticationService:App.Service.AuthenticationService = null;
+        var authenticationService:App.AuthenticationService = null;
 
         return {
             response: (response) => {

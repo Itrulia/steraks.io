@@ -9,54 +9,54 @@ var app:angular.IModule = angular.module('app', [
     'templates'
 ]);
 
-app.service('MatchResource', App.Resource.MatchResource);
-app.service('MatchService', App.Service.MatchService);
-app.service('MatchStaticDataService', App.Service.MatchStaticDataService);
+app.service('MatchResource', App.MatchResource);
+app.service('MatchService', App.MatchService);
+app.service('MatchStaticDataService', App.MatchStaticDataService);
 
-app.service('RankingStatsResource', App.Resource.RankingStatsResource);
-app.service('RankingStatsService', App.Service.RankingStatsService);
+app.service('RankingStatsResource', App.RankingStatsResource);
+app.service('RankingStatsService', App.RankingStatsService);
 
-app.service('StaticResource', App.Resource.StaticResource);
-app.service('StaticService', App.Service.StaticService);
+app.service('StaticResource', App.StaticResource);
+app.service('StaticService', App.StaticService);
 
-app.service('SummonerResource', App.Resource.SummonerResource);
-app.service('SummonerService', App.Service.SummonerService);
+app.service('SummonerResource', App.SummonerResource);
+app.service('SummonerService', App.SummonerService);
 
-app.service('CacheService', App.Service.CacheService);
-app.service('AuthenticationService', App.Service.AuthenticationService);
-app.service('KeystoneMasteryService', App.Service.KeystoneMasteryService);
+app.service('CacheService', App.CacheService);
+app.service('AuthenticationService', App.AuthenticationService);
+app.service('KeystoneMasteryService', App.KeystoneMasteryService);
 
 //
-app.factory('ServerErrorInterceptor', App.Interceptor.ServerErrorInterceptor);
-app.factory('NeedAuthenticationInterceptor', App.Interceptor.NeedAuthenticationInterceptor);
-app.factory('TokenInterceptor', App.Interceptor.TokenInterceptor);
+app.factory('ServerErrorInterceptor', App.ServerErrorInterceptor);
+app.factory('NeedAuthenticationInterceptor', App.NeedAuthenticationInterceptor);
+app.factory('TokenInterceptor', App.TokenInterceptor);
 
 //
 app.filter('team', App.Filter.team);
 app.filter('gameLength', App.Filter.gameLength);
 
 //
-app.directive('stickToTop', App.Directive.StickToTopDirective.instance);
+app.directive('stickToTop', App.StickToTopDirective.instance);
 //
-app.component('error', new App.Component.ErrorComponent());
-app.component('spinner', new App.Component.SpinnerComponent());
+app.component('error', new App.ErrorComponent());
+app.component('spinner', new App.SpinnerComponent());
 
-app.component('matchSummary', new App.Component.MatchSummaryComponent());
-app.component('matchAward', new App.Component.MatchAwardComponent());
+app.component('matchSummary', new App.MatchSummaryComponent());
+app.component('matchAward', new App.MatchAwardComponent());
 
-app.component('masteryPage', new App.Component.MasteryPageComponent());
+app.component('masteryPage', new App.MasteryPageComponent());
 
-app.component('summonerRank', new App.Component.SummonerRankComponent());
-app.component('summonerChampionStats', new App.Component.SummonerChampionStatsComponent());
-app.component('summonerCounter', new App.Component.SummonerCounterComponent());
-app.component('summonerChampion', new App.Component.SummonerChampionComponent());
-app.component('summonerRunes', new App.Component.SummonerRunesComponent());
+app.component('summonerRank', new App.SummonerRankComponent());
+app.component('summonerChampionStats', new App.SummonerChampionStatsComponent());
+app.component('summonerCounter', new App.SummonerCounterComponent());
+app.component('summonerChampion', new App.SummonerChampionComponent());
+app.component('summonerRunes', new App.SummonerRunesComponent());
 
-app.component('participantJungleDistribution', new App.Component.ParticipantJungleDistribution());
-app.component('participantDamageDistribution', new App.Component.ParticipantDamageDistribution());
-app.component('participantSkillOrder', new App.Component.ParticipantSkillOrder());
-app.component('participantBuildOrder', new App.Component.ParticipantBuildOrder());
-app.component('participantRunes', new App.Component.ParticipantRunesComponent());
+app.component('participantJungleDistribution', new App.ParticipantJungleDistribution());
+app.component('participantDamageDistribution', new App.ParticipantDamageDistribution());
+app.component('participantSkillOrder', new App.ParticipantSkillOrder());
+app.component('participantBuildOrder', new App.ParticipantBuildOrder());
+app.component('participantRunes', new App.ParticipantRunesComponent());
 
 //
 app.config(['$locationProvider', '$httpProvider', '$compileProvider', function ($locationProvider, $httpProvider, $compileProvider) {

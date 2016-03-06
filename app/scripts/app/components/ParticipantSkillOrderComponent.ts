@@ -1,9 +1,9 @@
-module App.Component {
+module App {
     export class ParticipantSkillOrder {
         public templateUrl = 'components/participant-skill-order.html';
         public bindings = {participant: '<', match: '<'};
         public controllerAs = 'ctrl';
-        public controller = ['$scope', '$q', 'StaticService', function ($scope, $q:angular.IQService, StaticService:App.Service.StaticService) {
+        public controller = ['$scope', '$q', 'StaticService', function ($scope, $q:angular.IQService, StaticService:App.StaticService) {
             this.skillOrder = [];
 
             $scope.$watch('ctrl.participant', () => {

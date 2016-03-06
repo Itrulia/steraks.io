@@ -1,4 +1,4 @@
-module App.Resource {
+module App {
     'use strict';
     // @ngInject
 
@@ -7,7 +7,7 @@ module App.Resource {
         }
 
         public getRankedStats(summonerId:Number) {
-            return this.$http.get('http://vanilla.app/summoner/' + summonerId + '/rank')
+            return this.$http.get('http://46.101.208.242/summoner/' + summonerId + '/rank')
                 .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
                     return response.data;
                 });

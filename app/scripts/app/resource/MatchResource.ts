@@ -1,4 +1,4 @@
-module App.Resource {
+module App {
     'use strict';
     // @ngInject
 
@@ -7,7 +7,7 @@ module App.Resource {
         }
 
         public getMatch(matchId:number, region:string = 'euw') {
-            return this.$http.get('http://vanilla.app/' + region + '/match/' + matchId)
+            return this.$http.get('http://46.101.208.242/' + region + '/match/' + matchId)
                 .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
                     return response.data;
                 });

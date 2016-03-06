@@ -1,9 +1,9 @@
-module App.Service {
+module App {
     'use strict';
     // @ngInject
 
     export class RankingStatsService {
-        constructor(private $q:angular.IQService, private CacheService:App.Service.CacheService, private RankingStatsResource:App.Resource.RankingStatsResource) {
+        constructor(private $q:angular.IQService, private CacheService:App.CacheService, private RankingStatsResource:App.RankingStatsResource) {
 
         }
 

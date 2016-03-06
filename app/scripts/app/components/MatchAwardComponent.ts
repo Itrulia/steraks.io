@@ -1,4 +1,4 @@
-module App.Component {
+module App {
     export class MatchAwardComponent {
         public templateUrl = 'components/match-award.html';
         public bindings = {match: '<'};

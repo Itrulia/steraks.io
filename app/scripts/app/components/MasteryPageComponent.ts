@@ -1,9 +1,9 @@
-module App.Component {
+module App {
     export class MasteryPageComponent {
         public templateUrl = 'components/mastery-page.html';
         public bindings = {masteries: '<'};
         public controllerAs = 'ctrl';
-        public controller = ['$scope', '$q', 'StaticService', function ($scope, $q:angular.IQService, StaticService:App.Service.StaticService) {
+        public controller = ['$scope', '$q', 'StaticService', function ($scope, $q:angular.IQService, StaticService:App.StaticService) {
             var realm:any = StaticService.getRealm();
             var masteries:any = StaticService.getMasteries();
 

@@ -1,4 +1,4 @@
-module App.Directive {
+module App {
     'use strict';
     // @ngInject
 

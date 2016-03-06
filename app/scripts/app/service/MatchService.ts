@@ -1,9 +1,9 @@
-module App.Service {
+module App {
     'use strict';
     // @ngInject
 
     export class MatchService {
-        public constructor(private $q, private MatchResource:App.Resource.MatchResource, private StaticService:App.Service.StaticService) {
+        public constructor(private $q, private MatchResource:App.MatchResource, private StaticService:App.StaticService) {
 
         }
 

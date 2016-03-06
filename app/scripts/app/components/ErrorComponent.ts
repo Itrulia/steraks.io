@@ -1,4 +1,4 @@
-module App.Component {
+module App {
     export class ErrorComponent {
         public bindings = {text: '<'};
         public controllerAs = 'ctrl';

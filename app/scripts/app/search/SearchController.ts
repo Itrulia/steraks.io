@@ -1,6 +1,6 @@
 /// <reference path='../_reference.d.ts' />
 
-module Search.Controller {
+module Search {
     'use strict';
     // @ngInject
 

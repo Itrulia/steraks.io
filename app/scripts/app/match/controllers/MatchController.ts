@@ -1,6 +1,6 @@
 /// <reference path='../../_reference.d.ts' />
 
-module Match.Controller {
+module Match {
     'use strict';
     // @ngInject
 
@@ -13,20 +13,34 @@ module Match.Controller {
         public mostDamage;
         public mostWards;
 
-        constructor(private $scope:angular.IScope, private $stateParams:any, private MatchService:App.Service.MatchService, private MatchStaticDataService:App.Service.MatchStaticDataService) {
+        constructor(private $scope:angular.IScope, private $q:angular.IQService, private $stateParams:any, private MatchService:App.MatchService, private MatchStaticDataService:App.MatchStaticDataService) {
             this.loading = true;
             this.match = null;
             this.matchId = $stateParams.matchId;
             this.selected = null;
 
-            var that = this;
-            MatchService.getMatch(this.matchId).then((match:any) => {
-                that.match = match;
-                that.loading = false;
-                that.selectParticipant(that.match.participants[0]);
+            var promise = null;
+            if ($stateParams.match) {
+                promise = this.$q.when(this.$stateParams.match);
+            } else {
+                promise = MatchService.getMatch(this.matchId)
+                    .then((match:any) => {
+                        this.MatchStaticDataService.setMatchStaticData(match);
 
-                this.MatchStaticDataService.setMatchStaticData(this.match);
-                this.MatchStaticDataService.setTimelineStaticData(this.match);
+                        return match;
+                    });
+            }
+
+            promise.then((match:any) => {
+                this.match = match;
+
+                if (this.$stateParams.player) {
+                    this.selectParticipant(this.$stateParams.player);
+                } else {
+                    this.selectParticipant(this.match.participants[0]);
+                }
+            }).finally(() => {
+                this.loading = false;
             });
         }
 

@@ -1,9 +1,9 @@
-module App.Component {
+module App {
     export class ParticipantRunesComponent {
         public templateUrl = 'components/participant-runes.html';
         public bindings = {participant: '<'};
         public controllerAs = 'ctrl';
-        public controller = ['$scope', '$q', 'StaticService', function ($scope, $q:angular.IQService, StaticService:App.Service.StaticService) {
+        public controller = ['$scope', '$q', 'StaticService', function ($scope, $q:angular.IQService, StaticService:App.StaticService) {
             var realm:any = StaticService.getRealm();
             var runes:any = StaticService.getRunes();
 

@@ -1,10 +1,10 @@
-module App.Component {
+module App {
 
     export class SummonerChampionStatsComponent {
         public templateUrl = 'components/summoner-champion-stat.html';
         public bindings = {summoner: '<'};
         public controllerAs = 'ctrl';
-        public controller = ['$scope', 'SummonerService', function ($scope, SummonerService:App.Service.SummonerService) {
+        public controller = ['$scope', 'SummonerService', function ($scope, SummonerService:App.SummonerService) {
             this.loading = true;
             this.error = false;
 

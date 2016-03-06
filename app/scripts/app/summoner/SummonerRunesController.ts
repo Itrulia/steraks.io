@@ -1,6 +1,6 @@
 /// <reference path='../_reference.d.ts' />
 
-module Summoner.Controller {
+module Summoner {
     'use strict';
     // @ngInject
 
@@ -9,7 +9,7 @@ module Summoner.Controller {
         public error = false;
         public runes = [];
 
-        constructor(private $scope, private $q:angular.IQService, private SummonerService:App.Service.SummonerService, public summoner:any) {
+        constructor(private $scope, private $q:angular.IQService, private SummonerService:App.SummonerService, public summoner:any) {
             this.SummonerService.getRunes(this.summoner.id)
                 .then((runes:any) => {
                     _.forEach(runes, (rune:any) => {

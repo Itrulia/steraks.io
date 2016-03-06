@@ -1,4 +1,4 @@
-module App.Component {
+module App {
     export class ParticipantBuildOrder {
         public templateUrl = 'components/participant-build-order.html';
         public bindings = {participant: '<', match: '<'};

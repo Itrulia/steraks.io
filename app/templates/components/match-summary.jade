@@ -1,40 +1,41 @@
-.match-summary(ng-class="::{'match-summary--loss': !ctrl.team.winner, 'match-summary--won': ctrl.team.winner}")
-    .match-summary__header
-        span
-            strong {{ ::ctrl.match | matchMode }}
-            |  &mdash; {{ ::ctrl.player | position }} {{ ::ctrl.player.championName }}
-        span {{ ::ctrl.match.matchCreation | date }}
+a(ui-sref="match({matchId: ctrl.match.matchId, match: ctrl.match, player: ctrl.player})")
+    .match-summary(ng-class="::{'match-summary--loss': !ctrl.team.winner, 'match-summary--won': ctrl.team.winner}")
+        .match-summary__header
+            span
+                strong {{ ::ctrl.match | matchMode }}
+                |  &mdash; {{ ::ctrl.player | position }} {{ ::ctrl.player.championName }}
+            span {{ ::ctrl.match.matchCreation | date }}
 
-    .match-summary__body
-        .match-summary__wrapper
-            .match-summary__champion(title="{{ ::ctrl.player.championName }}")
-                img.match-summary__champion-avatar(ng-src="{{ ::ctrl.player.championAvatar }}" title="{{ ::ctrl.player.championName }}")
+        .match-summary__body
+            .match-summary__wrapper
+                .match-summary__champion(title="{{ ::ctrl.player.championName }}")
+                    img.match-summary__champion-avatar(ng-src="{{ ::ctrl.player.championAvatar }}" title="{{ ::ctrl.player.championName }}")
 
-            .match-summary__spell-list
-                img.match-summary__spell(ng-src="{{ ::ctrl.player.spell1Avatar }}" title="{{ ::ctrl.player.spell1Name }}")
-                img.match-summary__spell(ng-src="{{ ::ctrl.player.spell2Avatar }}" title="{{ ::ctrl.player.spell2Name }}")
-                img.match-summary__spell.hide--very-small(src="{{ ::ctrl.player.keystone.masteryAvatar }}" title="{{ ::ctrl.player.keystone.masteryName }}")
+                .match-summary__spell-list
+                    img.match-summary__spell(ng-src="{{ ::ctrl.player.spell1Avatar }}" title="{{ ::ctrl.player.spell1Name }}")
+                    img.match-summary__spell(ng-src="{{ ::ctrl.player.spell2Avatar }}" title="{{ ::ctrl.player.spell2Name }}")
+                    img.match-summary__spell.hide--very-small(src="{{ ::ctrl.player.keystone.masteryAvatar }}" title="{{ ::ctrl.player.keystone.masteryName }}")
 
-        .match-summary__wrapper
-            .match-summary__stats
-                span {{ ::ctrl.player.stats.kills }} /
-                span  {{ ::ctrl.player.stats.deaths }} /
-                span  {{ ::ctrl.player.stats.assists }}
-                br
+            .match-summary__wrapper
+                .match-summary__stats
+                    span {{ ::ctrl.player.stats.kills }} /
+                    span  {{ ::ctrl.player.stats.deaths }} /
+                    span  {{ ::ctrl.player.stats.assists }}
+                    br
 
-                span.match-summary__stats__kda(ng-class="::{'kda--bad': $root.KDA(ctrl.player.stats) < 2, 'kda--average': $root.KDA(ctrl.player.stats) >= 2 && $root.KDA(ctrl.player.stats) < 4, 'kda--good': $root.KDA(ctrl.player.stats) >= 4 && $root.KDA(ctrl.player.stats) < 6, 'kda--great': $root.KDA(ctrl.player.stats) >= 6}")
-                    | {{ ::$root.KDA(ctrl.player.stats) | number: 1  }}
-                    | KDA
+                    span.match-summary__stats__kda(ng-class="::{'kda--bad': $root.KDA(ctrl.player.stats) < 2, 'kda--average': $root.KDA(ctrl.player.stats) >= 2 && $root.KDA(ctrl.player.stats) < 4, 'kda--good': $root.KDA(ctrl.player.stats) >= 4 && $root.KDA(ctrl.player.stats) < 6, 'kda--great': $root.KDA(ctrl.player.stats) >= 6}")
+                        | {{ ::$root.KDA(ctrl.player.stats) | number: 1  }}
+                        | KDA
 
-        .match-summary__wrapper
-            .match-summary__item-list
-                img.match-summary__item(ng-repeat="item in ctrl.player.stats.items track by $index" ng-src="{{ ::item.itemAvatar }}" title="{{ ::item.itemName }}")
+            .match-summary__wrapper
+                .match-summary__item-list
+                    img.match-summary__item(ng-repeat="item in ctrl.player.stats.items track by $index" ng-src="{{ ::item.itemAvatar }}" title="{{ ::item.itemName }}")
 
-        .match-summary__wrapper.hide--very-small
-            .match-summary__player-list(ng-repeat="teamId in [100,200] track by $index" ng-class="::{'match-summary__player-list--blue': teamId === 100, 'match-summary__player-list--red': teamId === 200}")
-                .match-summary__player(
-                    ng-repeat="participant in ::ctrl.match.participants | filter: {teamId: teamId} track by $index"
-                    ng-class="::{'match-summary__player--me': ctrl.summoner.id === participant.player.summonerId}"
-                )
-                    img.match-summary__player__champion(ng-src="{{ participant.championAvatar }}" title="{{ participant.championName }}")
-                    span.match-summary__player__name(title="{{ participant.player.summonerName }}") {{ participant.player.summonerName }}
+            .match-summary__wrapper.hide--very-small
+                .match-summary__player-list(ng-repeat="teamId in [100,200] track by $index" ng-class="::{'match-summary__player-list--blue': teamId === 100, 'match-summary__player-list--red': teamId === 200}")
+                    .match-summary__player(
+                        ng-repeat="participant in ::ctrl.match.participants | filter: {teamId: teamId} track by $index"
+                        ng-class="::{'match-summary__player--me': ctrl.summoner.id === participant.player.summonerId}"
+                    )
+                        img.match-summary__player__champion(ng-src="{{ participant.championAvatar }}" title="{{ participant.championName }}")
+                        span.match-summary__player__name(title="{{ participant.player.summonerName }}") {{ participant.player.summonerName }}

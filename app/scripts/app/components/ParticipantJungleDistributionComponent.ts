@@ -1,4 +1,4 @@
-module App.Component {
+module App {
     export class ParticipantJungleDistribution {
         public templateUrl = 'components/participant-jungle-distribution.html';
         public bindings = {participant: '<'};

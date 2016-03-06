@@ -1,9 +1,9 @@
-module App.Component {
+module App {
     export class SummonerRankComponent {
         public templateUrl = 'components/summoner-rank.html';
         public bindings = {summoner: '<'};
         public controllerAs = 'ctrl';
-        public controller = ['$scope', 'SummonerService', function($scope, SummonerService: App.Service.SummonerService) {
+        public controller = ['$scope', 'SummonerService', function($scope, SummonerService: App.SummonerService) {
             this.tier = null;
             this.name = null;
             this.rank = [];

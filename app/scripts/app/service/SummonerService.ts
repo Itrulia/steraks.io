@@ -1,12 +1,12 @@
-module App.Service {
+module App {
     'use strict';
     // @ngInject
 
     export class SummonerService {
         constructor(private $q:angular.IQService,
-                    private CacheService:App.Service.CacheService,
-                    private SummonerResource:App.Resource.SummonerResource,
-                    private StaticService:App.Service.StaticService) {
+                    private CacheService:App.CacheService,
+                    private SummonerResource:App.SummonerResource,
+                    private StaticService:App.StaticService) {
         }
 
         public getSummoner(summonerId:number) {

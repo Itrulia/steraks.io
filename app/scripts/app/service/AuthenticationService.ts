@@ -1,9 +1,9 @@
-module App.Service {
+module App {
     'use strict';
     //@ngInject
 
     export class AuthenticationService {
-        public constructor(private CacheService:App.Service.CacheService) {
+        public constructor(private CacheService:App.CacheService) {
 
         }
 

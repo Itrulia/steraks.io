@@ -1,10 +1,21 @@
-module App.Service {
+module App {
     'use strict';
     // @ngInject
 
     export class MatchStaticDataService {
-        public constructor(private $q, private StaticService:App.Service.StaticService) {
+        public realm:any;
+        public champions:any;
+        public items:any;
+        public summonerSpells:any;
+        public masteries:any;
 
+        public constructor(private $q, private StaticService:App.StaticService) {
+            this.masteries = this.StaticService.getMasteries();
+            this.realm = this.StaticService.getRealm();
+            this.champions = this.StaticService.getChampions();
+            this.summonerSpells = this.StaticService.getSummonerSpells();
+            this.items = this.StaticService.getItems();
+            this.realm = this.StaticService.getRealm();
         }
 
         public setMatchStaticData(match:any) {
@@ -14,107 +25,94 @@ module App.Service {
                 this.setSummonerSpellData(participant);
                 this.setMasteryData(participant);
             });
+
+            this.setTimelineStaticData(match);
         }
 
-        protected setMasteryData(participant:any) {
-            var realm:any = this.StaticService.getRealm();
-            var masteries:any = this.StaticService.getMasteries();
-
-            this.$q.all([realm, masteries]).then((response) => {
-                realm = response[0];
-                masteries = response[1].data;
+        public setMasteryData(participant:any) {
+            this.$q.all([this.realm, this.masteries]).then((response) => {
+                this.realm = response[0];
+                this.masteries = response[1];
 
                 _.forEach(participant.masteries, (mastery:any) => {
-                    mastery.masteryName = masteries[mastery.masteryId].name;
-                    mastery.masteryAvatar = realm.cdn + '/' + realm.dd + '/img/mastery/' + masteries[mastery.masteryId].image.full;
+                    mastery.masteryName = this.masteries.data[mastery.masteryId].name;
+                    mastery.masteryAvatar = this.realm.cdn + '/' + this.realm.dd + '/img/mastery/' + this.masteries.data[mastery.masteryId].image.full;
                 });
             });
         }
 
-        protected setChampionData(participant:any) {
-            var realm:any = this.StaticService.getRealm();
-            var champions:any = this.StaticService.getChampions();
+        public setChampionData(participant:any) {
+            this.$q.all([this.realm, this.champions]).then((response) => {
+                this.realm = response[0];
+                this.champions = response[1];
 
-            this.$q.all([realm, champions]).then((response) => {
-                realm = response[0];
-                champions = response[1];
-
-                participant.championName = champions[participant.championId].name;
-                participant.championAvatar = realm.cdn + '/' + realm.dd + '/img/champion/' + champions[participant.championId].image.full;
+                participant.championName = this.champions[participant.championId].name;
+                participant.championAvatar = this.realm.cdn + '/' + this.realm.dd + '/img/champion/' + this.champions[participant.championId].image.full;
             });
         }
 
-        protected setSummonerSpellData(participant:any) {
+        public setSummonerSpellData(participant:any) {
             var realm:any = this.StaticService.getRealm();
-            var spells:any = this.StaticService.getSummonerSpells();
 
-            this.$q.all([realm, spells]).then((response) => {
-                realm = response[0];
-                spells = response[1];
 
-                participant.spell1Name = spells[participant.spell1Id].name;
-                participant.spell1Avatar = realm.cdn + '/' + realm.dd + '/img/spell/' + spells[participant.spell1Id].image.full;
+            this.$q.all([this.realm, this.summonerSpells]).then((response) => {
+                this.realm = response[0];
+                this.summonerSpells = response[1];
 
-                participant.spell2Name = spells[participant.spell2Id].name;
-                participant.spell2Avatar = realm.cdn + '/' + realm.dd + '/img/spell/' + spells[participant.spell2Id].image.full;
+                participant.spell1Name = this.summonerSpells[participant.spell1Id].name;
+                participant.spell1Avatar = this.realm.cdn + '/' + this.realm.dd + '/img/spell/' + this.summonerSpells[participant.spell1Id].image.full;
+
+                participant.spell2Name = this.summonerSpells[participant.spell2Id].name;
+                participant.spell2Avatar = this.realm.cdn + '/' + this.realm.dd + '/img/spell/' + this.summonerSpells[participant.spell2Id].image.full;
             });
         }
 
-        protected setItemData(participant:any) {
-            var realm:any = this.StaticService.getRealm();
-            var items:any = this.StaticService.getItems();
+        public setItemData(participant:any) {
+            this.$q.all([this.realm, this.items]).then((response) => {
+                this.realm = response[0];
+                this.items = response[1];
 
-            this.$q.all([realm, items]).then((response) => {
-                realm = response[0];
-                items = response[1];
-
-                var baseurl = realm.cdn + '/' + realm.dd + '/img/item/';
+                var baseurl = this.realm.cdn + '/' + this.realm.dd + '/img/item/';
                 participant.stats.items = [
                     {
-                        itemName: (items[participant.stats.item0]) ? items[participant.stats.item0].name : '',
-                        itemAvatar: (items[participant.stats.item0]) ? baseurl + items[participant.stats.item0].image.full : ''
+                        itemName: (this.items[participant.stats.item0]) ? this.items[participant.stats.item0].name : '',
+                        itemAvatar: (this.items[participant.stats.item0]) ? baseurl + this.items[participant.stats.item0].image.full : ''
                     },
                     {
-                        itemName: (items[participant.stats.item1]) ? items[participant.stats.item1].name : '',
-                        itemAvatar: (items[participant.stats.item1]) ? baseurl + items[participant.stats.item1].image.full : ''
+                        itemName: (this.items[participant.stats.item1]) ? this.items[participant.stats.item1].name : '',
+                        itemAvatar: (this.items[participant.stats.item1]) ? baseurl + this.items[participant.stats.item1].image.full : ''
                     },
                     {
-                        itemName: (items[participant.stats.item2]) ? items[participant.stats.item2].name : '',
-                        itemAvatar: (items[participant.stats.item2]) ? baseurl + items[participant.stats.item2].image.full : ''
+                        itemName: (this.items[participant.stats.item2]) ? this.items[participant.stats.item2].name : '',
+                        itemAvatar: (this.items[participant.stats.item2]) ? baseurl + this.items[participant.stats.item2].image.full : ''
                     },
                     {
-                        itemName: (items[participant.stats.item3]) ? items[participant.stats.item3].name : '',
-                        itemAvatar: (items[participant.stats.item3]) ? baseurl + items[participant.stats.item3].image.full : ''
+                        itemName: (this.items[participant.stats.item3]) ? this.items[participant.stats.item3].name : '',
+                        itemAvatar: (this.items[participant.stats.item3]) ? baseurl + this.items[participant.stats.item3].image.full : ''
                     },
                     {
-                        itemName: (items[participant.stats.item4]) ? items[participant.stats.item4].name : '',
-                        itemAvatar: (items[participant.stats.item4]) ? baseurl + items[participant.stats.item4].image.full : ''
+                        itemName: (this.items[participant.stats.item4]) ? this.items[participant.stats.item4].name : '',
+                        itemAvatar: (this.items[participant.stats.item4]) ? baseurl + this.items[participant.stats.item4].image.full : ''
                     },
                     {
-                        itemName: (items[participant.stats.item5]) ? items[participant.stats.item5].name : '',
-                        itemAvatar: (items[participant.stats.item5]) ? baseurl + items[participant.stats.item5].image.full : ''
+                        itemName: (this.items[participant.stats.item5]) ? this.items[participant.stats.item5].name : '',
+                        itemAvatar: (this.items[participant.stats.item5]) ? baseurl + this.items[participant.stats.item5].image.full : ''
                     },
                     {
-                        itemName: (items[participant.stats.item6]) ? items[participant.stats.item6].name : '',
-                        itemAvatar: (items[participant.stats.item6]) ? baseurl + items[participant.stats.item6].image.full : ''
+                        itemName: (this.items[participant.stats.item6]) ? this.items[participant.stats.item6].name : '',
+                        itemAvatar: (this.items[participant.stats.item6]) ? baseurl + this.items[participant.stats.item6].image.full : ''
                     },
                 ];
             });
         }
 
-
         public setTimelineStaticData(match:any) {
-            var realm:any = this.StaticService.getRealm();
-            var champions:any = this.StaticService.getChampions();
-            var items:any = this.StaticService.getItems();
-
-            this.$q.all([realm, champions, items]).then((response) => {
-                realm = response[0];
-                champions = response[1];
-                items = response[2];
+            this.$q.all([this.realm, this.champions, this.items]).then((response) => {
+                this.realm = response[0];
+                this.champions = response[1];
+                this.items = response[2];
 
                 _.forEach(match.timeline.frames, (frame:any) => {
-
                     if (!angular.isDefined(frame.events)) {
                         return;
                     }
@@ -128,17 +126,17 @@ module App.Service {
                     });
 
                     _.forEach(itemEvents, (event:any) => {
-                        event.itemName = items[event.itemId].name;
-                        event.itemAvatar = realm.cdn + '/' + realm.dd + '/img/item/' + items[event.itemId].image.full;
+                        event.itemName = this.items[event.itemId].name;
+                        event.itemAvatar = this.realm.cdn + '/' + this.realm.dd + '/img/item/' + this.items[event.itemId].image.full;
                     });
 
                     _.forEach(skillEvents, (event:any) => {
                         var championId = match.participants[event.participantId - 1].championId;
-                        var champion = champions[championId];
+                        var champion = this.champions[championId];
                         var spell = champion.spells[event.skillSlot - 1];
 
                         event.spellName = spell.name;
-                        event.spellAvatar = realm.cdn + '/' + realm.dd + '/img/spell/' + spell.image.full;
+                        event.spellAvatar = this.realm.cdn + '/' + this.realm.dd + '/img/spell/' + spell.image.full;
                     });
                 });
             });

@@ -1,11 +1,11 @@
 /// <reference path='../_reference.d.ts' />
 
-module Summoner.Controller {
+module Summoner {
     'use strict';
     // @ngInject
 
     export class SummonerController {
-        constructor(private $scope:angular.IScope, private SummonerService:App.Service.SummonerService, public summoner:any, public league:any) {
+        constructor(private $scope:angular.IScope, private SummonerService:App.SummonerService, public summoner:any, public league:any) {
 
         }
     }

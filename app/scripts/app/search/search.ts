@@ -2,4 +2,4 @@
 /// <reference path='SearchController.ts' />
 
 var searchApp:angular.IModule = angular.module('search', ['ui.router']);
-searchApp.controller('SearchController', Search.Controller.SearchController);
+searchApp.controller('SearchController', Search.SearchController);

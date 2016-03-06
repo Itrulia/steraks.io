@@ -1,4 +1,4 @@
-module App.Service {
+module App {
     'use strict';
     //@ngInject
 

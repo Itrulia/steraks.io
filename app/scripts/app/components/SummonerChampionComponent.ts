@@ -1,4 +1,4 @@
-module App.Component {
+module App {
     export class SummonerChampionComponent {
         public templateUrl = 'components/summoner-champion.html';
         public bindings = {champion: '<'};

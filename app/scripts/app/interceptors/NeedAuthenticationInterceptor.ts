@@ -1,4 +1,4 @@
-module App.Interceptor {
+module App {
     'use strict';
     // @ngInject
 

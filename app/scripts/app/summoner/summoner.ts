@@ -9,14 +9,14 @@
 /// <reference path='SummonerRunesController.ts' />
 
 var summonerApp:angular.IModule = angular.module('summoner', ['ui.router']);
-summonerApp.controller('SummonerController', Summoner.Controller.SummonerController);
-summonerApp.controller('SummonerProfileController', Summoner.Controller.SummonerProfileController);
-summonerApp.controller('SummonerMatchHistoryController', Summoner.Controller.SummonerMatchHistoryController);
-summonerApp.controller('SummonerCounterController', Summoner.Controller.SummonerCounterController);
-summonerApp.controller('SummonerSynergyController', Summoner.Controller.SummonerSynergyController);
-summonerApp.controller('SummonerChampionsController', Summoner.Controller.SummonerChampionsController);
-summonerApp.controller('SummonerChampionController', Summoner.Controller.SummonerChampionController);
-summonerApp.controller('SummonerRunesController', Summoner.Controller.SummonerRunesController);
+summonerApp.controller('SummonerController', Summoner.SummonerController);
+summonerApp.controller('SummonerProfileController', Summoner.SummonerProfileController);
+summonerApp.controller('SummonerMatchHistoryController', Summoner.SummonerMatchHistoryController);
+summonerApp.controller('SummonerCounterController', Summoner.SummonerCounterController);
+summonerApp.controller('SummonerSynergyController', Summoner.SummonerSynergyController);
+summonerApp.controller('SummonerChampionsController', Summoner.SummonerChampionsController);
+summonerApp.controller('SummonerChampionController', Summoner.SummonerChampionController);
+summonerApp.controller('SummonerRunesController', Summoner.SummonerRunesController);
 
 summonerApp.config(['$stateProvider', function ($stateProvider:angular.ui.IStateProvider) {
 
@@ -27,10 +27,10 @@ summonerApp.config(['$stateProvider', function ($stateProvider:angular.ui.IState
         controller: 'SummonerController',
         controllerAs: 'ctrl',
         resolve: {
-            summoner: ['$stateParams', 'SummonerService', function ($stateParams:any, SummonerService:App.Service.SummonerService) {
+            summoner: ['$stateParams', 'SummonerService', function ($stateParams:any, SummonerService:App.SummonerService) {
                 return SummonerService.getSummoner($stateParams.summonerId);
             }],
-            league: ['SummonerService', 'summoner', function (SummonerService:App.Service.SummonerService, summoner) {
+            league: ['SummonerService', 'summoner', function (SummonerService:App.SummonerService, summoner) {
                 return SummonerService.getRank(summoner.id)
                     .then((rank) => {
                         var tier = rank.tier.charAt(0).toUpperCase() + rank.tier.slice(1).toLowerCase();
@@ -99,7 +99,7 @@ summonerApp.config(['$stateProvider', function ($stateProvider:angular.ui.IState
         controller: 'SummonerChampionController',
         controllerAs: 'ctrl',
         resolve: {
-            champion: ['$stateParams', 'StaticService', function ($stateParams:any, StaticService:App.Service.StaticService) {
+            champion: ['$stateParams', 'StaticService', function ($stateParams:any, StaticService:App.StaticService) {
                 return StaticService.getChampions().then((champions) => {
                     return _.filter(champions, {'name': $stateParams.championId})[0];
                 });

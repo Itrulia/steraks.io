@@ -1,9 +1,10 @@
-module App.Service {
+module App {
     'use strict';
     //@ngInject
 
     export class CacheService {
         public constructor() {
+
         }
 
         private isExpired(object) {

@@ -1,6 +1,6 @@
 /// <reference path='../_reference.d.ts' />
 
-module Summoner.Controller {
+module Summoner {
     'use strict';
     // @ngInject
 

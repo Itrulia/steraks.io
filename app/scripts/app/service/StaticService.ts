@@ -1,11 +1,11 @@
-module App.Service {
+module App {
     'use strict';
     // @ngInject
 
     export class StaticService {
         public promises:any = {};
 
-        constructor(private $q:angular.IQService, private CacheService:App.Service.CacheService, private StaticResource:App.Resource.StaticResource) {
+        constructor(private $q:angular.IQService, private CacheService:App.CacheService, private StaticResource:App.StaticResource) {
 
         }
 

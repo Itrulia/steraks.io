@@ -125,7 +125,7 @@ gulp.task('typescript', function () {
 		}))
 		.pipe($.stripLine('/// <reference path='))
 		.pipe($.ngAnnotate())
-        .pipe($.uglify())
+        //.pipe($.uglify())
 		.pipe(gulp.dest(paths.typescript.dist))
         .pipe($.size({title: 'scripts'}));
 });

@@ -1,9 +1,9 @@
-module App.Component {
+module App {
     export class SummonerRunesComponent {
         public templateUrl = 'components/summoner-runes.html';
         public bindings = {page: '<'};
         public controllerAs = 'ctrl';
-        public controller = ['$scope', '$q', 'StaticService', function ($scope, $q:angular.IQService, StaticService:App.Service.StaticService) {
+        public controller = ['$scope', '$q', 'StaticService', function ($scope, $q:angular.IQService, StaticService:App.StaticService) {
             var realm:any = StaticService.getRealm();
             var runes:any = StaticService.getRunes();
 

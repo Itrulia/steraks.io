@@ -1,5 +1,5 @@
-a(ui-sref="match({matchId: ctrl.match.matchId, match: ctrl.match, player: ctrl.player})")
-    .match-summary(ng-class="::{'match-summary--loss': !ctrl.team.winner, 'match-summary--won': ctrl.team.winner}")
+a(ui-sref="match({matchId: ctrl.match.matchId, player: ctrl.player})")
+    .match-summary(ng-class="::{'match-summary--loss': !ctrl.player.stats.winner, 'match-summary--won': ctrl.player.stats.winner}")
         .match-summary__header
             span
                 strong {{ ::ctrl.match | matchMode }}
@@ -23,7 +23,7 @@ a(ui-sref="match({matchId: ctrl.match.matchId, match: ctrl.match, player: ctrl.p
                     span  {{ ::ctrl.player.stats.assists }}
                     br
 
-                    span.match-summary__stats__kda(ng-class="::{'kda--bad': $root.KDA(ctrl.player.stats) < 2, 'kda--average': $root.KDA(ctrl.player.stats) >= 2 && $root.KDA(ctrl.player.stats) < 4, 'kda--good': $root.KDA(ctrl.player.stats) >= 4 && $root.KDA(ctrl.player.stats) < 6, 'kda--great': $root.KDA(ctrl.player.stats) >= 6}")
+                    span.match-summary__stats__kda
                         | {{ ::$root.KDA(ctrl.player.stats) | number: 1  }}
                         | KDA
 
@@ -32,10 +32,10 @@ a(ui-sref="match({matchId: ctrl.match.matchId, match: ctrl.match, player: ctrl.p
                     img.match-summary__item(ng-repeat="item in ctrl.player.stats.items track by $index" ng-src="{{ ::item.itemAvatar }}" title="{{ ::item.itemName }}")
 
             .match-summary__wrapper.hide--very-small
-                .match-summary__player-list(ng-repeat="teamId in [100,200] track by $index" ng-class="::{'match-summary__player-list--blue': teamId === 100, 'match-summary__player-list--red': teamId === 200}")
+                .match-summary__player-list(ng-repeat="teamId in ::[100,200] track by teamId" ng-class="::{'match-summary__player-list--blue': teamId === 100, 'match-summary__player-list--red': teamId === 200}")
                     .match-summary__player(
                         ng-repeat="participant in ::ctrl.match.participants | filter: {teamId: teamId} track by $index"
                         ng-class="::{'match-summary__player--me': ctrl.summoner.id === participant.player.summonerId}"
                     )
-                        img.match-summary__player__champion(ng-src="{{ participant.championAvatar }}" title="{{ participant.championName }}")
-                        span.match-summary__player__name(title="{{ participant.player.summonerName }}") {{ participant.player.summonerName }}
+                        img.match-summary__player__champion(ng-src="{{ ::participant.championAvatar }}" title="{{ ::participant.championName }}")
+                        span.match-summary__player__name(title="{{ ::participant.player.summonerName }}") {{ ::participant.player.summonerName }}

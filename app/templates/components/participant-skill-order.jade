@@ -8,7 +8,7 @@
                     span.hide--normal Champion Level
                 th.skill-order__cell(ng-repeat="level in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18] track by $index") {{ ::level }}
             tbody
-                tr(ng-repeat="(index, spell) in ctrl.participant.spells track by index")
+                tr.skill-order__skill(ng-repeat="(index, spell) in ctrl.participant.spells track by index")
                     td.skill-order__cell.skill-order__skill-name.hide--very-small
                         span.skill-order__skill-key {{ spell.spellKey }}
                         span.hide--small {{ spell.spellName }}

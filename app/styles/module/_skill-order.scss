@@ -3,7 +3,6 @@
 }
 
 .skill-order__cell {
-  border-bottom: 1px solid $divider;
   border-right: 1px solid $divider;
   width: 2.0625rem;
   line-height: 2.0625rem;
@@ -16,6 +15,18 @@
 
   &:last-child {
     border-right: 0;
+  }
+}
+
+.skill-order__skill {
+  border-bottom: 1px solid $divider;
+
+  &:first-child {
+    border-top: 1px solid $divider;
+  }
+
+  &:last-child {
+    border-bottom: 0;
   }
 }
 

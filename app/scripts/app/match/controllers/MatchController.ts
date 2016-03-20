@@ -19,29 +19,21 @@ module Match {
             this.matchId = $stateParams.matchId;
             this.selected = null;
 
-            var promise = null;
-            if ($stateParams.match) {
-                promise = this.$q.when(this.$stateParams.match);
-            } else {
-                promise = MatchService.getMatch(this.matchId)
-                    .then((match:any) => {
-                        this.MatchStaticDataService.setMatchStaticData(match);
+            MatchService.getMatch(this.matchId)
+                .then((match:any) => {
+                    this.MatchStaticDataService.setRuneStaticData(match);
+                    this.MatchStaticDataService.setTimelineStaticData(match);
 
-                        return match;
-                    });
-            }
+                    if (this.$stateParams.player) {
+                        this.selectParticipant(match.participants[this.$stateParams.player.participantId - 1]);
+                    } else {
+                        this.selectParticipant(match.participants[0]);
+                    }
 
-            promise.then((match:any) => {
-                this.match = match;
-
-                if (this.$stateParams.player) {
-                    this.selectParticipant(this.$stateParams.player);
-                } else {
-                    this.selectParticipant(this.match.participants[0]);
-                }
-            }).finally(() => {
-                this.loading = false;
-            });
+                    this.match = match;
+                }).finally(() => {
+                    this.loading = false;
+                });
         }
 
         public selectParticipant(participant:any) {

@@ -8,5 +8,5 @@ spinner(ng-if="ctrl.loading")
     .grid__col--6.m-grid__col--4.t-grid__col--3.d-grid__col--2.baseline--small(
         ng-repeat="champion in ctrl.champions track by champion.championId"
     )
-        a(ui-sref="summoner.matches.as({championId: champion.championName})")
+        a(ui-sref="summoner.matches.as({championId: champion.championName, matchIds: champion.matchIds})")
             summoner-champion(champion="champion")

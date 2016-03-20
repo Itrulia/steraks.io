@@ -6,6 +6,7 @@ var app:angular.IModule = angular.module('app', [
     'search',
     'sidemenu',
     'ui.router',
+    'LocalForageModule',
     'templates'
 ]);
 
@@ -104,6 +105,24 @@ app.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider
 	});
 
     $urlRouterProvider.otherwise('404');
+}]);
+
+app.config(['$localForageProvider', ($localForageProvider:any) => {
+    $localForageProvider.config({
+        driver: localforage.INDEXEDDB,
+        name: 'fiora.gg',
+        version: 1.0,
+        storeName: 'static',
+        description: 'Fiora.gg static data storage'
+    });
+}]);
+
+app.run([() => {
+    if('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/scripts/workers/service-worker.js').then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        });
+    }
 }]);
 
 app.run(['$rootScope', ($rootScope:any) => {

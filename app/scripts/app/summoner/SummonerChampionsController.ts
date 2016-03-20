@@ -16,11 +16,13 @@ module Summoner {
                     champions = _.map(champions, function (champion:any) {
                         return {
                             championId: champion[0].champion,
+                            championName: champion[0].championName,
+                            championAvatar: champion[0].championAvatar,
+                            matchIds: _.map(champion, (match:any) => { return match.matchId }),
                             total: champion.length
                         }
                     });
 
-                    this.SummonerService.setCounterSynergyStaticData(champions);
                     this.champions = _.orderBy(champions, ['total', 'championId'], ['desc', 'desc']);
                 })
                 .catch(() => {

@@ -1,7 +1,6 @@
 'use strict';
 
 (function (window) {
-	localStorage.clear();
 	var html = document.getElementsByTagName('html')[0];
 
 	var Font = function(options) {

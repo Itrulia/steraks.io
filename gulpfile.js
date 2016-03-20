@@ -1,10 +1,12 @@
 'use strict';
 
+var path = require('path');
 var gulp = require('gulp');
+var del = require('del');
 var $ = require('gulp-load-plugins')();
 var mergeStream = require('merge-stream');
 var sequence = require('run-sequence');
-
+var swPrecache = require('sw-precache');
 var browserSync = require('browser-sync');
 var modRewrite = require('connect-modrewrite');
 var reload = browserSync.reload;
@@ -21,10 +23,21 @@ var paths = {
 		dist: 'dist/scripts'
 	},
 	javascript: {
-		app: ['app/scripts/libs/**/*.js'],
+		app: [
+            'app/scripts/libs/**/*.js',
+            'bower_components/angular-localforage/dist/angular-localForage.min.js'
+        ],
 		watch: ['app/scripts/libs/**/*.js'],
 		dist: 'dist/scripts/libs'
 	},
+    workers: {
+        app: [
+            'app/scripts/workers/**/*.js',
+            'bower_components/sw-toolbox/sw-toolbox.js'
+        ],
+        watch: ['app/scripts/workers/**/*.js'],
+        dist: 'dist/scripts/workers'
+    },
 	images: {
 		app: ['app/images/**/*'],
 		watch: ['app/images/**/*'],
@@ -50,6 +63,10 @@ var paths = {
 var postProcessor = [
 	require('autoprefixer')({browsers: ['last 1 version']})
 ];
+
+gulp.task('clean', function() {
+    del(['dist/*', '!dist/.git'], {dot: true})
+});
 
 gulp.task('scripts:lint', function () {
 	return gulp.src(paths.typescript.dist + '/**/*.js')
@@ -133,7 +150,6 @@ gulp.task('typescript', function () {
 gulp.task('javascript', function () {
 	return gulp.src(paths.javascript.app)
 		.pipe($.plumber())
-        .pipe($.newer(paths.javascript.dist))
         .pipe($.sourcemaps.init())
         .pipe($.uglify())
         .pipe($.sourcemaps.write('.'))
@@ -159,6 +175,54 @@ gulp.task('fonts', function () {
         .pipe($.size({title: 'fonts'}));
 });
 
+gulp.task('workers', function () {
+    return gulp.src(paths.workers.app)
+        .pipe($.plumber())
+        .pipe($.uglify())
+        .pipe(gulp.dest(paths.workers.dist))
+        .pipe($.size({title: 'workers'}));
+});
+
+gulp.task('service-worker', function () {
+    var rootDir = paths.workers.dist;
+    var filepath = path.join(rootDir, 'service-worker.js');
+
+    return swPrecache.write(filepath, {
+        cacheId: 'fiora.gg',
+
+        importScripts: [
+            'sw-toolbox.js'
+        ],
+
+        staticFileGlobs: [
+            'dist/images/**/*',
+            'dist/scripts/libs/**/*.js',
+            'dist/scripts/*.js',
+            'dist/styles/**/*.css',
+            'dist/*.{html,json}'
+        ],
+
+        runtimeCaching: [
+            {
+                urlPattern: /^http:\/\/vanilla\.app\/static/,
+                handler: 'fastest'
+            },
+            {
+                urlPattern: /^http:\/\/vanilla\.app\/*\/summoner/,
+                handler: 'fastest',
+                options: {
+                    cache: {
+                        maxEntries: 10,
+                        name: 'summoner-cache'
+                    }
+                }
+            }
+        ],
+
+        stripPrefix: rootDir + '/'
+    });
+});
+
 gulp.task('watch', function () {
 	browserSync({
 		notify: false,
@@ -172,6 +236,7 @@ gulp.task('watch', function () {
 
 	gulp.watch(paths.typescript.watch, ['typescript', reload]);
 	gulp.watch(paths.javascript.watch, ['javascript', reload]);
+	gulp.watch(paths.workers.watch, ['workers', 'service-worker', reload]);
 	gulp.watch(paths.styles.watch, ['styles', reload]);
 	gulp.watch(paths.templates.watch, ['templates', reload]);
 	gulp.watch(paths.index.watch, ['index', reload]);
@@ -179,4 +244,16 @@ gulp.task('watch', function () {
 	gulp.watch(paths.fonts.watch, ['fonts', reload]);
 });
 
-gulp.task('default', ['copy', 'index', 'templates', 'typescript', 'javascript', 'fonts', 'styles', 'images']);
+gulp.task('default', ['clean'], function() {
+    sequence([
+        'copy',
+        'index',
+        'templates',
+        'typescript',
+        'javascript',
+        'workers',
+        'fonts',
+        'styles',
+        'images'
+    ], 'service-worker');
+});

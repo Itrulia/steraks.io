@@ -17,7 +17,6 @@ MatchApp.config(['$stateProvider', function ($stateProvider:angular.ui.IStatePro
         controller: 'MatchController',
         controllerAs: 'ctrl',
         params: {
-            match: null,
             player: null
         },
         data: {

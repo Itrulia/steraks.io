@@ -14,7 +14,7 @@
 .champion-stat__info {
   display: flex;
   flex-flow: column wrap;
-  flex-grow: 1;
+  flex: 1;
 
   &__name {
     font-weight: 400;
@@ -29,7 +29,7 @@
   text-align: center;
   display: flex;
   flex-flow: column wrap;
-  flex-grow: 1;
+  flex: 1;
 
   &__kda {
     font-weight: 400;
@@ -44,7 +44,7 @@
   text-align: center;
   display: flex;
   flex-flow: column wrap;
-  flex-grow: 1;
+  flex: 1;
 
   &__winrate {
     font-weight: 400;

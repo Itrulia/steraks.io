@@ -5,176 +5,113 @@ module App {
     export class StaticService {
         public promises:any = {};
 
-        constructor(private $q:angular.IQService, private CacheService:App.CacheService, private StaticResource:App.StaticResource) {
+        constructor(private $q:angular.IQService, private StaticResource:App.StaticResource) {
 
         }
 
         public getRealm() {
-            var cacheKey = 'static:realm';
-            var data:any = this.CacheService.pull(cacheKey);
-
             if (typeof this.promises.realm !== 'undefined') {
-                data = this.promises.realm;
-            } else if (data === null) {
-                data = this.StaticResource.getRealm();
-                data.then((realm) => {
-                    this.CacheService.remember(cacheKey, realm);
-                    return realm;
-                }).finally(() => {
-                    delete this.promises.realm;
-                });
-
-                this.promises.realm = data;
+                return this.$q.when(this.promises.realm);
             }
 
-            return this.$q.when(data)
+            return this.promises.realm = this.StaticResource.getRealm()
+                .then((realm) => {
+                    this.promises.realm = realm;
+
+                    return realm;
+                }).catch(() => {
+                    delete this.promises.realm;
+                });
         }
 
         public getRunes() {
-            var cacheKey = 'static:runes';
-            var data:any = this.CacheService.pull(cacheKey);
-
             if (typeof this.promises.runes !== 'undefined') {
-                data = this.promises.runes;
-            } else if (data === null) {
-                data = this.StaticResource.getRunes();
-                data.then((runes) => {
-                    this.CacheService.remember(cacheKey, runes);
-                    return runes;
-                }).finally(() => {
-                    delete this.promises.runes;
-                });
-
-                this.promises.runes = data;
+                return this.$q.when(this.promises.runes);
             }
 
-            return this.$q.when(data)
+            return this.promises.runes = this.StaticResource.getRunes()
+                .then((runes) => {
+                    this.promises.runes = runes;
+
+                    return runes;
+                }).catch(() => {
+                    delete this.promises.runes;
+                });
         }
 
         public getMasteries() {
-            var cacheKey = 'static:masteries';
-            var data:any = this.CacheService.pull(cacheKey);
-
             if (typeof this.promises.masteries !== 'undefined') {
-                data = this.promises.masteries;
-            } else if (data === null) {
-                data = this.StaticResource.getMasteries();
-                data.then((masteries) => {
-                    this.CacheService.remember(cacheKey, masteries);
-                    return masteries;
-                }).finally(() => {
-                    delete this.promises.masteries;
-                });
-
-                this.promises.masteries = data;
+                return this.$q.when(this.promises.masteries);
             }
 
-            return this.$q.when(data)
+            return this.promises.masteries = this.StaticResource.getMasteries()
+                .then((masteries) => {
+                    this.promises.masteries = masteries;
+
+                    return masteries;
+                }).catch(() => {
+                    delete this.promises.masteries;
+                });
         }
 
         public getChampions() {
-            var cacheKey = 'static:champions';
-            var data:any = this.CacheService.pull(cacheKey);
-
             if (typeof this.promises.champions !== 'undefined') {
-                data = this.promises.champions;
-            } else if (data === null) {
-                data = this.StaticResource.getChampions();
-                data.then((champions) => {
-                    this.CacheService.remember(cacheKey, champions);
-                    return champions;
-                }).finally(() => {
-                    delete this.promises.champions;
-                });
-
-                this.promises.champions = data;
+                return this.$q.when(this.promises.champions);
             }
 
-            return this.$q.when(data)
+            return this.promises.champions = this.StaticResource.getChampions()
+                .then((champions) => {
+                    this.promises.champions = champions;
+
+                    return champions;
+                }).catch(() => {
+                    delete this.promises.champions;
+                });
         }
 
         public getItems() {
-            var cacheKey = 'static:items';
-            var data:any = this.CacheService.pull(cacheKey);
-
             if (typeof this.promises.items !== 'undefined') {
-                data = this.promises.items;
-            } else if (data === null) {
-                data = this.StaticResource.getItems();
-                data.then((items) => {
-                    this.CacheService.remember(cacheKey, items);
-                    return items;
-                }).finally(() => {
-                    delete this.promises.items;
-                });
-
-                this.promises.items = data;
+                return this.$q.when(this.promises.items);
             }
 
-            return this.$q.when(data)
+            return this.promises.items = this.StaticResource.getItems()
+                .then((items) => {
+                    this.promises.items = items;
+
+                    return items;
+                }).catch(() => {
+                    delete this.promises.items;
+                });
         }
 
         public getSummonerSpells() {
-            var cacheKey = 'static:summonerSpells';
-            var data:any = this.CacheService.pull(cacheKey);
-
             if (typeof this.promises.summonerSpells !== 'undefined') {
-                data = this.promises.summonerSpells;
-            } else if (data === null) {
-                data = this.StaticResource.getSummonerSpells();
-                data.then((summonerSpells) => {
-                    this.CacheService.remember(cacheKey, summonerSpells);
-                    return summonerSpells;
-                }).finally(() => {
-                    delete this.promises.summonerSpells;
-                });
-
-                this.promises.summonerSpells = data;
+                return this.$q.when(this.promises.summonerSpells);
             }
 
-            return this.$q.when(data)
+            return this.promises.summonerSpells = this.StaticResource.getSummonerSpells()
+                .then((summonerSpells) => {
+                    this.promises.summonerSpells = summonerSpells;
+
+                    return summonerSpells;
+                }).catch(() => {
+                    delete this.promises.summonerSpells;
+                });
         }
 
         public getSummonerIcons() {
-            var cacheKey = 'static:summonerIcons';
-            var data:any = this.CacheService.pull(cacheKey);
-
             if (typeof this.promises.summonerIcons !== 'undefined') {
-                data = this.promises.summonerIcons;
-            } else if (data === null) {
-                data = this.StaticResource.getSummonerIcons();
-                data.then((summonerIcons) => {
-                    this.CacheService.remember(cacheKey, summonerIcons);
+                return this.$q.when(this.promises.summonerIcons);
+            }
+
+            return this.promises.summonerIcons = this.StaticResource.getSummonerIcons()
+                .then((summonerIcons) => {
+                    this.promises.icons = summonerIcons;
+
                     return summonerIcons;
-                }).finally(() => {
+                }).catch(() => {
                     delete this.promises.icons;
                 });
-
-                this.promises.icons = data;
-            }
-
-            return this.$q.when(data)
-        }
-
-        public getSpells() {
-            var cacheKey = 'static:spells';
-            var data:any = this.CacheService.pull(cacheKey);
-
-            if (typeof this.promises.spells !== 'undefined') {
-                data = this.promises.spells;
-            } else if (data === null) {
-                data = this.StaticResource.getSpells();
-                data.then((spells) => {
-                    this.CacheService.remember(cacheKey, spells);
-                    return spells;
-                }).finally(() => {
-                    delete this.promises.spells;
-                });
-
-                this.promises.spells = data;
-            }
-
-            return this.$q.when(data)
         }
     }
 }

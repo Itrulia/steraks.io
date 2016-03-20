@@ -11,10 +11,13 @@ module Summoner {
         constructor(private $scope, private $q:angular.IQService, private MatchService:App.MatchService, private SummonerService:App.SummonerService, public summoner:any) {
             SummonerService.getMatches(summoner.id)
                 .then((matches:Array<any>) => {
+                    return matches.slice(0, 10);
+                })
+                .then((matches:Array<any>) => {
                     var matchPromises = [];
 
-                    _.forEach(matches.slice(0, 10), (match, index) => {
-                        var promise = this.MatchService.getMatch(match.matchId).then((match) => {
+                    _.forEach(matches, (match, index) => {
+                        var promise = this.MatchService.getMatchForSummoner(match.matchId, summoner.id).then((match) => {
                             this.matches[index] = match;
                         });
 

@@ -19,8 +19,6 @@ module App {
                     this.champions = _.sortBy(stats, function (champion:any) {
                         return -champion.stats.totalSessionsPlayed;
                     }).slice(0, 5);
-
-                    SummonerService.setStatsStaticData(this.champions);
                 })
                 .catch(() => {
                     this.error = true;

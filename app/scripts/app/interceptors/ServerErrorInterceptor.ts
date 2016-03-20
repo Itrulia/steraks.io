@@ -10,8 +10,8 @@ module App {
             responseError: (response) => {
                 var $:any = jQuery;
 
-                if (response.status === 400) {
-                    var authenticationService = $injector.get('authenticationService');
+                if (response.status === 'xxx') {
+                    var authenticationService = $injector.get('AuthenticationService');
                     var $state = $injector.get('$state');
 
                     $.notification({

@@ -4,7 +4,7 @@
     .widget__body.rank
         .flag
             .flag__figure
-                img.rank__image(ng-src="/images/leagues/{{ ctrl.tier }}.png")
+                img.rank__image(ng-if="ctrl.tier" ng-src="/images/leagues/{{ ctrl.tier }}.png")
             .flag__body
                 span.rank__tier {{ ctrl.tier | uppercase }} {{ ctrl.rank.division }}
                 strong.rank__tier {{ ctrl.rank.leaguePoints }} LP

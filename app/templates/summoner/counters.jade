@@ -8,5 +8,5 @@ spinner(ng-if="ctrl.loading")
     .grid__col--6.m-grid__col--4.t-grid__col--3.d-grid__col--2.baseline--small(
         ng-repeat="counter in ctrl.counters track by counter.championId"
     )
-        a(ui-sref="summoner.matches.against({championId: counter.championName})")
+        a(ui-sref="summoner.matches.against({championId: counter.championName, matchIds: counter.matchIds})")
             summoner-counter(counter="counter")

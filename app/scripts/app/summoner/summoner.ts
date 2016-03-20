@@ -5,7 +5,9 @@
 /// <reference path='SummonerSynergyController.ts' />
 /// <reference path='SummonerChampionsController.ts' />
 /// <reference path='SummonerMatchHistoryController.ts' />
-/// <reference path='SummonerChampionController.ts' />
+/// <reference path='SummonerMatchesAsController.ts' />
+/// <reference path='SummonerMatchesAgainstController.ts' />
+/// <reference path='SummonerMatchesWithController.ts' />
 /// <reference path='SummonerRunesController.ts' />
 
 var summonerApp:angular.IModule = angular.module('summoner', ['ui.router']);
@@ -15,7 +17,9 @@ summonerApp.controller('SummonerMatchHistoryController', Summoner.SummonerMatchH
 summonerApp.controller('SummonerCounterController', Summoner.SummonerCounterController);
 summonerApp.controller('SummonerSynergyController', Summoner.SummonerSynergyController);
 summonerApp.controller('SummonerChampionsController', Summoner.SummonerChampionsController);
-summonerApp.controller('SummonerChampionController', Summoner.SummonerChampionController);
+summonerApp.controller('SummonerMatchesAsController', Summoner.SummonerMatchesAsController);
+summonerApp.controller('SummonerMatchesAgainstController', Summoner.SummonerMatchesAgainstController);
+summonerApp.controller('SummonerMatchesWithController', Summoner.SummonerMatchesWithController);
 summonerApp.controller('SummonerRunesController', Summoner.SummonerRunesController);
 
 summonerApp.config(['$stateProvider', function ($stateProvider:angular.ui.IStateProvider) {
@@ -89,14 +93,17 @@ summonerApp.config(['$stateProvider', function ($stateProvider:angular.ui.IState
     })
     .state('summoner.matches.history', {
         url: '/matches',
-        templateUrl: 'summoner/match-history.html',
+        templateUrl: 'summoner/matches.html',
         controller: 'SummonerMatchHistoryController',
         controllerAs: 'ctrl'
     })
     .state('summoner.matches.as', {
         url: '/matches/as/:championId',
-        templateUrl: 'summoner/match-history.html',
-        controller: 'SummonerChampionController',
+        params: {
+            matchIds: null
+        },
+        templateUrl: 'summoner/matches.as.html',
+        controller: 'SummonerMatchesAsController',
         controllerAs: 'ctrl',
         resolve: {
             champion: ['$stateParams', 'StaticService', function ($stateParams:any, StaticService:App.StaticService) {
@@ -108,10 +115,34 @@ summonerApp.config(['$stateProvider', function ($stateProvider:angular.ui.IState
     })
     .state('summoner.matches.with', {
         url: '/matches/with/:championId',
-        templateUrl: 'summoner/match-history.html'
+        params: {
+            matchIds: null
+        },
+        templateUrl: 'summoner/matches.with.html',
+        controller: 'SummonerMatchesWithController',
+        controllerAs: 'ctrl',
+        resolve: {
+            champion: ['$stateParams', 'StaticService', function ($stateParams:any, StaticService:App.StaticService) {
+                return StaticService.getChampions().then((champions) => {
+                    return _.filter(champions, {'name': $stateParams.championId})[0];
+                });
+            }]
+        }
     })
     .state('summoner.matches.against', {
         url: '/matches/against/:championId',
-        templateUrl: 'summoner/match-history.html'
+        params: {
+            matchIds: null
+        },
+        templateUrl: 'summoner/matches.against.html',
+        controller: 'SummonerMatchesAgainstController',
+        controllerAs: 'ctrl',
+        resolve: {
+            champion: ['$stateParams', 'StaticService', function ($stateParams:any, StaticService:App.StaticService) {
+                return StaticService.getChampions().then((champions) => {
+                    return _.filter(champions, {'name': $stateParams.championId})[0];
+                });
+            }]
+        }
     });
 }]);

@@ -7,7 +7,7 @@ module App {
         }
 
         public getRankedStats(summonerId:Number) {
-            return this.$http.get('http://46.101.208.242/summoner/' + summonerId + '/rank')
+            return this.$http.get('http://vanilla.app/summoner/' + summonerId + '/rank')
                 .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
                     return response.data;
                 });

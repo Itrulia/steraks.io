@@ -17,6 +17,9 @@ module Summoner {
                         rune.slots = _.map(runeGroups, function (runeGroup:any[], key) {
                             return {
                                 runeId: runeGroup[0].runeId,
+                                runeName: runeGroup[0].runeName,
+                                runeDescription: runeGroup[0].runeDescription,
+                                runeAvatar: runeGroup[0].runeAvatar,
                                 rank: runeGroup.length
                             }
                         });

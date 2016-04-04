@@ -1,0 +1,23 @@
+.widget
+    .widget__header
+        span Recently Played With (Last 20 Games)
+    .widget__body
+        .widget__item(ng-if="ctrl.loading")
+            spinner
+        .widget__item(ng-if="!ctrl.loading && ctrl.champions.length == 0")
+            error(text="'No friends have been found'")
+        .widget__item(ng-if="!ctrl.loading")
+            table.friends
+                thead
+                    th.friends__heading.friends__name Summoner
+                    th.friends__heading.friends__games Played
+                    th.friends__heading.friends__wins Wins
+                    th.friends__heading.friends__losses Losses
+                    th.friends__heading.friends__percent Ratio
+                tbody
+                    tr.friends__item(ng-repeat="friend in ::ctrl.friends track by friend.summonerId")
+                        td.friends__name {{ ::friend.summoner.name }}
+                        td.friends__games {{ ::friend.games }}
+                        td.friends__wins {{ ::friend.wins }}
+                        td.friends__losses {{ ::friend.losses }}
+                        td.friends__percent {{ ::friend.percent*100 | number:0 }}%

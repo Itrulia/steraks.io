@@ -1,0 +1,27 @@
+.friends {
+  width: 100%;
+}
+
+.friends__heading {
+  font-weight: 400;
+  text-align: left;
+}
+
+.friends__item {
+
+}
+
+.friends__name,
+.friends__games,
+.friends__wins,
+.friends__losses,
+.friends__percent {
+  padding: 4px 0;
+}
+
+.friends__games,
+.friends__wins,
+.friends__losses,
+.friends__percent {
+  text-align: right;
+}

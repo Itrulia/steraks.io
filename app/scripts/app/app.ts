@@ -1,10 +1,11 @@
 /// <reference path='_reference.d.ts' />
 
 var app:angular.IModule = angular.module('app', [
-    'matchHistory',
+    'match',
     'summoner',
     'search',
     'sidemenu',
+    'authentication',
     'ui.router',
     'LocalForageModule',
     'templates'
@@ -24,42 +25,33 @@ app.service('SummonerResource', App.SummonerResource);
 app.service('SummonerService', App.SummonerService);
 
 app.service('CacheService', App.CacheService);
-app.service('AuthenticationService', App.AuthenticationService);
 app.service('KeystoneMasteryService', App.KeystoneMasteryService);
 
 //
 app.factory('ServerErrorInterceptor', App.ServerErrorInterceptor);
-app.factory('NeedAuthenticationInterceptor', App.NeedAuthenticationInterceptor);
-app.factory('TokenInterceptor', App.TokenInterceptor);
 
 //
 app.filter('team', App.Filter.team);
 app.filter('gameLength', App.Filter.gameLength);
 
-//
-app.directive('stickToTop', App.StickToTopDirective.instance);
-//
-app.component('error', new App.ErrorComponent());
+/////////////////////////
+/// General
+/////////////////////////
+
+// Spinner Component
 app.component('spinner', new App.SpinnerComponent());
+// Error Component
+app.component('error', new App.ErrorComponent());
+app.controller('ErrorComponentController', App.ErrorComponentController);
 
+/////////////////////////
+/// Match
+/////////////////////////
+
+// Summary
 app.component('matchSummary', new App.MatchSummaryComponent());
-app.component('matchAward', new App.MatchAwardComponent());
+app.controller('MatchSummaryController', App.MatchSummaryController);
 
-app.component('masteryPage', new App.MasteryPageComponent());
-
-app.component('summonerRank', new App.SummonerRankComponent());
-app.component('summonerChampionStats', new App.SummonerChampionStatsComponent());
-app.component('summonerCounter', new App.SummonerCounterComponent());
-app.component('summonerChampion', new App.SummonerChampionComponent());
-app.component('summonerRunes', new App.SummonerRunesComponent());
-
-app.component('participantJungleDistribution', new App.ParticipantJungleDistribution());
-app.component('participantDamageDistribution', new App.ParticipantDamageDistribution());
-app.component('participantSkillOrder', new App.ParticipantSkillOrder());
-app.component('participantBuildOrder', new App.ParticipantBuildOrder());
-app.component('participantRunes', new App.ParticipantRunesComponent());
-
-//
 app.config(['$locationProvider', '$httpProvider', '$compileProvider', function ($locationProvider, $httpProvider, $compileProvider) {
     $locationProvider.html5Mode({
         enabled: true,
@@ -72,15 +64,11 @@ app.config(['$locationProvider', '$httpProvider', '$compileProvider', function (
 
 app.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.defaults.useXDomain = true;
-    // Response
-    $httpProvider.interceptors.push('NeedAuthenticationInterceptor');
     $httpProvider.interceptors.push('ServerErrorInterceptor');
-    // Request
-    $httpProvider.interceptors.push('TokenInterceptor');
 }]);
 
 app.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider) {
-
+    // remove trailing slash
     $urlRouterProvider.rule(function ($injector, $location) {
         var path = $location.path();
         if (path != '/' && path.slice(-1) === '/') {
@@ -90,21 +78,13 @@ app.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider
 
     $stateProvider.state('index', {
         url: '/',
-        templateUrl: 'index/index.html',
+        templateUrl: 'index.html',
         data: {
-            auth: null
+            toolbar: true,
+            search: true,
+            footer: true
         }
     });
-
-	$stateProvider.state('login', {
-		url: '/login',
-		templateUrl: 'index/login.html',
-		data: {
-			auth: false
-		}
-	});
-
-    $urlRouterProvider.otherwise('404');
 }]);
 
 app.config(['$localForageProvider', ($localForageProvider:any) => {
@@ -119,13 +99,17 @@ app.config(['$localForageProvider', ($localForageProvider:any) => {
 
 app.run([() => {
     if('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/scripts/workers/service-worker.js').then(function(registration) {
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        });
+        navigator.serviceWorker.register('/scripts/workers/service-worker.js');
     }
 }]);
 
-app.run(['$rootScope', ($rootScope:any) => {
+app.run(['$rootScope', '$state', '$window', '$transitions', ($rootScope:any, $state:any, $window:any, $transitions:any) => {
+    $rootScope.$state = $state;
+
+    // scroll to top..
+    $transitions.onSuccess({}, function() {
+        $window.scrollTo(0, 0);
+    });
 
     // I am too lazy to refactor
     $rootScope.KDA = (stats:any) => {

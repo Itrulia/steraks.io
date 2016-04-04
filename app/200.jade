@@ -1,5 +1,5 @@
 doctype html
-html(ng-app="app")
+html(ng-app="app" ng-strict-di ng-csp)
     head
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible" content="IE=edge")
@@ -23,10 +23,20 @@ html(ng-app="app")
                 className: 'ionicon--icons'
             });
 
-    body.highlight--grey(ng-cloak)
-        sidemenu
+        style.
+            [ng\:cloak],
+            [ng-cloak],
+            [data-ng-cloak],
+            [x-ng-cloak],
+            .ng-cloak,
+            .x-ng-cloak {
+                display: none !important;
+            }
 
-        header.header
+    body.highlight--grey(ng-class="$state.current.data.bodyClass")
+        sidemenu(ng-if="$state.current.data.toolbar" ng-cloak)
+
+        header.header(ng-if="$state.current.data.search" ng-cloak)
             .header__input-wrapper(ng-controller="SearchController as ctrl")
                 form(ng-submit="ctrl.search()")
                     input.header__input(type="text" ng-model="ctrl.summoner" placeholder="Summoner" name="summoner" autofocus)
@@ -34,8 +44,9 @@ html(ng-app="app")
                         span.icon--material search
 
         div(ui-view="")
+            spinner
 
-        footer.footer
+        footer.footer(ng-if="$state.current.data.footer" ng-cloak)
             .footer__riot.container
                 p.baseline--none
                     | Fiora.gg isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
@@ -48,7 +59,7 @@ html(ng-app="app")
         script(src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js")
         script(src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.5.0/lodash.min.js")
         script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js")
-        script(src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js")
+        script(src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.0-alpha.1/angular-ui-router.min.js")
         script(src="//cdnjs.cloudflare.com/ajax/libs/angular-chart.js/0.8.8/angular-chart.min.js")
         script(src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.4.0/localforage.min.js")
         script(src="/scripts/libs/notification.js")

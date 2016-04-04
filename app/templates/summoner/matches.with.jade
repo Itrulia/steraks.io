@@ -6,7 +6,7 @@
             .grid__col--12.m-grid__col--6.t-grid__col--12
                 summoner-champion-stats(summoner="ctrl.summoner")
     .grid__col--12.t-grid__col--8
-        h1 Matches with a {{ ctrl.champion.name }} as ally
+        h1 Matches with {{ ctrl.champion.name }} as ally
         spinner(ng-if="ctrl.loading")
-        error(text="'No matches have been found'" ng-if="!ctrl.loading && !ctrl.error && ctrl.matches.length == 0")
+        error(text="'No matches have been found'" ng-if="!ctrl.loading && !ctrl.error && !ctrl.matches[0]")
         match-summary(match="match" summoner="ctrl.summoner" ng-repeat="match in ctrl.matches track by match.matchId")

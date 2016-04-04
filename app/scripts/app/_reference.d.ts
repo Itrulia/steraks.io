@@ -1,7 +1,6 @@
 /// <reference path='../../../typings/browser.d.ts' />
 
 /// <reference path='service/CacheService.ts' />
-/// <reference path='service/AuthenticationService.ts' />
 /// <reference path='service/KeystoneMasteryService.ts' />
 
 /// <reference path='resource/MatchResource.ts' />
@@ -20,33 +19,15 @@
 /// <reference path='filters/Team.ts' />
 /// <reference path='filters/Game.ts' />
 
-/// <reference path='directives/StickToTopDirective.ts' />
-
 /// <reference path='components/ErrorComponent.ts' />
 /// <reference path='components/SpinnerComponent.ts' />
 
 /// <reference path='components/MatchSummaryComponent.ts' />
-/// <reference path='components/MatchAwardComponent.ts' />
 
-/// <reference path='components/MasteryPageComponent.ts' />
-
-/// <reference path='components/SummonerChampionStatsComponent.ts' />
-/// <reference path='components/SummonerRankComponent.ts' />
-/// <reference path='components/SummonerCounterComponent.ts' />
-/// <reference path='components/SummonerChampionComponent.ts' />
-/// <reference path='components/SummonerRunesComponent.ts' />
-
-/// <reference path='components/ParticipantJungleDistributionComponent.ts' />
-/// <reference path='components/ParticipantDamageDistributionComponent.ts' />
-/// <reference path='components/ParticipantBuildOrderComponent.ts' />
-/// <reference path='components/ParticipantSkillOrderComponent.ts' />
-/// <reference path='components/ParticipantRunesComponent.ts' />
-
-/// <reference path='interceptors/NeedAuthenticationInterceptor.ts' />
-/// <reference path='interceptors/TokenInterceptor.ts' />
 /// <reference path='interceptors/ServerErrorInterceptor.ts' />
 
 /// <reference path='match/match.ts' />
 /// <reference path='summoner/summoner.ts' />
 /// <reference path='sidemenu/sidemenu.ts' />
 /// <reference path='search/search.ts' />
+/// <reference path='authentication/authentication.ts' />

@@ -12,7 +12,7 @@ module Search {
         }
 
         public search() {
-            this.$state.go('summoner.matches', {summonerId: this.summoner});
+            this.$state.go('summoner.matches.history', {summonerId: this.summoner});
         }
     }
 }

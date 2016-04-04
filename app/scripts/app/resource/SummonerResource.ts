@@ -61,5 +61,12 @@ module App {
                     return response.data;
                 });
         }
+
+        public getFriends(summonerId:number, region:string = 'euw') {
+            return this.$http.get('http://vanilla.app/' + region + '/summoner/' + summonerId + '/friends')
+                .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
+                    return response.data;
+                });
+        }
     }
 }

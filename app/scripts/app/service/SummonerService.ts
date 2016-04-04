@@ -32,6 +32,10 @@ module App {
             return this.SummonerResource.getSynergies(summonerId);
         }
 
+        public getFriends(summonerId:number) {
+            return this.SummonerResource.getFriends(summonerId);
+        }
+
         public getRunes(summonerId:number) {
             return this.SummonerResource.getRunes(summonerId);
         }

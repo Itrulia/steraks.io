@@ -25,7 +25,7 @@ var paths = {
 	javascript: {
 		app: [
             'app/scripts/libs/**/*.js',
-            'bower_components/angular-localforage/dist/angular-localForage.min.js'
+            'node_modules/angular-localforage/dist/angular-localForage.min.js'
         ],
 		watch: ['app/scripts/libs/**/*.js'],
 		dist: 'dist/scripts/libs'
@@ -33,7 +33,7 @@ var paths = {
     workers: {
         app: [
             'app/scripts/workers/**/*.js',
-            'bower_components/sw-toolbox/sw-toolbox.js'
+            'node_modules/sw-toolbox/sw-toolbox.js'
         ],
         watch: ['app/scripts/workers/**/*.js'],
         dist: 'dist/scripts/workers'

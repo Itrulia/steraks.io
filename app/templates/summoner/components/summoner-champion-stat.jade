@@ -1,0 +1,29 @@
+.widget
+    .widget__header
+        span Most Played Champions
+    .widget__body
+        .widget__item(ng-if="ctrl.loading")
+            spinner
+        .widget__item(ng-if="!ctrl.loading && !ctrl.error && ctrl.champions.length == 0")
+            error(text="'No matches have been played yet'")
+        .widget__item(ng-repeat="champion in ctrl.champions track by $index" ng-if="!ctrl.loading")
+            .champion-stat
+                img.champion-stat__champion(ng-src="{{ ::champion.championAvatar }}")
+                .champion-stat__info
+                    span.champion-stat__info__name {{ ::champion.championName }}
+                    span.champion-stat__info__cs {{ ::(champion.stats.totalMinionKills / champion.stats.totalSessionsPlayed).toFixed(0) }} CS
+                .champion-stat__kda
+                    span.champion-stat__kda__kda
+                        span(
+                            ng-class="::{'kda--bad': $root.KDA(champion.stats) < 2, 'kda--average': $root.KDA(champion.stats) >= 2 && $root.KDA(champion.stats) < 4, 'kda--good': $root.KDA(champion.stats) >= 4 && $root.KDA(champion.stats) < 6, 'kda--great': $root.KDA(champion.stats) >= 6}"
+                        ) {{ ::$root.KDA(champion.stats)| number:1 }}
+                        |  KDA
+                    span.champion-stat__kda__stats
+                        span {{ ::champion.stats.totalChampionKills / champion.stats.totalSessionsPlayed | number:1 }} /
+                        span  {{ ::champion.stats.totalDeathsPerSession / champion.stats.totalSessionsPlayed | number:1}} /
+                        span  {{ ::champion.stats.totalAssists / champion.stats.totalSessionsPlayed | number:1 }}
+                .champion-stat__played
+                    span.champion-stat__played__winrate(title="winrate")
+                        | {{ ::100 / champion.stats.totalSessionsPlayed * champion.stats.totalSessionsWon | number:0 }}%
+                    span.champion-stat__played__played
+                        | {{ ::champion.stats.totalSessionsPlayed }} games

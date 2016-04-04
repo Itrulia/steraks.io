@@ -1,10 +1,18 @@
 module App {
+    'use strict';
+
     export class ErrorComponent {
         public bindings = {text: '<'};
-        public controllerAs = 'ctrl';
         public templateUrl = 'components/error.html';
-        public controller = ['$scope', function ($scope) {
+        public controller = 'ErrorComponentController as ctrl'
+    }
 
-        }];
+    // @ngInject
+    export class ErrorComponentController {
+        public champion:any;
+
+        public constructor(public $scope:any) {
+
+        }
     }
 }

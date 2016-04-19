@@ -8,8 +8,8 @@ module App.Filter {
         return (seconds:number):string => {
             if (seconds === null) return null;
 
-            var duration = moment.duration(seconds, 'seconds');
-            var minutes = duration.minutes();
+            let duration = moment.duration(seconds, 'seconds');
+            let minutes = duration.minutes();
 
             return minutes + ' minutes';
         }

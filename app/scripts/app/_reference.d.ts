@@ -24,6 +24,9 @@
 
 /// <reference path='components/MatchSummaryComponent.ts' />
 
+/// <reference path='directives/StickToTopDirective.ts' />
+/// <reference path='directives/PaperInputDirective.ts' />
+
 /// <reference path='interceptors/ServerErrorInterceptor.ts' />
 
 /// <reference path='match/match.ts' />

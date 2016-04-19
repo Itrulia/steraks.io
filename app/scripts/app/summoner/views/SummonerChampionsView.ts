@@ -19,7 +19,7 @@ module Summoner {
         constructor(private $scope, private SummonerService:App.SummonerService) {
             this.SummonerService.getMatches(this.summoner.id)
                 .then((matches:any) => {
-                    var champions:any = _.groupBy(matches, 'champion');
+                    let champions:any = _.groupBy(matches, 'champion');
                     champions = _.map(champions, function (champion:any) {
                         return {
                             championId: champion[0].champion,

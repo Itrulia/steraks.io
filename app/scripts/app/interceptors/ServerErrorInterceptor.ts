@@ -8,11 +8,11 @@ module App {
                 return response;
             },
             responseError: (response) => {
-                var $:any = jQuery;
+                let $:any = jQuery;
 
                 if (response.status === 'xxx') {
-                    var authenticationService = $injector.get('AuthenticationService');
-                    var $state = $injector.get('$state');
+                    let authenticationService = $injector.get('AuthenticationService');
+                    let $state = $injector.get('$state');
 
                     $.notification({
                         message: 'Your session has expired.',

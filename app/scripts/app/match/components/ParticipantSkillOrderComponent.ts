@@ -15,7 +15,7 @@ module Match {
 
         public constructor(public $scope, public $q:angular.IQService, public StaticService:App.StaticService) {
             this.$scope.$watch('ctrl.participant', () => {
-                var skillOrder = [];
+                let skillOrder = [];
 
                 if (this.match !== null) {
                     skillOrder = this.getSkillOrderEventsOfParticipant(this.match, this.participant);
@@ -27,7 +27,7 @@ module Match {
         }
 
         private mapSpellIndexToKey(index:number) {
-            var key:string;
+            let key:string;
 
             switch (index) {
                 case 0:
@@ -48,12 +48,12 @@ module Match {
         }
 
         protected getSkillOrderEventsOfParticipant(match:any, participant:any) {
-            var skillOrder = [];
+            let skillOrder = [];
 
             _.forEach(match.timeline.frames, (frame:any) => {
                 if (!frame.hasOwnProperty('events') || frame.events === null) return;
 
-                var skill = frame.events.filter((event:any) => {
+                let skill = frame.events.filter((event:any) => {
                     return (event.eventType === 'SKILL_LEVEL_UP') && (event.participantId === participant.participantId);
                 });
 
@@ -66,15 +66,15 @@ module Match {
         }
 
         protected mapChampionSpellsOfParticipant(participant:any) {
-            var realm:any = this.StaticService.getRealm();
-            var champions:any = this.StaticService.getChampions();
+            let realm:any = this.StaticService.getRealm();
+            let champions:any = this.StaticService.getChampions();
 
             this.$q.all([realm, champions]).then((response) => {
                 realm = response[0];
                 champions = response[1];
 
                 participant.spells = _.map(champions[participant.championId].spells, (spell:any, index) => {
-                    var key:string = this.mapSpellIndexToKey(index);
+                    let key:string = this.mapSpellIndexToKey(index);
 
                     return {
                         spellKey: key,

@@ -6,7 +6,4 @@
             .grid__col--12.m-grid__col--6.t-grid__col--12
                 summoner-champion-stats(summoner="ctrl.summoner")
     .grid__col--12.t-grid__col--8
-        spinner(ng-if="ctrl.loading")
-        error(text="'No matches have been played so far'" ng-if="!ctrl.loading && !ctrl.error && !ctrl.matches[0]")
-        error(text="'Hey bud, it seems like an error has occurred. Please give us or Riot Games time to fix the issue.'" ng-if="!ctrl.loading && ctrl.error")
-        match-summary(match="match" summoner="ctrl.summoner" ng-repeat="match in ctrl.matches track by match.matchId")
+        ui-view

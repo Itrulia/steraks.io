@@ -1,11 +1,11 @@
 {
   "ambientDependencies": {
-    "angular": "github:DefinitelyTyped/DefinitelyTyped/angularjs/angular.d.ts#1c4a34873c9e70cce86edd0e61c559e43dfa5f75",
-    "angular-localforage": "github:DefinitelyTyped/DefinitelyTyped/angular-localForage/angular-localForage.d.ts#43a433a0bd30b876d05f0add5b82fca0077036bd",
-    "angular-ui-router": "github:DefinitelyTyped/DefinitelyTyped/angular-ui-router/angular-ui-router.d.ts#655f8c1bf3c71b0e1ba415b36309604f79326ac8",
-    "jquery": "github:DefinitelyTyped/DefinitelyTyped/jquery/jquery.d.ts#f29bf726a60674dbf24bab06a26403a3871c3f21",
-    "localforage": "github:DefinitelyTyped/DefinitelyTyped/localForage/localForage.d.ts#9027703c0bd831319dcdf7f3169f7a468537f448",
-    "lodash": "github:DefinitelyTyped/DefinitelyTyped/lodash/lodash.d.ts#7b7aa2027a8fb6219a8bcf1b6bb12bcd0ff9539d",
-    "moment": "github:DefinitelyTyped/DefinitelyTyped/moment/moment.d.ts#b090bcf9ba9f756ec8ff53e7707269729172a325"
+    "angular": "registry:dt/angular#1.5.0+20160412133217",
+    "angular-localforage": "registry:dt/angular-localforage#1.2.2+20160317120654",
+    "angular-ui-router": "registry:dt/angular-ui-router#1.1.5+20160412134757",
+    "jquery": "registry:dt/jquery#1.10.0+20160316155526",
+    "localforage": "registry:dt/localforage#0.0.0+20160316155526",
+    "lodash": "registry:dt/lodash#3.10.0+20160330154726",
+    "moment": "registry:dt/moment#2.8.0+20160316155526"
   }
 }

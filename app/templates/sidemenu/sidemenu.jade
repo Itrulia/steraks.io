@@ -10,5 +10,12 @@
                 span.icon--material home
             .flag__body
                 span Home
+    a.sidemenu__item(ui-sref="authentication.login" ui-sref-active="sidemenu__item--is-active")
+        .flag
+            .flag__figure.sidemenu__item__icon
+                span.icon--material home
+            .flag__body
+                span Login
+
 
 .sidemenu__overlay(ng-class="{'sidemenu__overlay--is-open': ctrl.sideMenuOpen}" ng-click="ctrl.sideMenuOpen = false")

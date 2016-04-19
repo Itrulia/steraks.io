@@ -16,11 +16,16 @@ module Summoner {
         public constructor(protected $scope:any, protected SummonerService:App.SummonerService) {
             this.SummonerService.getFriends(this.summoner.id)
                 .then((friends:any[]) => {
-                    var summonerIds:any = _.map(friends, (friend) => {
+                    let summonerIds:any = _.map(friends, (friend) => {
                         return friend.summonerId;
                     });
 
-                    return this.SummonerService.getSummoner(summonerIds).then((summoners) => {
+                    return this.SummonerService.getSummoner(summonerIds).then((summoners:any) => {
+
+                        if (!_.isArray(summonerIds)) {
+                            summoners = [summoners];
+                        }
+
                         _.forEach(summoners, (summoner:any) => {
                             friends[summoner.id].summoner = summoner;
                         });

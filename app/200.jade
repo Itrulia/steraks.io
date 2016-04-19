@@ -5,7 +5,7 @@ html(ng-app="app" ng-strict-di ng-csp)
         meta(http-equiv="X-UA-Compatible" content="IE=edge")
         meta(name="viewport" content="width=device-width,initial-scale=1,user-scalable=no")
 
-        meta(name="theme-color" content="#2F3553")
+        meta(name="theme-color" content="#343A48")
         meta(name="description" content="")
 
         link(href="/styles/app.css" rel="stylesheet")
@@ -33,7 +33,7 @@ html(ng-app="app" ng-strict-di ng-csp)
                 display: none !important;
             }
 
-    body.highlight--grey(ng-class="$state.current.data.bodyClass")
+    body(ng-class="$state.current.data.bodyClass")
         sidemenu(ng-if="$state.current.data.toolbar" ng-cloak)
 
         header.header(ng-if="$state.current.data.search" ng-cloak)
@@ -59,10 +59,11 @@ html(ng-app="app" ng-strict-di ng-csp)
         script(src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js")
         script(src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.5.0/lodash.min.js")
         script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js")
-        script(src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.0-alpha.1/angular-ui-router.min.js")
+        script(src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.0-alpha.3/angular-ui-router.js")
         script(src="//cdnjs.cloudflare.com/ajax/libs/angular-chart.js/0.8.8/angular-chart.min.js")
         script(src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.4.0/localforage.min.js")
         script(src="/scripts/libs/notification.js")
         script(src="/scripts/libs/angular-localForage.min.js")
+        script(src="/scripts/libs/angular-google-analytics.min.js")
         script(src="/scripts/templates.js")
         script(src="/scripts/app.js")

@@ -1,0 +1,14 @@
+.widget
+    .widget__header
+        span {{ ctrl.summoner.name }}'s last 10 ranked games
+        .paper-select__wrapper.baseline--none
+            select.paper-select(
+                ng-model="ctrl.champion"
+                ng-options="champion.name for champion in ctrl.championArray"
+                ng-change="ctrl.selectChampion(ctrl.champion)"
+            )
+            .paper-select__label
+spinner(ng-if="ctrl.loading")
+error(text="'No matches have been played so far'" ng-if="!ctrl.loading && !ctrl.error && !ctrl.matches[0]")
+error(text="'Hey bud, it seems like an error has occurred. Please give us or Riot Games time to fix the issue.'" ng-if="!ctrl.loading && ctrl.error")
+match-summary(match="match" summoner="ctrl.summoner" ng-repeat="match in ctrl.matches track by match.matchId")

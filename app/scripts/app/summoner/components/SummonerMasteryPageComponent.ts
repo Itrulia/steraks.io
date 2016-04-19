@@ -12,8 +12,8 @@ module Summoner {
         public masteries:any;
 
         public constructor(public $scope, public $q:angular.IQService, public StaticService:App.StaticService) {
-            var realm:any = this.StaticService.getRealm();
-            var masteries:any = this.StaticService.getMasteries();
+            let realm:any = this.StaticService.getRealm();
+            let masteries:any = this.StaticService.getMasteries();
 
             this.$q.all([realm, masteries]).then((response:any) => {
                 realm = response[0];
@@ -24,7 +24,7 @@ module Summoner {
                         _.forEach(row.masteryTreeItems, (mastery:any) => {
                             if (mastery === null) return;
 
-                            var masteryData = masteries.data[mastery.masteryId];
+                            let masteryData = masteries.data[mastery.masteryId];
                             mastery.name = masteryData.name;
                             mastery.description = masteryData.description;
                             mastery.masteryAvatar = realm.cdn + '/' + realm.dd + '/img/mastery/' + masteryData.image.full;

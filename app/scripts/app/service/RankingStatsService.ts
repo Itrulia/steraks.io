@@ -8,8 +8,8 @@ module App {
         }
 
         public getRankedStats(summonerId:number) {
-            var cacheKey = 'stats:' + summonerId;
-            var data:any = this.CacheService.pull(cacheKey);
+            let cacheKey = 'stats:' + summonerId;
+            let data:any = this.CacheService.pull(cacheKey);
 
             if (data === null) {
                 data = this.RankingStatsResource.getRankedStats(summonerId).then((stats) => {

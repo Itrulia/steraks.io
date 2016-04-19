@@ -3,16 +3,46 @@ module App {
     // @ngInject
 
     export class MatchService {
-        public constructor(private MatchResource:App.MatchResource, private StaticService:App.StaticService) {
+        public constructor(private MatchResource:App.MatchResource, private CacheService:App.CacheService) {
 
         }
 
         public getMatch(matchId) {
-            return this.MatchResource.getMatch(matchId);
+            let cacheKey = 'match:' + matchId;
+
+            return this.CacheService.pull(cacheKey)
+                .then((match) => {
+                    this.CacheService.remember(cacheKey, match, moment.utc().add(5, 'minutes'));
+
+                    return match;
+                })
+                .catch(() => {
+                    return this.MatchResource.getMatch(matchId)
+                        .then((match) => {
+                            this.CacheService.remember(cacheKey, match, moment.utc().add(5, 'minutes'));
+
+                            return match;
+                        });
+                });
         }
 
         public getMatchForSummoner(matchId:number, summonerId:number) {
-            return this.MatchResource.getMatchForSummoner(matchId, summonerId);
+            let cacheKey = 'match:' + matchId + ':' + summonerId;
+
+            return this.CacheService.pull(cacheKey)
+                .then((match) => {
+                    this.CacheService.remember(cacheKey, match, moment.utc().add(5, 'minutes'));
+
+                    return match;
+                })
+                .catch(() => {
+                    return this.MatchResource.getMatchForSummoner(matchId, summonerId)
+                        .then((match) => {
+                            this.CacheService.remember(cacheKey, match, moment.utc().add(60, 'minutes'));
+
+                            return match;
+                        });
+                });
         }
     }
 }

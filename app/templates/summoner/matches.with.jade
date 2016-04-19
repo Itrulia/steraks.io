@@ -1,12 +1,13 @@
-.grid
-    .grid__col--12.t-grid__col--4
-        .grid
-            .grid__col--12.m-grid__col--6.t-grid__col--12
-                summoner-rank(summoner="ctrl.summoner")
-            .grid__col--12.m-grid__col--6.t-grid__col--12
-                summoner-champion-stats(summoner="ctrl.summoner")
-    .grid__col--12.t-grid__col--8
-        h1 Matches with {{ ctrl.champion.name }} as ally
-        spinner(ng-if="ctrl.loading")
-        error(text="'No matches have been found'" ng-if="!ctrl.loading && !ctrl.error && !ctrl.matches[0]")
-        match-summary(match="match" summoner="ctrl.summoner" ng-repeat="match in ctrl.matches track by match.matchId")
+.widget
+    .widget__header
+        span Matches with {{ ::ctrl.champion.name }} as ally
+        .paper-select__wrapper.baseline--none
+            select.paper-select(
+                ng-model="ctrl.champion"
+                ng-options="champion.name for champion in ctrl.championArray"
+                ng-change="ctrl.selectChampion(ctrl.champion)"
+            )
+            .paper-select__label
+spinner(ng-if="ctrl.loading")
+error(text="'No matches have been found'" ng-if="!ctrl.loading && !ctrl.error && !ctrl.matches[0]")
+match-summary(match="match" summoner="ctrl.summoner" ng-repeat="match in ctrl.matches track by match.matchId")

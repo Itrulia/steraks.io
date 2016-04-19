@@ -15,7 +15,7 @@ module Match {
 
         public constructor(public $scope) {
             this.$scope.$watch('ctrl.participant', () => {
-                var buildOrder = {};
+                let buildOrder = {};
 
                 if (this.match !== null) {
                     buildOrder = this.getBuildOrderEventsOfParticipant(this.match, this.participant);
@@ -26,22 +26,22 @@ module Match {
         }
 
         protected getBuildOrderEventsOfParticipant(match:any, participant:any) {
-            var buildOrder = {};
+            let buildOrder = {};
 
             _.forEach(match.timeline.frames, (frame:any) => {
                 if (!frame.hasOwnProperty('events') || frame.events === null) return;
 
-                var items:any = _.filter(frame.events, (event:any) => {
+                let items:any = _.filter(frame.events, (event:any) => {
                     return (event.eventType === 'ITEM_PURCHASED' || event.eventType === 'ITEM_SOLD') &&
                         (event.participantId === participant.participantId);
                 });
 
-                var undo:any = _.filter(frame.events, (event:any) => {
+                let undo:any = _.filter(frame.events, (event:any) => {
                     return (event.eventType === 'ITEM_UNDO' && (event.participantId === participant.participantId));
                 });
 
                 _.forEach(undo, (event:any) => {
-                    var index = _.findIndex(items, (bought:any) => {
+                    let index = _.findIndex(items, (bought:any) => {
                         return bought.itemId === event.itemBefore;
                     });
 

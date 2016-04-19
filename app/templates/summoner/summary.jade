@@ -8,4 +8,22 @@
             .grid__col--12.m-grid__col--6.t-grid__col--12
                 summoner-friends(summoner="ctrl.summoner")
     .grid__col--12.t-grid__col--8
+        .widget
+            .widget__header
+                span Champion Mastery
+                .paper-select__wrapper.baseline--none
+                    select.paper-select(
+                        ng-model="ctrl.masteryLevelFilter"
+                        ng-options="option.label for option in ctrl.masteryLevels"
+                    )
+                    .paper-select__label
+            .widget__body
+                .widget__item
+                    .grid
+                        .grid__col--6.m-grid__col--3.t-grid__col--4.d-grid__col--3.baseline--small(
+                            ng-repeat="championMastery in ctrl.championMasteries track by championMastery.championId"
+                            ng-if="championMastery.championLevel == ctrl.masteryLevelFilter.value"
+                        )
+                            a(ui-sref="summoner.matches.as({championId: championMastery.championName})")
+                                summoner-champion-mastery(champion="championMastery")
 

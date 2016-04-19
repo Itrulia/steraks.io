@@ -3,11 +3,11 @@ module Authentication {
     // @ngInject
 
     export function TokenInterceptor($q, $injector) {
-        var authenticationService:App.AuthenticationService = null;
+        let authenticationService:Authentication.AuthenticationService = null;
 
         return {
             response: (response) => {
-                var token = response.headers('X-Auth-Token');
+                let token = response.headers('X-Auth-Token');
 
                 if (typeof token !== 'undefined' && token !== null) {
                     if (authenticationService === null) {

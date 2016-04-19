@@ -1,8 +1,7 @@
 module Authentication {
     'use strict';
-    // @ngInject
-
-    export function NeedAuthenticationInterceptor($q, $location) {
+    
+    export function NeedAuthenticationInterceptor($q:angular.IQService, $location:angular.ILocationService) {
         return {
             response: (response) => {
                 return response;

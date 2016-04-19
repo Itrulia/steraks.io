@@ -2,7 +2,7 @@
 /// <reference path='components/components.ts' />
 /// <reference path='views/views.ts' />
 
-var summonerApp:angular.IModule = angular.module('summoner', [
+let summonerApp:angular.IModule = angular.module('summoner', [
     'summoner.components',
     'summoner.views',
     'ui.router'
@@ -26,10 +26,13 @@ summonerApp.config(['$stateProvider', function ($stateProvider:any) {
             league: ['SummonerService', 'summoner', function (SummonerService:App.SummonerService, summoner) {
                 return SummonerService.getRank(summoner.id)
                     .then((rank) => {
-                        var tier = rank.tier.charAt(0).toUpperCase() + rank.tier.slice(1).toLowerCase();
-                        var division = rank.entries.filter((rank:any) => {
-                            return rank.playerOrTeamId == summoner.id;
-                        })[0].division;
+                        return _.filter(rank[summoner.id], (entry) => {
+                            return entry.queue.toLowerCase() === 'ranked_solo_5x5';
+                        })[0];
+                    })
+                    .then((rank) => {
+                        let tier = rank.tier.charAt(0).toUpperCase() + rank.tier.slice(1).toLowerCase();
+                        let division = rank.entries[0].division;
 
                         return [tier, division].join(' ');
                     })
@@ -67,7 +70,7 @@ summonerApp.config(['$stateProvider', function ($stateProvider:any) {
     $stateProvider.state('summoner.matches', {
         url: '/matches',
         abstract: true,
-        template: '<div ui-view=""></div>'
+        templateUrl: 'summoner/matches.html'
     })
     .state('summoner.matches.history', {
         url: '',

@@ -5,8 +5,9 @@
 /// <reference path='SummonerRunesComponent.ts' />
 /// <reference path='SummonerMasteryPageComponent.ts' />
 /// <reference path='SummonerFriendsComponent.ts' />
+/// <reference path='SummonerChampionMasteryComponent.ts' />
 
-var summonerComponentsApp:angular.IModule = angular.module('summoner.components', []);
+let summonerComponentsApp:angular.IModule = angular.module('summoner.components', []);
 
 // Champion Stats
 summonerComponentsApp.component('summonerChampionStats', new Summoner.SummonerChampionStatsComponent());
@@ -14,10 +15,13 @@ summonerComponentsApp.controller('SummonerChampionStatsController', Summoner.Sum
 // Champion Games
 summonerComponentsApp.component('summonerChampion', new Summoner.SummonerChampionComponent());
 summonerComponentsApp.controller('SummonerChampionController', Summoner.SummonerChampionController);
+// Champion Mastery
+summonerComponentsApp.component('summonerChampionMastery', new Summoner.SummonerChampionMasteryComponent());
+summonerComponentsApp.controller('SummonerChampionMasteryController', Summoner.SummonerChampionMasteryController);
 // Counter
 summonerComponentsApp.component('summonerCounter', new Summoner.SummonerCounterComponent());
 summonerComponentsApp.controller('SummonerCounterController', Summoner.SummonerCounterController);
-// Counter
+// Friends
 summonerComponentsApp.component('summonerFriends', new Summoner.SummonerFriendsComponent());
 summonerComponentsApp.controller('SummonerFriendsController', Summoner.SummonerFriendsController);
 // Runes

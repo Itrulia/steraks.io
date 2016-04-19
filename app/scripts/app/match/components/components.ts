@@ -5,7 +5,7 @@
 /// <reference path='ParticipantRunesComponent.ts' />
 /// <reference path='MatchAwardComponent.ts' />
 
-var matchComponentsApp:angular.IModule = angular.module('match.components', []);
+let matchComponentsApp:angular.IModule = angular.module('match.components', []);
 
 // Skill Order
 matchComponentsApp.component('participantSkillOrder', new Match.ParticipantSkillOrderComponent());

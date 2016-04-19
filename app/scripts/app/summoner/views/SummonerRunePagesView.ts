@@ -20,7 +20,7 @@ module Summoner {
             this.SummonerService.getRunes(this.summoner.id)
                 .then((runes:any) => {
                     _.forEach(runes, (rune:any) => {
-                        var runeGroups = _.groupBy(rune.slots, 'runeId');
+                        let runeGroups = _.groupBy(rune.slots, 'runeId');
                         rune.slots = _.map(runeGroups, function (runeGroup:any[], key) {
                             return {
                                 runeId: runeGroup[0].runeId,

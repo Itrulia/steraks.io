@@ -4,9 +4,9 @@ module Match.Filter {
 
     export function mode() {
         return (match:any):String => {
-            var matchMode = match.matchMode.toLowerCase();
-            var matchType = match.matchType.toLowerCase();
-            var queueType = match.queueType.toLowerCase();
+            let matchMode = match.matchMode.toLowerCase();
+            let matchType = match.matchType.toLowerCase();
+            let queueType = match.queueType.toLowerCase();
 
             if (matchMode === 'classic' && matchType === 'matched_game' && queueType === 'ranked_solo_5x5') {
                 return 'Solo Q';

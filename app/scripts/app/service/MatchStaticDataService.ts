@@ -19,8 +19,8 @@ module App {
         }
 
         public setRuneData(participant:any) {
-            var realm:any = this.StaticService.getRealm();
-            var runes:any = this.StaticService.getRunes();
+            let realm:any = this.StaticService.getRealm();
+            let runes:any = this.StaticService.getRunes();
 
             this.$q.all([realm, runes]).then((response) => {
                 realm = response[0];
@@ -35,9 +35,9 @@ module App {
         }
 
         public setTimelineStaticData(match:any) {
-            var realm:any = this.StaticService.getRealm();
-            var items:any = this.StaticService.getItems();
-            var champions:any = this.StaticService.getChampions();
+            let realm:any = this.StaticService.getRealm();
+            let items:any = this.StaticService.getItems();
+            let champions:any = this.StaticService.getChampions();
 
             this.$q.all([realm, champions, items]).then((response) => {
                 realm = response[0];
@@ -45,15 +45,15 @@ module App {
                 items = response[2];
 
                 _.forEach(match.timeline.frames, (frame:any) => {
-                    if (!angular.isDefined(frame.events)) {
+                    if (_.isUndefined(frame.events)) {
                         return;
                     }
 
-                    var itemEvents = frame.events.filter((event:any) => {
+                    let itemEvents = frame.events.filter((event:any) => {
                         return event.hasOwnProperty('itemId') && event.participantId !== 0;
                     });
 
-                    var skillEvents = frame.events.filter((event:any) => {
+                    let skillEvents = frame.events.filter((event:any) => {
                         return event.hasOwnProperty('skillSlot') && event.participantId !== 0;
                     });
 
@@ -63,9 +63,9 @@ module App {
                     });
 
                     _.forEach(skillEvents, (event:any) => {
-                        var championId = match.participants[event.participantId - 1].championId;
-                        var champion = champions[championId];
-                        var spell = champion.spells[event.skillSlot - 1];
+                        let championId = match.participants[event.participantId - 1].championId;
+                        let champion = champions[championId];
+                        let spell = champion.spells[event.skillSlot - 1];
 
                         event.spellName = spell.name;
                         event.spellAvatar = realm.cdn + '/' + realm.dd + '/img/spell/' + spell.image.full;

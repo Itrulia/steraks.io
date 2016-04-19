@@ -1,0 +1,30 @@
+.login
+    .login__box
+        .login__box__background
+        header.login__box__header
+            .login__logo
+                span Fiora
+                span.login__logo__highlight
+                    | .gg
+            .login__tabs
+                a.login__tab(ui-sref="authentication.login" ui-sref-active="is-active")
+                    | Login
+                a.login__tab(ui-sref="authentication.register" ui-sref-active="is-active")
+                    | Sign Up
+        .login__box__body
+            form.login__form(name="form" autocomplete="off" novalidate ng-submit="form.$valid && ctrl.register()")
+                .paper-input__wrapper.login__input
+                    input.paper-input.paper-input--floating(required type="email" name="email" ng-model="ctrl.email")
+                    label.paper-input__label Email Address
+                    span.paper-input__error Input should contain a valid email!
+
+                .paper-input__wrapper.login__input
+                    input.paper-input.paper-input--floating(required type="password" name="password" ng-model="ctrl.password")
+                    label.paper-input__label Password
+                    span.paper-input__error Password is required!
+
+                .login_button-wrapper
+                    button.login__button(ng-disabled="{{ ctrl.loading }}")
+                        | Register
+        footer.login__box__footer
+            a(ui-sref="authentication.login") Already have an account? Log in here :)

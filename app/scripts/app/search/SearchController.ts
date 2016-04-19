@@ -2,16 +2,17 @@
 
 module Search {
     'use strict';
-    // @ngInject
 
+    // @ngInject
     export class SearchController {
         public summoner:any;
 
-        constructor(private $scope:angular.IScope, private $state) {
+        constructor(private $state, private Analytics:any) {
 
         }
 
         public search() {
+            this.Analytics.trackEvent('search', 'search', this.summoner);
             this.$state.go('summoner.matches.history', {summonerId: this.summoner});
         }
     }

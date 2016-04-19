@@ -1,11 +1,13 @@
 /// <reference path='../_reference.d.ts' />
 /// <reference path='service/AuthenticationService.ts' />
+/// <reference path='service/AuthenticationResource.ts' />
 /// <reference path='interceptors/NeedAuthenticationInterceptor.ts' />
 /// <reference path='interceptors/TokenInterceptor.ts' />
 
-var authApp:angular.IModule = angular.module('authentication', ['ui.router']);
+let authApp:angular.IModule = angular.module('authentication', ['ui.router']);
 
-authApp.service('AuthenticationService', Summoner.AuthenticationService);
+authApp.service('AuthenticationService', Authentication.AuthenticationService);
+authApp.service('AuthenticationResource', Authentication.AuthenticationResource);
 authApp.factory('NeedAuthenticationInterceptor', Authentication.NeedAuthenticationInterceptor);
 authApp.factory('TokenInterceptor', Authentication.TokenInterceptor);
 
@@ -27,11 +29,19 @@ authApp.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProv
     })
     .state('authentication.login', {
         url: '/login',
-        templateUrl: 'authentication/login.html'
+        component: 'login'
+    })
+    .state('authentication.restore', {
+        url: '/restore',
+        component: 'passwordRestore'
+    })
+    .state('authentication.restoreVerification', {
+        url: '/restore/verify',
+        component: 'passwordRestore'
     })
     .state('authentication.register', {
         url: '/register',
-        templateUrl: 'authentication/register.html'
+        component: 'register'
     });
 
     //

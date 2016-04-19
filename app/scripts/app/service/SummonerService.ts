@@ -3,45 +3,138 @@ module App {
     // @ngInject
 
     export class SummonerService {
-        constructor(private $q:angular.IQService,
-                    private SummonerResource:App.SummonerResource,
-                    private StaticService:App.StaticService) {
+        constructor(private SummonerResource:App.SummonerResource, private CacheService:App.CacheService) {
+
         }
 
         public getSummoner(summonerId:number) {
-            return this.SummonerResource.getSummoner(summonerId);
+            let cacheKey = 'summoner:' + summonerId;
+
+            return this.CacheService.pull(cacheKey)
+                .catch(() => {
+                    return this.SummonerResource.getSummoner(summonerId)
+                        .then((summoner) => {
+                            this.CacheService.remember(cacheKey, summoner);
+                            return summoner;
+                        });
+                });
+        }
+
+        public getChampionMastery(summonerId:number) {
+            let cacheKey = 'summoner:' + summonerId + ':championmastery';
+
+            return this.CacheService.pull(cacheKey)
+                .catch(() => {
+                    return this.SummonerResource.getChampionMastery(summonerId)
+                        .then((championMastery) => {
+                            this.CacheService.remember(cacheKey, championMastery);
+                            return championMastery;
+                        });
+                });
         }
 
         public getRank(summonerId:number) {
-            return this.SummonerResource.getRank(summonerId);
+            let cacheKey = 'summoner:' + summonerId + ':rank';
+
+            return this.CacheService.pull(cacheKey)
+                .catch(() => {
+                    return this.SummonerResource.getRank(summonerId)
+                        .then((rank) => {
+                            this.CacheService.remember(cacheKey, rank);
+                            return rank;
+                        });
+                });
         }
 
         public getStats(summonerId:number) {
-            return this.SummonerResource.getStats(summonerId);
+            let cacheKey = 'summoner:' + summonerId + ':stats';
+
+            return this.CacheService.pull(cacheKey)
+                .catch(() => {
+                    return this.SummonerResource.getStats(summonerId)
+                        .then((stats) => {
+                            this.CacheService.remember(cacheKey, stats);
+                            return stats;
+                        });
+                });
         }
 
         public getMasteries(summonerId:number) {
-            return this.SummonerResource.getMasteries(summonerId);
+            let cacheKey = 'summoner:' + summonerId + ':masteries';
+
+            return this.CacheService.pull(cacheKey)
+                .catch(() => {
+                    return this.SummonerResource.getMasteries(summonerId)
+                        .then((masteries) => {
+                            this.CacheService.remember(cacheKey, masteries);
+                            return masteries;
+                        });
+                });
         }
 
         public getCounters(summonerId:number) {
-            return this.SummonerResource.getCounters(summonerId);
+            let cacheKey = 'summoner:' + summonerId + ':counters';
+
+            return this.CacheService.pull(cacheKey)
+                .catch(() => {
+                    return this.SummonerResource.getCounters(summonerId)
+                        .then((counters) => {
+                            this.CacheService.remember(cacheKey, counters);
+                            return counters;
+                        });
+                });
         }
 
         public getSynergies(summonerId:number) {
-            return this.SummonerResource.getSynergies(summonerId);
+            let cacheKey = 'summoner:' + summonerId + ':synergies';
+
+            return this.CacheService.pull(cacheKey)
+                .catch(() => {
+                    return this.SummonerResource.getSynergies(summonerId)
+                        .then((synergies) => {
+                            this.CacheService.remember(cacheKey, synergies);
+                            return synergies;
+                        });
+                });
         }
 
         public getFriends(summonerId:number) {
-            return this.SummonerResource.getFriends(summonerId);
+            let cacheKey = 'summoner:' + summonerId + ':friends';
+
+            return this.CacheService.pull(cacheKey)
+                .catch(() => {
+                    return this.SummonerResource.getFriends(summonerId)
+                        .then((friends) => {
+                            this.CacheService.remember(cacheKey, friends);
+                            return friends;
+                        });
+                });
         }
 
         public getRunes(summonerId:number) {
-            return this.SummonerResource.getRunes(summonerId);
+            let cacheKey = 'summoner:' + summonerId + ':runes';
+
+            return this.CacheService.pull(cacheKey)
+                .catch(() => {
+                    return this.SummonerResource.getRunes(summonerId)
+                        .then((runes) => {
+                            this.CacheService.remember(cacheKey, runes);
+                            return runes;
+                        });
+                });
         }
 
         public getMatches(summonerId:number) {
-            return this.SummonerResource.getMatches(summonerId);
+            let cacheKey = 'summoner:' + summonerId + ':matches';
+
+            return this.CacheService.pull(cacheKey)
+                .catch(() => {
+                    return this.SummonerResource.getMatches(summonerId)
+                        .then((matches) => {
+                            this.CacheService.remember(cacheKey, matches, moment.utc().add(1, 'minutes'));
+                            return matches;
+                        });
+                });
         }
     }
 }

@@ -15,9 +15,32 @@ module Summoner {
         public matches = {};
         public summoner:any;
         public champion:any;
+        public championArray:any;
 
-        constructor(private $scope, private $q:angular.IQService, private $stateParams:any, private MatchService:App.MatchService, private SummonerService:App.SummonerService) {
-            var promise:any;
+        constructor(
+            private $q:angular.IQService,
+            private $state:any,
+            private $stateParams:any,
+            private MatchService:App.MatchService,
+            private SummonerService:App.SummonerService,
+            private StaticService:App.StaticService
+        ) {
+            this.getMatches();
+            this.getChampions();
+        }
+
+        private getChampions() {
+            this.StaticService.getChampions().then((champions:any) => {
+                this.championArray = _.sortBy(champions, 'name');
+            });
+        }
+
+        public selectChampion(champion:any) {
+            this.$state.go('summoner.matches.against', {championId: champion.name, matchIds: null});
+        }
+
+        private getMatches() {
+            let promise:any;
 
             if (this.$stateParams.matchIds !== null) {
                 promise = this.$q.when(this.$stateParams.matchIds);
@@ -25,9 +48,14 @@ module Summoner {
                 if (this.$stateParams.matchIds !== null) {
                     promise = this.$q.when(this.$stateParams.matchIds);
                 } else {
-                    promise = SummonerService.getCounters(this.summoner.id)
-                        .then((counters:Array<any>) => {
-                            var counter = _.filter(counters, {championId: this.champion.id})[0];
+                    promise = this.SummonerService.getCounters(this.summoner.id)
+                        .then((counters:any) => {
+                            let counter = _.filter(counters, {championId: this.champion.id})[0];
+
+                            if (_.isUndefined(counter)) {
+                                return [];
+                            }
+
                             return counter.matchIds;
                         });
                 }
@@ -35,10 +63,10 @@ module Summoner {
 
             promise
                 .then((matchIds:Array<any>) => {
-                    var matchPromises = [];
+                    let matchPromises = [];
 
                     _.forEach(matchIds, (matchId, index) => {
-                        var promise = this.MatchService.getMatchForSummoner(matchId, this.summoner.id).then((match) => {
+                        let promise = this.MatchService.getMatchForSummoner(matchId, this.summoner.id).then((match) => {
                             this.matches[index] = match;
                         });
 

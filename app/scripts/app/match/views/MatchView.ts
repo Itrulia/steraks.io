@@ -2,6 +2,7 @@ module Match {
     'use strict';
 
     export class MatchComponent {
+        public bindings = {};
         public templateUrl = 'match/index.html';
         public controller = 'MatchController as ctrl';
     }
@@ -13,7 +14,11 @@ module Match {
         public loading:Boolean;
         public selected:any;
 
-        constructor(private $scope:angular.IScope, private $q:angular.IQService, private $stateParams:any, private MatchService:App.MatchService, private MatchStaticDataService:App.MatchStaticDataService) {
+        constructor(
+            private $stateParams:any,
+            private MatchService:App.MatchService,
+            private MatchStaticDataService:App.MatchStaticDataService
+        ) {
             this.loading = true;
             this.match = null;
             this.matchId = $stateParams.matchId;

@@ -1,6 +1,6 @@
 /// <reference path='_reference.d.ts' />
 
-var app:angular.IModule = angular.module('app', [
+let app:angular.IModule = angular.module('app', [
     'match',
     'summoner',
     'search',
@@ -8,6 +8,7 @@ var app:angular.IModule = angular.module('app', [
     'authentication',
     'ui.router',
     'LocalForageModule',
+    'angular-google-analytics',
     'templates'
 ]);
 
@@ -34,6 +35,10 @@ app.factory('ServerErrorInterceptor', App.ServerErrorInterceptor);
 app.filter('team', App.Filter.team);
 app.filter('gameLength', App.Filter.gameLength);
 
+//
+app.directive('stickToTop', App.StickToTopDirective.instance());
+app.directive('paperInput', App.PaperInputDirective.instance());
+
 /////////////////////////
 /// General
 /////////////////////////
@@ -52,7 +57,11 @@ app.controller('ErrorComponentController', App.ErrorComponentController);
 app.component('matchSummary', new App.MatchSummaryComponent());
 app.controller('MatchSummaryController', App.MatchSummaryController);
 
-app.config(['$locationProvider', '$httpProvider', '$compileProvider', function ($locationProvider, $httpProvider, $compileProvider) {
+app.config(['$locationProvider', '$httpProvider', '$compileProvider', (
+    $locationProvider:angular.ILocationProvider,
+    $httpProvider:angular.IHttpProvider,
+    $compileProvider:angular.ICompileProvider
+) => {
     $locationProvider.html5Mode({
         enabled: true,
         requireBase: false
@@ -62,15 +71,17 @@ app.config(['$locationProvider', '$httpProvider', '$compileProvider', function (
 	$compileProvider.debugInfoEnabled(false);
 }]);
 
-app.config(['$httpProvider', function ($httpProvider) {
-    $httpProvider.defaults.useXDomain = true;
+app.config(['$httpProvider', ($httpProvider:angular.IHttpProvider) => {
     $httpProvider.interceptors.push('ServerErrorInterceptor');
 }]);
 
-app.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider) {
+app.config(['$urlRouterProvider', '$stateProvider', (
+    $urlRouterProvider:angular.ui.IUrlRouterProvider,
+    $stateProvider:angular.ui.IStateProvider
+) => {
     // remove trailing slash
     $urlRouterProvider.rule(function ($injector, $location) {
-        var path = $location.path();
+        let path = $location.path();
         if (path != '/' && path.slice(-1) === '/') {
             $location.replace().path(path.slice(0, -1));
         }
@@ -84,12 +95,28 @@ app.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider
             search: true,
             footer: true
         }
+    }).state('about', {
+        url: '/about',
+        templateUrl: 'about.html',
+        data: {
+            toolbar: true,
+            search: true,
+            footer: true
+        }
+    }).state('contact', {
+        url: '/contact',
+        templateUrl: 'contact.html',
+        data: {
+            toolbar: true,
+            search: true,
+            footer: true
+        }
     });
 }]);
 
-app.config(['$localForageProvider', ($localForageProvider:any) => {
+app.config(['$localForageProvider', ($localForageProvider:angular.localForage.ILocalForageProvider) => {
     $localForageProvider.config({
-        driver: localforage.INDEXEDDB,
+        driver: [localforage.INDEXEDDB, localforage.LOCALSTORAGE],
         name: 'fiora.gg',
         version: 1.0,
         storeName: 'static',
@@ -97,19 +124,71 @@ app.config(['$localForageProvider', ($localForageProvider:any) => {
     });
 }]);
 
+// Cache Cleanup
+app.run(['$interval', 'CacheService', (
+    $interval:angular.IIntervalService,
+    CacheService: App.CacheService
+) => {
+    CacheService.cleanUp();
+
+    let interval = 1000 * 60 * 10; // 10min
+    $interval(() => {
+        CacheService.cleanUp();
+    }, interval, 0, false);
+}]);
+
+// Analytics
+app.config(['AnalyticsProvider', (AnalyticsProvider:any) => {
+    AnalyticsProvider
+        .useAnalytics(true)
+        .logAllCalls(true)
+        .trackPages(false)
+        .setDomainName('summoner.surge.sh')
+        .setAccount('UA-76478578-1');
+}]);
+
+app.run(['$location', '$transitions', 'Analytics', ($location:any, $transitions:any, Analytics:any) => {
+    $transitions.onSuccess({}, () => {
+        Analytics.trackPage($location.path());
+    });
+}]);
+
+// Service Worker
 app.run([() => {
     if('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/scripts/workers/service-worker.js');
     }
 }]);
 
-app.run(['$rootScope', '$state', '$window', '$transitions', ($rootScope:any, $state:any, $window:any, $transitions:any) => {
+app.run(['$rootScope', '$state', '$window', '$transitions', (
+    $rootScope:any,
+    $state:angular.ui.IStateService,
+    $window:angular.IWindowService,
+    $transitions:any
+) => {
     $rootScope.$state = $state;
 
     // scroll to top..
-    $transitions.onSuccess({}, function() {
-        $window.scrollTo(0, 0);
-    });
+    $transitions.onSuccess({}, ['$transition$', ($transition$:any) => {
+        let fromState = $transition$.from();
+        let toState = $transition$.to();
+
+        if (fromState.name !== '') {
+            let fromParent = fromState.name.split('.');
+            let fromLength = fromParent.length;
+
+            let toParent = toState.name.split('.');
+            let toLength = toParent.length;
+
+            if (fromLength === 1 ||
+                toLength === 1 ||
+                fromLength !== toLength ||
+                fromParent[fromLength - 2] !== toParent[toLength - 2]
+            ) {
+                $window.scrollTo(0, 0);
+            }
+        }
+    }]);
 
     // I am too lazy to refactor
     $rootScope.KDA = (stats:any) => {
@@ -126,8 +205,8 @@ app.run(['$rootScope', '$state', '$window', '$transitions', ($rootScope:any, $st
     };
 
     $rootScope.getPosition = (player:any) => {
-        var lane = player.timeline.lane.toLowerCase();
-        var role = player.timeline.role.toLowerCase();
+        let lane = player.timeline.lane.toLowerCase();
+        let role = player.timeline.role.toLowerCase();
 
         if (role === "duo_carry") {
             return "adc"

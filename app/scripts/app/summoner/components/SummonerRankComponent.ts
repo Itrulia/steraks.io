@@ -11,17 +11,23 @@ module Summoner {
     export class SummonerRankController {
         public tier:any;
         public name:any;
-        public rank:any[];
+        public rank:any;
         public summoner:any;
 
         public constructor(public SummonerService:App.SummonerService) {
             SummonerService.getRank(this.summoner.id)
-                .then((rank) => {
-                    this.tier = rank.tier.toLowerCase();
+                .then((rank:any) => {
+                    return _.filter(rank[this.summoner.id], (entry:any) => {
+                        return entry.queue.toLowerCase() === 'ranked_solo_5x5';
+                    })[0];
+                })
+                .then((rank:any) => {
                     this.name = rank.name;
-                    this.rank = _.find(rank.entries, (entry:any) => {
-                        return entry.playerOrTeamId == this.summoner.id;
-                    });
+                    this.tier = rank.tier.toLowerCase();
+                    this.rank = rank.entries[0];
+                })
+                .catch(() => {
+                    this.tier = 'unranked';
                 });
         }
     }

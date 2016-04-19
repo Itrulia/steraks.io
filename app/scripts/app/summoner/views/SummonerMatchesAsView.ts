@@ -15,14 +15,42 @@ module Summoner {
         public matches = {};
         public summoner:any;
         public champion:any;
+        public championArray:any;
 
-        constructor(private $scope, private $q:angular.IQService, private $stateParams:any, private MatchService:App.MatchService, private SummonerService:App.SummonerService) {
-            var promise:any;
+        constructor(
+            private $q:angular.IQService,
+            private $state:any,
+            private $stateParams:any,
+            private MatchService:App.MatchService,
+            private SummonerService:App.SummonerService,
+            private StaticService:App.StaticService
+        ) {
+            this.getMatches();
+            this.getChampions();
+        }
+
+        private getChampions() {
+            this.StaticService.getChampions().then((champions:any) => {
+                let all = {id: 0, name: 'All'};
+                this.championArray = [all].concat(_.sortBy(champions, 'name'));
+            });
+        }
+
+        public selectChampion(champion:any) {
+            if (champion.id == 0) {
+                this.$state.go('summoner.matches.history');
+            } else {
+                this.$state.go('summoner.matches.as', {championId: champion.name, matchIds: null});
+            }
+        }
+
+        private getMatches() {
+            let promise:any;
 
             if (this.$stateParams.matchIds !== null) {
                 promise = this.$q.when(this.$stateParams.matchIds);
             } else {
-                promise = SummonerService.getMatches(this.summoner.id)
+                promise = this.SummonerService.getMatches(this.summoner.id)
                     .then((matches:Array<any>) => {
                         matches = _.filter(matches, {champion: this.champion.id});
 
@@ -34,10 +62,10 @@ module Summoner {
 
             promise
                 .then((matchIds:Array<any>) => {
-                    var matchPromises = [];
+                    let matchPromises = [];
 
                     _.forEach(matchIds, (matchId, index) => {
-                        var promise = this.MatchService.getMatchForSummoner(matchId, this.summoner.id).then((match) => {
+                        let promise = this.MatchService.getMatchForSummoner(matchId, this.summoner.id).then((match) => {
                             this.matches[index] = match;
                         });
 

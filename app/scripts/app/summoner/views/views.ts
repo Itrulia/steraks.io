@@ -9,7 +9,7 @@
 /// <reference path='SummonerProfileView.ts' />
 /// <reference path='SummonerView.ts' />
 
-var summonerViewsApp:angular.IModule = angular.module('summoner.views', []);
+let summonerViewsApp:angular.IModule = angular.module('summoner.views', []);
 
 // Summoner
 summonerViewsApp.controller('SummonerController', Summoner.SummonerController);

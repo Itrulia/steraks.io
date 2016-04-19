@@ -20,6 +20,13 @@ module App {
                 });
         }
 
+        public getChampionMastery(summonerId:number, region:string = 'euw') {
+            return this.$http.get('http://vanilla.app/' + region + '/summoner/' + summonerId + '/champions')
+                .then(function (response:angular.IHttpPromiseCallbackArg<any>) {
+                    return response.data;
+                });
+        }
+
         public getMasteries(summonerId:number, region:string = 'euw') {
             return this.$http.get('http://vanilla.app/' + region + '/summoner/' + summonerId + '/masteries')
                 .then(function (response:angular.IHttpPromiseCallbackArg<any>) {

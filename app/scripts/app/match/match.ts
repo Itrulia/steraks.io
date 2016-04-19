@@ -5,7 +5,7 @@
 /// <reference path='filters/MinionsPerMinute.ts' />
 /// <reference path='filters/Position.ts' />
 
-var MatchApp:angular.IModule = angular.module('match', [
+let MatchApp:angular.IModule = angular.module('match', [
     'match.components',
     'match.views',
     'ui.router',
@@ -22,11 +22,6 @@ MatchApp.config(['$stateProvider', function ($stateProvider:angular.ui.IStatePro
         component: 'match',
         params: {
             player: null
-        },
-        data: {
-            toolbar: true,
-            search: true,
-            footer: true
         }
     });
 }]);

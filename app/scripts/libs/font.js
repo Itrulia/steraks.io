@@ -1,20 +1,20 @@
 'use strict';
 
 (function (window) {
-	var html = document.getElementsByTagName('html')[0];
+	let html = document.getElementsByTagName('html')[0];
 
-	var Font = function(options) {
-		var font = options.font;
-		var className = options.className;
+	let Font = function(options) {
+		let font = options.font;
+		let className = options.className;
 
 		html.classList.add('font-' + className + '-loading');
 
-		var fileIsCached = function(href) {
+		let fileIsCached = function(href) {
 			return localStorage.getItem(href) !== null;
 		};
 
-		var injectFontsStylesheetAjax = function() {
-			var xhr = new XMLHttpRequest();
+		let injectFontsStylesheetAjax = function() {
+			let xhr = new XMLHttpRequest();
 
 			xhr.open('GET', font, true);
 			xhr.addEventListener('load', function () {
@@ -25,8 +25,8 @@
 			xhr.send();
 		};
 
-		var injectFontsStylesheetRaw = function(text) {
-			var style = document.createElement('style');
+		let injectFontsStylesheetRaw = function(text) {
+			let style = document.createElement('style');
 			style.innerHTML = text;
 			document.getElementsByTagName('head')[0].appendChild(style);
 

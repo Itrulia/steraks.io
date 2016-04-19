@@ -25,7 +25,8 @@ var paths = {
 	javascript: {
 		app: [
             'app/scripts/libs/**/*.js',
-            'node_modules/angular-localforage/dist/angular-localForage.min.js'
+            'node_modules/angular-localforage/dist/angular-localForage.min.js',
+            'node_modules/angular-google-analytics/dist/angular-google-analytics.min.js'
         ],
 		watch: ['app/scripts/libs/**/*.js'],
 		dist: 'dist/scripts/libs'
@@ -138,7 +139,9 @@ gulp.task('typescript', function () {
 	return gulp.src(paths.typescript.app)
 		.pipe($.plumber())
 		.pipe($.typescript({
-			out: 'app.js'
+            target: 'ES5',
+			out: 'app.js',
+            typescript: require('typescript')
 		}))
 		.pipe($.stripLine('/// <reference path='))
 		.pipe($.ngAnnotate())

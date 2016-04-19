@@ -4,8 +4,8 @@ module Match.Filter {
 
     export function position() {
         return (player:any):String => {
-            var lane = player.timeline.lane.toLowerCase();
-            var role = player.timeline.role.toLowerCase();
+            let lane = player.timeline.lane.toLowerCase();
+            let role = player.timeline.role.toLowerCase();
 
             if (role === "duo_carry") {
                 return "AD Carry"

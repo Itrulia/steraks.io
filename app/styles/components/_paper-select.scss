@@ -1,0 +1,65 @@
+.paper-select__wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.paper-select {
+  display: block;
+  width: 100%;
+  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: 0;
+  border: none;
+  border-bottom: 1px solid #666;
+  border-radius: 0;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNiIgd2lkdGg9IjEwIj48cG9seWdvbiBwb2ludHM9IjAsMCAxMCwwIDUsNiIgc3R5bGU9ImZpbGw6cmdiYSgwLDAsMCwuMjQpOyIvPjwvc3ZnPg==");
+  background-repeat: no-repeat;
+  background-position: right center;
+  cursor: pointer;
+  padding: 0.5em 1.5em 0.5em 0;
+}
+
+.paper-select__label {
+  width: 100%;
+  position: absolute;
+  pointer-events: none;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  font-size: 0.75rem;
+  color: #666;
+
+  &::after {
+    content: '';
+    background-color: #3f51b5;
+    height: 2px;
+    width: 0.625rem;
+    bottom: 0;
+    left: 45%;
+    visibility: hidden;
+    position: absolute;
+    transition: 0.2s ease all;
+  }
+}
+
+.paper-select:focus,
+.paper-select.has-focus {
+  outline: none;
+
+  & ~ .paper-select__label {
+    color: #3f51b5;
+
+    &::after {
+      visibility: visible;
+      width: 100%;
+      left: 0;
+    }
+  }
+}

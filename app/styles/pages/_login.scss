@@ -1,32 +1,196 @@
+.body--login {
+  background: #222;
+}
+
 .login {
-	background: #333;
-	color: $icon-text;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .login__box {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-flow: column wrap;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	width: 100%;
-	height: 100%;
+  z-index: 1;
+  position: relative;
+  min-height: 100vh;
+  min-width: 100vw;
+  color: #FFF;
+  display: flex;
+  flex-flow: column;
+  background-image: url(https://static.lolwallpapers.net/2015/09/Project-Fiora.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media (min-width: 840px) {
+    min-width: 0;
+    min-height: 0;
+    height: 31.25rem;
+    width: 37.5rem;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+      0 6px 12px rgba(0, 0, 0, 0.23);
+  }
+}
+
+.login__box__background {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparentize($primary, 0.1);
+
+  @media (min-width: 840px) {
+    border-radius: 5px;
+  }
+}
+
+.login__box__header {
+  padding: 1.5em 1.7em;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 1rem;
+
+  @media (min-width: 840px) {
+    font-size: 1.3em;
+  }
+}
+
+.login__logo {
+  font-size: 1.5em;
+  font-weight: 300;
+}
+
+.login__logo__highlight {
+  font-weight: 500;
+}
+
+.login__tab {
+  position: relative;
+  color: lighten($primary, 50%);
+  padding: 0 0.5em;
+
+  &.is-active {
+    color: #FFF;
+  }
+}
+
+.login__box__body {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 0 10vw;
+
+  @media (min-width: 840px) {
+    padding: 0 6.25rem;
+  }
+}
+
+.login__box__footer {
+  font-weight: 400;
+  font-size: 0.875em;
+  background: $dark-primary;
+  padding: 1em;
+  text-align: center;
+  margin-top: 1rem;
+
+  @media (min-width: 840px) {
+    border-radius: 0 0 5px 5px;
+  }
+}
+
+.login__form {
+  width: 100%;
 }
 
 .login__input {
-	display: block;
-	padding: 1rem;
-	font-size: 1rem;
-	line-height: 1;
-	background: darken(#333, 3%);
-	border: 0;
-	border-radius: 2px;
-	outline: none;
-	width: 100%;
-	max-width: 500px;
-	margin-bottom: 0.25rem;
+
+  .paper-input {
+    border-bottom: 1px solid #AAA;
+  }
+
+  .paper-input__label {
+    color: #AAA;
+  }
+
+  // on enter
+  .paper-input__label::after {
+    background-color: $accent;
+  }
+
+  .paper-input--floating:focus ~ .paper-input__label,
+  .paper-input--floating.paper-input--touched ~ .paper-input__label {
+    color: $accent;
+  }
+
+  // error
+  .paper-input.is-dirty:invalid {
+    color: #d34336;
+    border-color: #d34336;
+  }
+
+  .paper-input--floating.is-dirty:invalid ~ .paper-input__label {
+    color: #d34336;
+  }
+
+  .paper-input.is-dirty:invalid ~ .paper-input__label:after {
+    background-color: #d34336;
+  }
+}
+
+.login_button-wrapper {
+  padding: 0 1.25em;
+  width: 100%;
+}
+
+.login__button {
+  position: relative;
+  font-weight: 500;
+  width: 100%;
+  padding: 0.75em;
+  background: transparentize($dark-primary, 0.4);
+
+  &::before {
+    clip-path: circle(50% at 100% 50%);
+    left: -2.5em;
+  }
+
+  &::after {
+    clip-path: circle(50% at 0 50%);
+    right: -2.5em;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    background: transparentize($dark-primary, 0.4);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 2.5em;
+    width: 2.5em;
+  }
+
+  &.is-active,
+  &:active,
+  &:focus {
+    background: transparentize($accent, 0.4);
+
+    &::before,
+    &::after {
+      background: transparentize($accent, 0.4);
+    }
+  }
 }

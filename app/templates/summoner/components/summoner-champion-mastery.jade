@@ -1,0 +1,8 @@
+.counter
+    .counter__wrapper
+        img.counter__avatar(ng-src="{{ ::ctrl.champion.championAvatar }}" title="{{ ::ctrl.champion.championName }}")
+    .counter__text
+        .counter__name
+            span {{ ::ctrl.champion.championName }}
+        .counter__games
+            span {{ ::ctrl.champion.championPoints }} Points

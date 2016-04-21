@@ -12,8 +12,10 @@
 @import "components/match";
 @import "components/badge";
 @import "components/label";
+@import "components/credentials";
 @import "components/chart";
 @import "components/tabs";
+@import "components/whisper-box";
 @import "components/paper-input";
 @import "components/paper-select";
 @import "components/widget";
@@ -40,6 +42,7 @@
 @import "module/skill-order";
 @import "module/build-order";
 @import "module/match-summary";
+@import "module/mastery-page";
 //
 @import "layout/flag";
 @import "layout/grid";
@@ -57,4 +60,5 @@
 @import "helper/responsive";
 @import "helper/kda";
 @import "helper/highlight";
+@import "helper/colors";
 @import "helper/typography";

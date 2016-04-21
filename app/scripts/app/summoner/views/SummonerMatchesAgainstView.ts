@@ -3,7 +3,7 @@
 module Summoner {
     'use strict';
 
-    export class SummonerMatchesAgainstComponent {
+    export class SummonerMatchesAgainstComponent implements angular.IComponentOptions {
         public bindings = {summoner: '<', champion: '<'};
         public templateUrl = 'summoner/matches.against.html';
         public controller = 'SummonerMatchesAgainstController as ctrl';
@@ -25,6 +25,7 @@ module Summoner {
             private SummonerService:App.SummonerService,
             private StaticService:App.StaticService
         ) {
+            this.$state.current.data.title = this.summoner.name + '\'s Matches against ' + this.champion.name;
             this.getMatches();
             this.getChampions();
         }

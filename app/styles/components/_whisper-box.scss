@@ -1,0 +1,15 @@
+.whisper-box {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.whisper-box__icon {
+  font-size: 5rem;
+  @extend %baseline--small;
+}
+
+.whisper-box__text {
+  text-align: center;
+}

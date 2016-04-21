@@ -1,4 +1,15 @@
 spinner(ng-if="ctrl.loading")
-.grid(ng-if="!ctrl.loading")
-    .grid__col--12
-        mastery-page
+.grid.grid--center(ng-if="!ctrl.loading")
+    .grid__col--12.t-grid__col--10.d-grid__col--8
+        .widget
+            .widget__header
+                span {{ ctrl.page.name }}
+                .paper-select__wrapper.baseline--none
+                    select.paper-select(
+                        ng-model="ctrl.page"
+                        ng-options="page.name for page in ::ctrl.pages"
+                    )
+                    .paper-select__label
+            .widget__body
+                .widget__item
+                    summoner-mastery-page(trees="ctrl.trees" page="ctrl.page")

@@ -2,20 +2,20 @@
     button.nav-bar__hamburger
         span.icon--material(ng-click="ctrl.sideMenuOpen = true") menu
 
-.sidemenu(ng-class="{'sidemenu--is-open': ctrl.sideMenuOpen}")
-    .sidemenu__header
-    a.sidemenu__item(ui-sref="index" ui-sref-active="sidemenu__item--is-active")
-        .flag
-            .flag__figure.sidemenu__item__icon
-                span.icon--material home
-            .flag__body
-                span Home
-    a.sidemenu__item(ui-sref="authentication.login" ui-sref-active="sidemenu__item--is-active")
-        .flag
-            .flag__figure.sidemenu__item__icon
-                span.icon--material home
-            .flag__body
-                span Login
-
-
-.sidemenu__overlay(ng-class="{'sidemenu__overlay--is-open': ctrl.sideMenuOpen}" ng-click="ctrl.sideMenuOpen = false")
+//.sidemenu(ng-class="{'sidemenu--is-open': ctrl.sideMenuOpen}")
+//    .sidemenu__header
+//    a.sidemenu__item(ui-sref="index" ui-sref-active="sidemenu__item--is-active")
+//        .flag
+//            .flag__figure.sidemenu__item__icon
+//                span.icon--material home
+//            .flag__body
+//                span Home
+//    a.sidemenu__item(ui-sref="authentication.login" ui-sref-active="sidemenu__item--is-active")
+//        .flag
+//            .flag__figure.sidemenu__item__icon
+//                span.icon--material lock
+//            .flag__body
+//                span Login
+//
+//
+//.sidemenu__overlay(ng-class="{'sidemenu__overlay--is-open': ctrl.sideMenuOpen}" ng-click="ctrl.sideMenuOpen = false")

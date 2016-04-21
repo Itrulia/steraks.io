@@ -1,7 +1,7 @@
 module Summoner {
     'use strict';
 
-    export class SummonerChampionComponent {
+    export class SummonerChampionComponent implements angular.IComponentOptions {
         public templateUrl = 'summoner/components/summoner-champion.html';
         public bindings = {champion: '<'};
         public controller = 'SummonerChampionController as ctrl'

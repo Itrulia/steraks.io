@@ -1,13 +1,18 @@
 .widget
     .widget__header
-        span {{ ctrl.name }}
+        span Dynamic Queue League Information
     .widget__body.rank
-        .flag
-            .flag__figure
-                img.rank__image(ng-if="ctrl.tier" ng-src="/images/leagues/{{ ctrl.tier }}.png")
-            .flag__body
-                span.rank__tier {{ ctrl.tier | uppercase }} {{ ctrl.rank.division }}
-                strong.rank__tier {{ ctrl.rank.leaguePoints }} LP
-                span.rank__tier
-                    | Winrate {{ ctrl.rank.wins / (ctrl.rank.wins + ctrl.rank.losses) * 100 | number:0 }}%
-                    | &ndash; {{ ctrl.rank.wins }}W/{{ ctrl.rank.losses }}L
+        .widget__item(ng-if="ctrl.loading")
+            spinner
+        .widget__item(ng-if="!ctrl.loading && !ctrl.rank")
+            error(text="'You are still in your provisionals'")
+        .widget__item(ng-if="!ctrl.loading && ctrl.rank")
+            .flag
+                .flag__figure
+                    img.rank__image(ng-if="::ctrl.tier" ng-src="/images/leagues/{{ ::ctrl.tier | lowercase }}.png")
+                .flag__body
+                    span.rank__tier {{ ::ctrl.tier }} {{ ctrl.rank.division }}
+                    strong.rank__tier {{ ::ctrl.rank.leaguePoints }} LP
+                    span.rank__tier
+                        | Winrate {{ ::ctrl.rank.wins / (ctrl.rank.wins + ctrl.rank.losses) * 100 | number:0 }}%
+                        | &ndash; {{ ::ctrl.rank.wins }}W/{{ ctrl.rank.losses }}L

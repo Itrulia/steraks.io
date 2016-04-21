@@ -1,7 +1,7 @@
 module App {
     'use strict';
 
-    export class MatchSummaryComponent {
+    export class MatchSummaryComponent implements angular.IComponentOptions {
         public templateUrl = 'components/match-summary.html';
         public bindings = {summoner: '<', match: '<'};
         public controller = 'MatchSummaryController as ctrl';
@@ -13,7 +13,7 @@ module App {
         public match:any;
         public player:any;
 
-        public constructor($scope:any, KeystoneMasteryService:App.KeystoneMasteryService) {
+        public constructor(private KeystoneMasteryService:App.KeystoneMasteryService) {
             this.player = _.filter(this.match.participants, (element:any) => {
                 return element.player.summonerId === this.summoner.id;
             })[0];

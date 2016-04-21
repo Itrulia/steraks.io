@@ -1,7 +1,7 @@
 module Summoner {
     'use strict';
 
-    export class SummonerFriendsComponent {
+    export class SummonerFriendsComponent implements angular.IComponentOptions {
         public templateUrl = 'summoner/components/summoner-friends.html';
         public bindings = {summoner: '<'};
         public controller = 'SummonerFriendsController as ctrl'
@@ -19,6 +19,8 @@ module Summoner {
                     let summonerIds:any = _.map(friends, (friend) => {
                         return friend.summonerId;
                     });
+
+                    if (!summonerIds.length) return;
 
                     return this.SummonerService.getSummoner(summonerIds).then((summoners:any) => {
 

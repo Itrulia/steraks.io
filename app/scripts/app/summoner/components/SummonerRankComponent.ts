@@ -1,7 +1,7 @@
 module Summoner {
     'use strict';
 
-    export class SummonerRankComponent {
+    export class SummonerRankComponent implements angular.IComponentOptions {
         public templateUrl = 'summoner/components/summoner-rank.html';
         public bindings = {summoner: '<'};
         public controller = 'SummonerRankController as ctrl'
@@ -13,6 +13,7 @@ module Summoner {
         public name:any;
         public rank:any;
         public summoner:any;
+        public loading = true;
 
         public constructor(public SummonerService:App.SummonerService) {
             SummonerService.getRank(this.summoner.id)
@@ -27,7 +28,9 @@ module Summoner {
                     this.rank = rank.entries[0];
                 })
                 .catch(() => {
-                    this.tier = 'unranked';
+                    this.name = 'Provisionals';
+                }).finally(() => {
+                    this.loading = false;
                 });
         }
     }

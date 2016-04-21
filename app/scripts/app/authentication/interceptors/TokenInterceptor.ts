@@ -24,9 +24,9 @@ module Authentication {
                     authenticationService = $injector.get('AuthenticationService');
                 }
 
-                authenticationService.getToken().then((token) => {
-                    request.headers['X-Auth-Token'] = token;
-                });
+                if (authenticationService.getToken() !== null) {
+                    request.headers['X-Auth-Token'] = authenticationService.getToken();
+                }
 
                 return request;
             }

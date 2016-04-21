@@ -3,7 +3,7 @@
 module Summoner {
     'use strict';
 
-    export class SummonerSynergyComponent {
+    export class SummonerSynergyComponent implements angular.IComponentOptions {
         public bindings = {summoner: '<'};
         public templateUrl = 'summoner/synergy.html';
         public controller = 'SummonerSynergyController as ctrl'
@@ -16,7 +16,9 @@ module Summoner {
         public counters = [];
         public summoner:any;
 
-        constructor(private $scope, private SummonerService:App.SummonerService) {
+        constructor(private $state, private SummonerService:App.SummonerService) {
+            this.$state.current.data.title = this.summoner.name + '\'s Synergizing Champions';
+
             this.SummonerService.getSynergies(this.summoner.id)
                 .then((counters:any) => {
                     this.counters = _.orderBy(counters, ['percent', 'games'], ['desc', 'desc']);

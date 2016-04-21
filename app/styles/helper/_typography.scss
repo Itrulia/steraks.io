@@ -13,10 +13,18 @@
 // baseline
 %baseline {
   margin-bottom: 1.5rem;
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
 }
 
 %baseline--small {
   margin-bottom: 0.75rem;
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
 }
 
 .baseline {

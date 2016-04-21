@@ -93,7 +93,8 @@ app.config(['$urlRouterProvider', '$stateProvider', (
         data: {
             toolbar: true,
             search: true,
-            footer: true
+            footer: true,
+            title: 'Steraks'
         }
     }).state('about', {
         url: '/about',
@@ -101,7 +102,8 @@ app.config(['$urlRouterProvider', '$stateProvider', (
         data: {
             toolbar: true,
             search: true,
-            footer: true
+            footer: true,
+            title: 'About Steraks'
         }
     }).state('contact', {
         url: '/contact',
@@ -109,7 +111,8 @@ app.config(['$urlRouterProvider', '$stateProvider', (
         data: {
             toolbar: true,
             search: true,
-            footer: true
+            footer: true,
+            title: 'Contact Steraks'
         }
     });
 }]);
@@ -117,10 +120,10 @@ app.config(['$urlRouterProvider', '$stateProvider', (
 app.config(['$localForageProvider', ($localForageProvider:angular.localForage.ILocalForageProvider) => {
     $localForageProvider.config({
         driver: [localforage.INDEXEDDB, localforage.LOCALSTORAGE],
-        name: 'fiora.gg',
+        name: 'steraks.io',
         version: 1.0,
         storeName: 'static',
-        description: 'Fiora.gg static data storage'
+        description: 'Steraks.io static data storage'
     });
 }]);
 
@@ -143,7 +146,7 @@ app.config(['AnalyticsProvider', (AnalyticsProvider:any) => {
         .useAnalytics(true)
         .logAllCalls(true)
         .trackPages(false)
-        .setDomainName('summoner.surge.sh')
+        .setDomainName('steraks.io')
         .setAccount('UA-76478578-1');
 }]);
 

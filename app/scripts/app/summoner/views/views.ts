@@ -7,6 +7,7 @@
 /// <reference path='SummonerMatchesWithView.ts' />
 /// <reference path='SummonerRunePagesView.ts' />
 /// <reference path='SummonerProfileView.ts' />
+/// <reference path='SummonerMasteryPagesView.ts' />
 /// <reference path='SummonerView.ts' />
 
 let summonerViewsApp:angular.IModule = angular.module('summoner.views', []);
@@ -17,6 +18,9 @@ summonerViewsApp.component('summoner', new Summoner.SummonerComponent());
 // Runes
 summonerViewsApp.controller('SummonerRunePagesController', Summoner.SummonerRunePagesController);
 summonerViewsApp.component('summonerRunePages', new Summoner.SummonerRunePagesComponent());
+// Runes
+summonerViewsApp.controller('SummonerMasteryPagesController', Summoner.SummonerMasteryPagesController);
+summonerViewsApp.component('summonerMasteryPages', new Summoner.SummonerMasteryPagesComponent());
 // Profile
 summonerViewsApp.controller('SummonerProfileController', Summoner.SummonerProfileController);
 summonerViewsApp.component('summonerProfile', new Summoner.SummonerProfileComponent());

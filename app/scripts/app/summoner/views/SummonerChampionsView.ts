@@ -3,7 +3,7 @@
 module Summoner {
     'use strict';
 
-    export class SummonerChampionsComponent {
+    export class SummonerChampionsComponent implements angular.IComponentOptions {
         public bindings = {summoner: '<'};
         public templateUrl = 'summoner/champions.html';
         public controller = 'SummonerChampionsController as ctrl'
@@ -16,7 +16,9 @@ module Summoner {
         public champions = [];
         public summoner:any;
 
-        constructor(private $scope, private SummonerService:App.SummonerService) {
+        constructor(private $state:any, private SummonerService:App.SummonerService) {
+            this.$state.current.data.title = this.summoner.name + '\'s Played Champions';
+
             this.SummonerService.getMatches(this.summoner.id)
                 .then((matches:any) => {
                     let champions:any = _.groupBy(matches, 'champion');

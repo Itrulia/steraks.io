@@ -1,7 +1,7 @@
 module Match {
     'use strict';
 
-    export class ParticipantDamageDistributionComponent {
+    export class ParticipantDamageDistributionComponent implements angular.IComponentOptions {
         public templateUrl = 'match/components/participant-damage-distribution.html';
         public bindings = {participant: '<'};
         public controller = 'ParticipantDamageDistributionController as ctrl'

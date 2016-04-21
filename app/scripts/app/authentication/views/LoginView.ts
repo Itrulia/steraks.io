@@ -23,10 +23,10 @@ module Authentication {
 
             this.AuthenticationService.login(this.email, this.password)
                 .then((response:any) => {
-                    this.Analytics.trackEvent('register', 'success', response.config.data.email);
+                    this.Analytics.trackEvent('login', 'success', response.config.data.email);
                     // todo redirect
                 }).catch((reason) => {
-                    this.Analytics.trackEvent('register', 'error', reason.config.data.email);
+                    this.Analytics.trackEvent('login', 'error', reason.config.data.email);
                     console.log(reason);
                     // todo handle errors
                 }).finally(() => {

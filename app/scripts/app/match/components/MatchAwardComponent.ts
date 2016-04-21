@@ -1,7 +1,7 @@
 module Match {
     'use strict';
 
-    export class MatchAwardComponent {
+    export class MatchAwardComponent implements angular.IComponentOptions {
         public templateUrl = 'match/components/match-award.html';
         public bindings = {match: '<'};
         public controller = 'MatchAwardController as ctrl';

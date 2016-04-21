@@ -18,7 +18,9 @@
           "blockless-group",
           "first-nested"
         ],
-        "ignore": ["after-comment"]
+        "ignore": [
+          "after-comment"
+        ]
       }
     ],
     "block-closing-brace-newline-after": "always",
@@ -34,8 +36,12 @@
     "comment-empty-line-before": [
       "always",
       {
-        "except": ["first-nested"],
-        "ignore": ["stylelint-commands"]
+        "except": [
+          "first-nested"
+        ],
+        "ignore": [
+          "stylelint-commands"
+        ]
       }
     ],
     "comment-whitespace-inside": "always",
@@ -75,10 +81,12 @@
     "rule-non-nested-empty-line-before": [
       "always-multi-line",
       {
-        "ignore": ["after-comment"]
+        "ignore": [
+          "after-comment"
+        ]
       }
     ],
-    "rule-trailing-semicolon": "always",
+    "declaration-block-trailing-semicolon": "always",
     "selector-combinator-space-after": "always",
     "selector-combinator-space-before": "always",
     "selector-list-comma-newline-after": "always",

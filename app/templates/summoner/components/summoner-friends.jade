@@ -4,9 +4,9 @@
     .widget__body
         .widget__item(ng-if="ctrl.loading")
             spinner
-        .widget__item(ng-if="!ctrl.loading && ctrl.champions.length == 0")
+        .widget__item(ng-if="!ctrl.loading && !ctrl.friends")
             error(text="'No friends have been found'")
-        .widget__item(ng-if="!ctrl.loading")
+        .widget__item(ng-if="!ctrl.loading && ctrl.friends")
             table.friends
                 thead
                     th.friends__heading.friends__name Summoner

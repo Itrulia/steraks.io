@@ -1,5 +1,12 @@
-.widget
-    .widget__header
-        span Cunning
-    .widget__body
-
+.mastery-page
+    .mastery-page__tree(ng-repeat="tree in ['Ferocity', 'Cunning', 'Resolve']" ng-class="'mastery-page__tree--{{ tree | lowercase }}'")
+        .mastery-page__row(ng-repeat="row in ctrl.trees[tree]")
+            .mastery-page__item(ng-repeat="item in row.masteryTreeItems")
+                img.mastery-page__image(
+                    ng-if="item"
+                    ng-src="{{ item.masteryAvatar }}"
+                    title="{{ item.description[ctrl.getRank(item.masteryId) - 1] }}"
+                    ng-class="{'mastery-page__image--skilled': ctrl.page.masteries[item.masteryId].rank}"
+                )
+                span.master-page__rank(ng-if="ctrl.page.masteries[item.masteryId].rank")
+                    | {{ ctrl.page.masteries[item.masteryId].rank }}

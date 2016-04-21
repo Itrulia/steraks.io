@@ -1,0 +1,68 @@
+.mastery-page {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.mastery-page__tree {
+  display: flex;
+  flex: 1;
+  flex-flow: column;
+  background-size: 100% 100%;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+
+.mastery-page__tree--cunning {
+  background-image: url(/images/masteries/cunning.jpg);
+}
+
+.mastery-page__tree--ferocity {
+  background-image: url(/images/masteries/ferocity.jpg);
+}
+
+.mastery-page__tree--resolve {
+  background-image: url(/images/masteries/resolve.jpg);
+}
+
+.mastery-page__row {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  padding: 0 0 1.5rem;
+
+  &:first-child {
+    padding-top: 1.5rem;
+  }
+}
+
+.mastery-page__item {
+  position: relative;
+  width: calc(20%);
+}
+
+.mastery-page__image {
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%);
+  border-radius: 2px;
+  border: 2px solid #000000;
+}
+
+.mastery-page__image--skilled {
+  filter: none;
+}
+
+.master-page__rank {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 1.5em;
+  height: 1.5em;
+  background: #000;
+  color: #FFF;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

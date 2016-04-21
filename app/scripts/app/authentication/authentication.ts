@@ -29,19 +29,31 @@ authApp.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProv
     })
     .state('authentication.login', {
         url: '/login',
-        component: 'login'
+        component: 'login',
+        data: {
+            title: 'Log in to Steraks'
+        }
     })
     .state('authentication.restore', {
         url: '/restore',
-        component: 'passwordRestore'
+        component: 'passwordRestore',
+        data: {
+            title: 'Restore Password'
+        }
     })
     .state('authentication.restoreVerification', {
         url: '/restore/verify',
-        component: 'passwordRestore'
+        component: 'passwordRestore',
+        data: {
+            title: 'Password Restore Verification'
+        }
     })
     .state('authentication.register', {
         url: '/register',
-        component: 'register'
+        component: 'register',
+        data: {
+            title: 'Register on Steraks'
+        }
     });
 
     //

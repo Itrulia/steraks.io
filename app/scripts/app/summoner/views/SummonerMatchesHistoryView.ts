@@ -3,7 +3,7 @@
 module Summoner {
     'use strict';
 
-    export class SummonerMatchesHistoryComponent {
+    export class SummonerMatchesHistoryComponent implements angular.IComponentOptions {
         public bindings = {summoner: '<'};
         public templateUrl = 'summoner/matches.history.html';
         public controller = 'SummonerMatchesHistoryController as ctrl'
@@ -25,6 +25,7 @@ module Summoner {
             private SummonerService:App.SummonerService,
             private StaticService:App.StaticService
         ) {
+            this.$state.current.data.title = this.summoner.name + '\'s Match History';
             this.getMatches();
             this.getChampions();
         }

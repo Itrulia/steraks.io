@@ -3,7 +3,7 @@
 module Summoner {
     'use strict';
 
-    export class SummonerRunePagesComponent {
+    export class SummonerRunePagesComponent implements angular.IComponentOptions {
         public bindings = {summoner: '<'};
         public templateUrl = 'summoner/runes.html';
         public controller = 'SummonerRunePagesController as ctrl';
@@ -16,7 +16,9 @@ module Summoner {
         public runes = [];
         public summoner:any;
 
-        constructor(private $scope, private $q:angular.IQService, private SummonerService:App.SummonerService) {
+        constructor(private $state:any, private SummonerService:App.SummonerService) {
+            this.$state.current.data.title = this.summoner.name + '\'s Runes';
+
             this.SummonerService.getRunes(this.summoner.id)
                 .then((runes:any) => {
                     _.forEach(runes, (rune:any) => {

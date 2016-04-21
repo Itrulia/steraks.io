@@ -1,7 +1,7 @@
 module Match {
     'use strict';
 
-    export class ParticipantSkillOrderComponent {
+    export class ParticipantSkillOrderComponent implements angular.IComponentOptions {
         public templateUrl = 'match/components/participant-skill-order.html';
         public bindings = {participant: '<', match: '<'};
         public controller = 'ParticipantSkillOrderController as ctrl'

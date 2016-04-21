@@ -20,14 +20,14 @@ module Authentication {
          * @returns {string}
          */
         public getToken() {
-            return this.CacheService.pull('Token');
+            return localStorage.getItem('authToken');
         }
 
         /**
          * @returns {void}
          */
         public setToken(token) {
-            this.CacheService.remember('Token', token, moment.utc().add(1, 'years'));
+            localStorage.setItem('authToken', token);
         }
 
         /**

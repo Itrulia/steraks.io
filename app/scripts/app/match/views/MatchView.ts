@@ -1,7 +1,7 @@
 module Match {
     'use strict';
 
-    export class MatchComponent {
+    export class MatchComponent implements angular.IComponentOptions {
         public bindings = {};
         public templateUrl = 'match/index.html';
         public controller = 'MatchController as ctrl';

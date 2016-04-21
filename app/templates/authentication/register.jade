@@ -14,7 +14,7 @@
         .login__box__body
             form.login__form(name="form" autocomplete="off" novalidate ng-submit="form.$valid && ctrl.register()")
                 .paper-input__wrapper.login__input
-                    input.paper-input.paper-input--floating(required type="email" name="email" ng-model="ctrl.email")
+                    input.paper-input.paper-input--floating(required type="email" name="email" ng-model="ctrl.email" autofocus)
                     label.paper-input__label Email Address
                     span.paper-input__error Input should contain a valid email!
 

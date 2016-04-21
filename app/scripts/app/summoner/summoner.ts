@@ -16,7 +16,7 @@ summonerApp.config(['$stateProvider', function ($stateProvider:any) {
         data: {
             toolbar: true,
             search: true,
-            footer: true
+            footer: true,
         },
         component: 'summoner',
         resolve: {
@@ -51,7 +51,8 @@ summonerApp.config(['$stateProvider', function ($stateProvider:any) {
         component: 'summonerRunePages'
     })
     .state('summoner.masteries', {
-        url: '/masteries'
+        url: '/masteries',
+        component: 'summonerMasteryPages'
     })
     .state('summoner.champions', {
         url: '/champions',

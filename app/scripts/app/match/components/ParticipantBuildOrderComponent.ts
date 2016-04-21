@@ -1,7 +1,7 @@
 module Match {
     'use strict';
 
-    export class ParticipantBuildOrder {
+    export class ParticipantBuildOrder implements angular.IComponentOptions {
         public templateUrl = 'match/components/participant-build-order.html';
         public bindings = {participant: '<', match: '<'};
         public controller = 'ParticipantBuildOrderController as ctrl'

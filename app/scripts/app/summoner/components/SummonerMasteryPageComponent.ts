@@ -1,39 +1,23 @@
 module Summoner {
     'use strict';
 
-    export class SummonerMasteryPageComponent {
-        public templateUrl = 'summoner/components/mastery-page.html';
-        public bindings = {masteries: '<'};
+    export class SummonerMasteryPageComponent implements angular.IComponentOptions {
+        public templateUrl = 'components/mastery-page.html';
+        public bindings = {page: '<', trees: '<'};
         public controller = 'SummonerMasteryPageController as ctrl'
     }
 
     // @ngInject
     export class SummonerMasteryPageController {
-        public masteries:any;
+        public page:any;
+        public trees:any;
 
-        public constructor(public $scope, public $q:angular.IQService, public StaticService:App.StaticService) {
-            let realm:any = this.StaticService.getRealm();
-            let masteries:any = this.StaticService.getMasteries();
+        public getRank(masterId:any) {
+            if (_.isUndefined(this.page.masteries[masterId.masteryId])) {
+                return 1;
+            }
 
-            this.$q.all([realm, masteries]).then((response:any) => {
-                realm = response[0];
-                masteries = response[1];
-
-                _.forEach(masteries.tree, (tree:any) => {
-                    _.forEach(tree, (row:any) => {
-                        _.forEach(row.masteryTreeItems, (mastery:any) => {
-                            if (mastery === null) return;
-
-                            let masteryData = masteries.data[mastery.masteryId];
-                            mastery.name = masteryData.name;
-                            mastery.description = masteryData.description;
-                            mastery.masteryAvatar = realm.cdn + '/' + realm.dd + '/img/mastery/' + masteryData.image.full;
-                        });
-                    });
-                });
-
-                console.log(masteries.tree);
-            });
+            return this.page.masteries[masterId.masteryId].rank;
         }
     }
 }

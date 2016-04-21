@@ -1,11 +1,11 @@
 'use strict';
 
 (function($) {
-    let timeout;
+    var timeout;
 
     $.notification = function(options) {
-        let self = this;
-        let $notification = $('.notification');
+        var self = this;
+        var $notification = $('.notification');
 
         self.defaults = {
             duration: 5000,
@@ -29,7 +29,7 @@
             clearTimeout(timeout);
 
             if ($notification.html() !== self.settings.message) {
-                let showNew = function() {
+                var showNew = function() {
                     $notification.attr('class', 'notification notification--' + self.settings.type);
                     $notification.html(self.settings.message);
                     $notification.off('transitionend');

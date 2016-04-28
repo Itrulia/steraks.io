@@ -2,7 +2,7 @@ module App {
     'use strict';
 
     export class ErrorComponent implements angular.IComponentOptions {
-        public bindings = {text: '<'};
+        public bindings:any = {text: '<'};
         public templateUrl = 'components/error.html';
         public controller = 'ErrorComponentController as ctrl'
     }

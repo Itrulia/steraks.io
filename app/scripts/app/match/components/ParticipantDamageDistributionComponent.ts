@@ -3,7 +3,7 @@ module Match {
 
     export class ParticipantDamageDistributionComponent implements angular.IComponentOptions {
         public templateUrl = 'match/components/participant-damage-distribution.html';
-        public bindings = {participant: '<'};
+        public bindings:any = {participant: '<'};
         public controller = 'ParticipantDamageDistributionController as ctrl'
     }
 

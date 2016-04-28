@@ -1,18 +1,15 @@
-module Summoner {
-    'use strict';
+'use strict';
 
-    export class SummonerRunesComponent implements angular.IComponentOptions {
-        public templateUrl = 'summoner/components/summoner-runes.html';
-        public bindings = {page: '<'};
-        public controller = 'SummonerRunesController as ctrl'
-    }
+@Component('summoner.components', 'summonerRunes', {
+    bindings: {page: '<'},
+    templateUrl: 'summoner/components/summoner-runes.html',
+    controllerAs: 'ctrl',
+})
+class SummonerRunesController {
+    public page:any;
 
     // @ngInject
-    export class SummonerRunesController {
-        public page:any;
+    public constructor() {
 
-        public constructor(public $scope:any) {
-
-        }
     }
 }

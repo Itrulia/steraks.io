@@ -1,10 +1,13 @@
-a(ui-sref="match({matchId: ctrl.match.matchId, player: ctrl.player})")
+a(ui-sref="ranked({matchId: ctrl.match.matchId, player: ctrl.player})")
     .match-summary(ng-class="::{'match-summary--loss': !ctrl.player.stats.winner, 'match-summary--won': ctrl.player.stats.winner}")
         .match-summary__header
-            span
+            span.match-summary__header__text
                 strong {{ ::ctrl.match | matchMode }}
-                |  &mdash; {{ ::ctrl.player | position }} {{ ::ctrl.player.championName }}
-            span {{ ::ctrl.match.matchCreation | date }}
+                span.hide--very-small  &mdash; {{ ::ctrl.player | position }} {{ ::ctrl.player.championName }}
+            span.match-summary__header__text
+                | {{ ::ctrl.match.matchDuration | duration }} minutes
+            span.match-summary__header__text
+                | {{ ::ctrl.match.matchCreation | humanizeDate }}
 
         .match-summary__body
             .match-summary__wrapper

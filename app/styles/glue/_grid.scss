@@ -4,7 +4,7 @@
 .container > ui-view > :not(div) > .grid,
 .container > :not(div) > .grid,
 .grid > .grid,
-[class*="grid__col--"] > .grid {
+[class*='grid__col--'] > .grid {
   margin-left: -0.75rem;
   margin-right: -0.75rem;
 }

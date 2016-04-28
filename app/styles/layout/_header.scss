@@ -1,25 +1,55 @@
 .header {
-  background: $primary;
-  padding: 2rem 0;
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  align-content: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  color: $icon-text;
+  background-image: url(/images/sidemenu.jpg);
+}
+
+.header__background {
+  z-index: 0;
+  pointer-events: none;
+  background: transparentize($primary, 0.35);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.header__sidemenu {
+  flex: 0 0 auto;
+  z-index: 2;
+}
+
+.header__search {
+  z-index: 1;
+  padding: 2rem 0.75rem;
   display: flex;
   flex-flow: column wrap;
   align-items: center;
   justify-content: center;
+  flex: 1 0 auto;
 }
 
 .header__input-wrapper {
   position: relative;
   width: 100%;
   max-width: 500px;
-  padding: 0 0.75rem;
 }
 
 .header__input {
   display: block;
-  padding: 1rem 2rem 1rem 1rem;
+  font-weight: 400;
+  padding: 1rem 1.5rem 1rem 1rem;
   font-size: 1.1rem;
   line-height: 1.25rem;
   background: $light-primary;
+  color: $primary-text;
   width: 100%;
   border: 0;
   border-radius: 2px;
@@ -28,13 +58,21 @@
 
 .header__input-addon {
   position: absolute;
+  color: $primary-text;
   padding: 0;
   display: block;
-  right: 1.5rem;
+  right: 0.75rem;
   top: 50%;
   transform: translate3d(0, -50%, 0);
   background: transparent;
   border: 0;
   line-height: 0;
   font-size: 1.5rem;
+}
+
+.header__spinner {
+  position: fixed;
+  z-index: 2000;
+  top: 0.75rem;
+  right: 0.75rem;
 }

@@ -1,25 +1,21 @@
-module Authentication {
-    'use strict';
+'use strict';
 
-    export class PasswordRestoreComponent {
-        public templateUrl = 'authentication/password-restore.html';
-        public controller = 'PasswordRestoreController as ctrl';
-    }
+@Component('authentication.views', 'passwordRestore', {
+    templateUrl: 'authentication/password-restore.html',
+    controllerAs: 'ctrl',
+})
+class PasswordRestoreController {
+    public loading = false;
+    public email;
+    public password;
 
     // @ngInject
-    export class PasswordRestoreController {
+    constructor(private AuthenticationService:Authentication.AuthenticationService) {
 
-        public loading = false;
-        public email;
-        public password;
+    }
 
-        constructor(private AuthenticationService:Authentication.AuthenticationService) {
-
-        }
-
-        public submit() {
-            if (this.loading) return;
-            this.loading = true;
-        }
+    public submit() {
+        if (this.loading) return;
+        this.loading = true;
     }
 }

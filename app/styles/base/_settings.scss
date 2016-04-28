@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -8,7 +10,13 @@ html {
 }
 
 body {
-  background: #FAFAFA;
+  background: #fafafa;
   color: #222522;
+  -webkit-touch-callout: none;
+}
+
+a,
+button,
+input[type='submit'] {
   -webkit-touch-callout: none;
 }

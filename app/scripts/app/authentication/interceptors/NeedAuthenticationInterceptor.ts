@@ -1,6 +1,6 @@
 module Authentication {
     'use strict';
-    
+
     export function NeedAuthenticationInterceptor($q:angular.IQService, $location:angular.ILocationService) {
         return {
             response: (response) => {

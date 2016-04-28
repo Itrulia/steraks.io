@@ -1,5 +1,4 @@
 .tabs {
-  background: $secondary;
   display: flex;
   flex-flow: row wrap;
   margin-bottom: 1.5rem;
@@ -18,6 +17,6 @@
 }
 
 .tab__header--is-active {
-  border-bottom-color: #333;
+  border-bottom-color: rgba(0, 0, 0, 0.75);
   font-weight: 500;
 }

@@ -3,7 +3,7 @@ module Match {
 
     export class ParticipantJungleDistributionComponent implements angular.IComponentOptions {
         public templateUrl = 'match/components/participant-jungle-distribution.html';
-        public bindings = {participant: '<'};
+        public bindings:any = {participant: '<'};
         public controller = 'ParticipantJungleDistributionController as ctrl'
     }
 

@@ -45,12 +45,14 @@
   width: 100%;
   height: auto;
   filter: grayscale(100%);
+  opacity: 0.5;
   border-radius: 2px;
   border: 2px solid #000000;
 }
 
 .mastery-page__image--skilled {
   filter: none;
+  opacity: 1;
 }
 
 .master-page__rank {

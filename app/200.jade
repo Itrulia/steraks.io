@@ -2,28 +2,32 @@ doctype html
 html(ng-app="app" ng-strict-di ng-csp)
     head
         meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="language" content="en_US")
         meta(name="viewport" content="width=device-width,initial-scale=1,user-scalable=no")
 
+        link(rel="author" href="humans.txt")
+
+        // Preconnect
+        link(rel="preconnect" href="//cdnjs.cloudflare.com/")
+        link(rel="preconnect" href="//fonts.googleapis.com/")
+
+        // Chrome
         meta(name="theme-color" content="#343A48")
+        meta(name="mobile-web-app-capable" content="yes")
+
+        // Windows 8/10
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(http-equiv="cleartype" content="on")
+        meta(name="msapplication-TileColor" content="#343A48")
+
+        // SEO
+        title(ng-bind="$state.current.data.title || 'Steraks'") Steraks
         meta(name="description" content="")
 
-        title(ng-bind="$state.current.data.title || 'Steraks'") Steraks
-
+        // Styles
         link(href="/styles/app.css" rel="stylesheet")
         link(href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,300italic,400italic,500italic' rel='stylesheet')
-
-        script(src="/scripts/libs/font.js")
-        script.
-            new Font({
-                font: '/fonts/material-icons.css',
-                className: 'material--icons'
-            });
-
-            new Font({
-                font: '/fonts/ionicon-icons.css',
-                className: 'ionicon--icons'
-            });
+        link(href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet')
 
         style.
             [ng\:cloak],
@@ -35,15 +39,27 @@ html(ng-app="app" ng-strict-di ng-csp)
                 display: none !important;
             }
 
-    body(ng-class="$state.current.data.bodyClass")
-        sidemenu(ng-if="$state.current.data.toolbar" ng-cloak)
+        // Service Workers
+        link(rel="serviceworker" scope="/" href="/scripts/workers/service-worker.js")
 
+        // Social Media
+        meta(name="twitter:site" content="@KarlMerkli")
+        meta(property="og:type" content="website")
+        meta(property="og:locale" content="en_US")
+
+    body(ng-class="$state.current.data.bodyClass")
         header.header(ng-if="$state.current.data.search" ng-cloak)
-            .header__input-wrapper(ng-controller="SearchController as ctrl")
-                form(ng-submit="ctrl.search()")
-                    input.header__input(type="text" ng-model="ctrl.summoner" placeholder="Summoner" name="summoner" autofocus)
-                    button.header__input-addon
-                        span.icon--material search
+            .header__background
+            sidemenu.landing__hero__sidemenu(ng-if="$state.current.data.toolbar" ng-cloak)
+            .header__search(ng-controller="SearchController as ctrl")
+                .header__input-wrapper
+                    form(name="form" ng-submit="form.$valid && ctrl.search()" autocomplete="off" novalidate)
+                        input.header__input(ng-model="ctrl.summoner" placeholder="Summoner" name="summoner" autofocus required)
+                        button.header__input-addon
+                            span.icon--material search
+                .header__spinner(ng-if="ctrl.loading")
+                    spinner
+
 
         div(ui-view="")
             spinner
@@ -60,8 +76,8 @@ html(ng-app="app" ng-strict-di ng-csp)
         script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js")
         script(src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js")
         script(src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.5.0/lodash.min.js")
-        script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js")
-        script(src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.0-alpha.3/angular-ui-router.js")
+        script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js")
+        script(src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.0-alpha.3/angular-ui-router.min.js")
         script(src="//cdnjs.cloudflare.com/ajax/libs/angular-chart.js/0.8.8/angular-chart.min.js")
         script(src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.4.0/localforage.min.js")
         script(src="/scripts/libs/notification.js")

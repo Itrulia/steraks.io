@@ -3,7 +3,7 @@ module Match {
 
     export class ParticipantRunesComponent implements angular.IComponentOptions {
         public templateUrl = 'match/components/participant-runes.html';
-        public bindings = {participant: '<'};
+        public bindings:any = {participant: '<'};
         public controller = 'ParticipantRunesController as ctrl'
     }
 

@@ -1,3 +1,9 @@
+.grid
+    .grid__col--12
+        .widget
+            .widget__header
+                span The champions {{ ::ctrl.summoner.name }} played
+
 spinner(ng-if="ctrl.loading")
 .grid(ng-if="!ctrl.loading")
     .grid__col--0.d-grid__col--2(ng-if="!ctrl.loading && !ctrl.error && ctrl.champions.length == 0")

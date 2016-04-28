@@ -1,20 +1,51 @@
+%button,
 .button {
+  font-weight: 300;
   font-size: 1em;
   line-height: 1;
   cursor: pointer;
+  border-radius: 2px;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+  display: inline-block;
+  user-select: none;
+
+  a {
+    color: inherit;
+  }
+}
+
+.button--jumbo {
+  padding: 1rem 2rem;
+  font-size: 1.3em;
+  font-weight: 400;
+}
+
+.button--primary {
+  color: #FFF;
+  background: $accent;
+
+  .icon-button__addon {
+    background: #4191ea;
+  }
+}
+
+.icon-button {
   font-weight: 500;
   display: inline-flex;
   flex-flow: row wrap;
-  border-radius: 2px;
+  padding: 0;
+
+  @extend %button;
 }
 
-.button__text {
+.icon-button__text {
   border-radius: 2px 0 0 2px;
   padding: 0.375rem 0.625rem;
   flex-grow: 1;
 }
 
-.button__addon {
+.icon-button__addon {
   border-radius: 0 2px 2px 0;
   padding: 0.375rem;
   display: inline-flex;
@@ -22,22 +53,13 @@
   align-items: center;
 }
 
-.button--primary {
-  color: #FFF;
-  background: $accent;
-
-  .button__addon {
-    background: #4191EA;
-  }
-}
-
-.button[disabled],
-.button--is-disabled {
+.icon-button[disabled],
+.icon-button--is-disabled {
   color: $disabled-text;
   background: $disabled;
   cursor: not-allowed;
 
-  .button__addon {
+  .icon-button__addon {
     background: $light-disabled;
   }
 }

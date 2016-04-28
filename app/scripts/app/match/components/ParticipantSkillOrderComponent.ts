@@ -3,7 +3,7 @@ module Match {
 
     export class ParticipantSkillOrderComponent implements angular.IComponentOptions {
         public templateUrl = 'match/components/participant-skill-order.html';
-        public bindings = {participant: '<', match: '<'};
+        public bindings:any = {participant: '<', match: '<'};
         public controller = 'ParticipantSkillOrderController as ctrl'
     }
 

@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto, sans-serif;
   line-height: 1.5;
   font-size: 1em;
   font-weight: 300;
@@ -19,13 +19,4 @@ strong {
 
 em {
   font-style: italic;
-}
-
-// states
-.text--primary {
-  color: $primary-text;
-}
-
-.text--secondary {
-  color: $secondary-text;
 }

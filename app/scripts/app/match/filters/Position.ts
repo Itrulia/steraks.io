@@ -7,10 +7,10 @@ module Match.Filter {
             let lane = player.timeline.lane.toLowerCase();
             let role = player.timeline.role.toLowerCase();
 
-            if (role === "duo_carry") {
-                return "AD Carry"
-            } else if (role === "duo_support") {
-                return "Support";
+            if (role === 'duo_carry') {
+                return 'AD Carry'
+            } else if (role === 'duo_support') {
+                return 'Support';
             }
 
             if (lane === 'top') {
@@ -19,8 +19,8 @@ module Match.Filter {
                 return 'Midlane';
             } else if (lane === 'jungle') {
                 return 'Jungle';
-            } else if (lane === "bottom") {
-                return "Bottomlane";
+            } else if (lane === 'bottom') {
+                return 'Bottomlane';
             }
 
             return 'Unknown Lane';

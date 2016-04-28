@@ -1,10 +1,14 @@
 /// <reference path='../_reference.d.ts' />
 /// <reference path='service/AuthenticationService.ts' />
+/// <reference path='views/views.ts' />
 /// <reference path='service/AuthenticationResource.ts' />
 /// <reference path='interceptors/NeedAuthenticationInterceptor.ts' />
 /// <reference path='interceptors/TokenInterceptor.ts' />
 
-let authApp:angular.IModule = angular.module('authentication', ['ui.router']);
+let authApp:angular.IModule = angular.module('authentication', [
+    'ui.router',
+    'authentication.views'
+]);
 
 authApp.service('AuthenticationService', Authentication.AuthenticationService);
 authApp.service('AuthenticationResource', Authentication.AuthenticationResource);

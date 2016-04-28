@@ -1,18 +1,15 @@
-module Summoner {
-    'use strict';
+'use strict';
 
-    export class SummonerChampionComponent implements angular.IComponentOptions {
-        public templateUrl = 'summoner/components/summoner-champion.html';
-        public bindings = {champion: '<'};
-        public controller = 'SummonerChampionController as ctrl'
-    }
+@Component('summoner.components', 'summonerChampion', {
+    bindings: {champion: '<'},
+    templateUrl: 'summoner/components/summoner-champion.html',
+    controllerAs: 'ctrl',
+})
+class SummonerChampionController {
+    public champion:any;
 
     // @ngInject
-    export class SummonerChampionController {
-        public champion:any;
+    public constructor() {
 
-        public constructor(public $scope:any) {
-
-        }
     }
 }

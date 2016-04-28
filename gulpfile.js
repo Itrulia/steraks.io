@@ -1,84 +1,61 @@
 'use strict';
 
+// Core
 var path = require('path');
+
+// Frameworks
 var gulp = require('gulp');
-var del = require('del');
-var $ = require('gulp-load-plugins')();
-var mergeStream = require('merge-stream');
-var sequence = require('run-sequence');
 var swPrecache = require('sw-precache');
-var browserSync = require('browser-sync');
-var modRewrite = require('connect-modrewrite');
-var reload = browserSync.reload;
+
+// Google Page Speed
 var critical = require('critical').stream;
 var psi = require('psi');
 
-var paths = {
-    styles: {
-        app: ['app/styles/app.scss'],
-        watch: ['app/styles/**/*.scss'],
-        dist: 'dist/styles'
-    },
-    typescript: {
-        app: ['app/scripts/**/*.ts'],
-        watch: ['app/scripts/**/*.ts'],
-        dist: 'dist/scripts'
-    },
-    javascript: {
-        app: [
-            'app/scripts/libs/**/*.js',
-            'node_modules/angular-localforage/dist/angular-localForage.min.js',
-            'node_modules/angular-google-analytics/dist/angular-google-analytics.min.js'
-        ],
-        watch: ['app/scripts/libs/**/*.js'],
-        dist: 'dist/scripts/libs'
-    },
-    workers: {
-        app: [
-            'app/scripts/workers/**/*.js',
-            'node_modules/sw-toolbox/sw-toolbox.js'
-        ],
-        watch: ['app/scripts/workers/**/*.js'],
-        dist: 'dist/scripts/workers'
-    },
-    images: {
-        app: ['app/images/**/*'],
-        watch: ['app/images/**/*'],
-        dist: 'dist/images'
-    },
-    fonts: {
-        app: ['app/fonts/**/*'],
-        watch: ['app/fonts/**/*'],
-        dist: 'dist/fonts'
-    },
-    index: {
-        app: ['app/*.jade'],
-        watch: ['app/*.jade'],
-        dist: 'dist'
-    },
-    templates: {
-        app: ['app/templates/**/*.jade'],
-        watch: ['app/templates/**/*.jade'],
-        dist: 'dist/scripts'
-    }
-};
+// Browser Sync
+var browserSync = require('browser-sync');
+var modRewrite = require('connect-modrewrite');
+var reload = browserSync.reload;
 
+// Config
+var config = require('./gulpconfig');
 var postProcessor = [
+    require('postcss-zindex'),
     require('autoprefixer')({browsers: ['last 1 version']})
 ];
+
+// Util
+var del = require('del');
+var sequence = require('run-sequence');
+var mergeStream = require('merge-stream');
+var $ = require('gulp-load-plugins')();
 
 var isProduction = function() {
     return process.env.NODE_ENV === 'production';
 };
+
+var isDevelopment = function() {
+    return process.env.NODE_ENV === 'development';
+};
+
+//////////////////////////////////////////
+/// Tasks
+//////////////////////////////////////////
 
 gulp.task('clean', function () {
     del(['dist/*', '!dist/.git'], {dot: true})
 });
 
 gulp.task('scripts:lint', function () {
-    return gulp.src(paths.typescript.dist + '/**/*.js')
-        .pipe($.eslint())
-        .pipe($.eslint.format())
+    gulp.src(config.paths.typescript.app)
+        .pipe($.tslint({
+            configuration: "tslint.json"
+        }))
+        .pipe($.tslint.report($.tslintStylish, {
+            emitError: false,
+            sort: true,
+            bell: true,
+            fullPath: true
+        }));
 });
 
 gulp.task('copy', function () {
@@ -91,23 +68,23 @@ gulp.task('copy', function () {
 });
 
 gulp.task('styles', function () {
-    return gulp.src(paths.styles.app)
+    return gulp.src(config.paths.styles.app)
         .pipe($.plumber())
         .pipe($.sourcemaps.init())
         .pipe($.sass().on('error', $.sass.logError))
         .pipe($.postcss(postProcessor))
         .pipe($.cleanCss())
         .pipe($.sourcemaps.write('.'))
-        .pipe(gulp.dest(paths.styles.dist))
+        .pipe(gulp.dest(config.paths.styles.dist))
         .pipe($.size({title: 'styles'}));
 });
 
 gulp.task('styles:lint', function () {
-    return gulp.src(paths.styles.watch)
+    return gulp.src(config.paths.styles.watch)
         .pipe($.plumber())
         .pipe($.postcss([
             require('stylelint')(),
-            require('postcss-reporter')({clearMessages: true, throwError: true})
+            require('postcss-reporter')({clearMessages: true, throwError: false})
         ], {syntax: require('postcss-scss')}));
 });
 
@@ -139,16 +116,24 @@ gulp.task('styles:critical', function () {
         .pipe(gulp.dest('dist'));
 });
 
+gulp.task('styles:uncss', function() {
+    return gulp.src(config.paths.styles.dist + '/app.css')
+        .pipe($.purifycss([
+            config.paths.templates.dist + '/**/*.js'
+        ]))
+        .pipe(gulp.dest(config.paths.styles.dist));
+});
+
 gulp.task('index', function () {
-    return gulp.src(paths.index.app)
+    return gulp.src(config.paths.index.app)
         .pipe($.plumber())
         .pipe($.if('*.jade', $.jade()))
-        .pipe(gulp.dest(paths.index.dist))
+        .pipe(gulp.dest(config.paths.index.dist))
         .pipe($.size({title: 'index'}));
 });
 
 gulp.task('templates', function () {
-    return gulp.src(paths.templates.app)
+    return gulp.src(config.paths.templates.app)
         .pipe($.plumber())
         .pipe($.if('*.jade', $.jade()))
         .pipe($.htmlmin({
@@ -165,15 +150,16 @@ gulp.task('templates', function () {
         .pipe($.angularTemplatecache({
             standalone: true
         }))
-        .pipe(gulp.dest(paths.templates.dist))
+        .pipe(gulp.dest(config.paths.templates.dist))
         .pipe($.size({title: 'templates'}));
 });
 
 gulp.task('typescript', function () {
-    return gulp.src(paths.typescript.app)
+    return gulp.src(config.paths.typescript.app)
         .pipe($.plumber())
         .pipe($.typescript({
             target: 'ES5',
+            experimentalDecorators: true,
             out: 'app.js',
             typescript: require('typescript')
         }))
@@ -181,48 +167,49 @@ gulp.task('typescript', function () {
         .pipe($.ngAnnotate())
         .pipe($.if(isProduction(), $.uglify()))
         .pipe($.if(isProduction(), $.replace('http://vanilla.app', 'https://api.steraks.io')))
-        .pipe(gulp.dest(paths.typescript.dist))
+        .pipe(gulp.dest(config.paths.typescript.dist))
         .pipe($.size({title: 'scripts'}));
 });
 
 gulp.task('javascript', function () {
-    return gulp.src(paths.javascript.app)
+    return gulp.src(config.paths.javascript.app)
         .pipe($.plumber())
         .pipe($.sourcemaps.init())
         .pipe($.uglify())
         .pipe($.sourcemaps.write('.'))
-        .pipe(gulp.dest(paths.javascript.dist))
+        .pipe(gulp.dest(config.paths.javascript.dist))
         .pipe($.size({title: 'javascript'}));
 });
 
 gulp.task('images', function () {
-    return gulp.src(paths.images.app)
+    return gulp.src(config.paths.images.app)
         .pipe($.plumber())
-        .pipe($.cache($.imagemin({
+        .pipe($.newer(config.paths.images.dist))
+        .pipe($.imagemin({
             progressive: true,
             interlaced: true
-        })))
-        .pipe(gulp.dest(paths.images.dist))
+        }))
+        .pipe(gulp.dest(config.paths.images.dist))
         .pipe($.size({title: 'images'}));
 });
 
 gulp.task('fonts', function () {
-    return gulp.src(paths.fonts.app)
+    return gulp.src(config.paths.fonts.app)
         .pipe($.plumber())
-        .pipe(gulp.dest(paths.fonts.dist))
+        .pipe(gulp.dest(config.paths.fonts.dist))
         .pipe($.size({title: 'fonts'}));
 });
 
 gulp.task('workers', function () {
-    return gulp.src(paths.workers.app)
+    return gulp.src(config.paths.workers.app)
         .pipe($.plumber())
         .pipe($.uglify())
-        .pipe(gulp.dest(paths.workers.dist))
+        .pipe(gulp.dest(config.paths.workers.dist))
         .pipe($.size({title: 'workers'}));
 });
 
 gulp.task('service-worker', function () {
-    var rootDir = paths.workers.dist;
+    var rootDir = config.paths.workers.dist;
     var filepath = path.join(rootDir, 'service-worker.js');
 
     return swPrecache.write(filepath, {
@@ -235,10 +222,10 @@ gulp.task('service-worker', function () {
 
         staticFileGlobs: [
             'dist/images/**/*',
-            'dist/scripts/libs/**/*.js',
-            'dist/scripts/*.js',
+            'dist/scripts/**/*.js',
             'dist/styles/**/*.css',
-            'dist/*.{html,json}'
+            'dist/*.html',
+            'dist/*.json'
         ],
 
         runtimeCaching: [
@@ -285,14 +272,14 @@ gulp.task('watch', function () {
         ]
     });
 
-    gulp.watch(paths.typescript.watch, ['typescript', reload]);
-    gulp.watch(paths.javascript.watch, ['javascript', reload]);
-    gulp.watch(paths.workers.watch, ['workers', 'service-worker', reload]);
-    gulp.watch(paths.styles.watch, ['styles', reload]);
-    gulp.watch(paths.templates.watch, ['templates', reload]);
-    gulp.watch(paths.index.watch, ['index', reload]);
-    gulp.watch(paths.images.watch, ['images', reload]);
-    gulp.watch(paths.fonts.watch, ['fonts', reload]);
+    gulp.watch(config.paths.typescript.watch, ['typescript', reload]);
+    gulp.watch(config.paths.javascript.watch, ['javascript', reload]);
+    gulp.watch(config.paths.workers.watch, ['workers', 'service-worker', reload]);
+    gulp.watch(config.paths.styles.watch, ['styles', reload]);
+    gulp.watch(config.paths.templates.watch, ['templates', reload]);
+    gulp.watch(config.paths.index.watch, ['index', reload]);
+    gulp.watch(config.paths.images.watch, ['images', reload]);
+    gulp.watch(config.paths.fonts.watch, ['fonts', reload]);
 });
 
 gulp.task('deploy', function (cb) {

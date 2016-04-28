@@ -11,5 +11,5 @@
 
 # TECHNOLOGY COLOPHON
 
-    CSS3, HTML5
-    Normalize.css, AngularJs
+    CSS3, HTML5, ES5, Typescript, SCSS, PostCSS, Pug
+    Normalize.css, AngularJs, MomentJs, localForage, Chart.Js, Lodash

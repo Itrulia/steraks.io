@@ -7,13 +7,33 @@ module App {
         public restrict = 'A';
         public replace = false;
         public scope = false;
+        public timeout:any;
 
         constructor(public $window: angular.IWindowService) {
-            StickToTopDirective.prototype.link = (scope:angular.IScope, element:angular.IAugmentedJQuery, attrs) => {
-                angular.element($window).bind('scroll', (e) => {
-                    //console.log(e);
-                });
+            StickToTopDirective.prototype.link = (
+                scope:angular.IScope,
+                element:angular.IAugmentedJQuery,
+                attrs
+            ) => {
+                let $:any = jQuery;
+
+                // $(window).scroll(this.onScroll());
             };
+        }
+
+        private onScroll() {
+            return _.debounce(() => {
+                this.stickToTop();
+                
+                clearTimeout(this.timeout);
+                this.timeout = setTimeout(() => {
+                    this.stickToTop();
+                }, 100, this);
+            }, 50);
+        }
+
+        private stickToTop() {
+            console.log('lel');
         }
 
         public static instance() {

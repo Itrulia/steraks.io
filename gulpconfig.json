@@ -1,0 +1,51 @@
+{
+  "paths": {
+    "styles": {
+      "app": ["app/styles/app.scss"],
+      "watch": ["app/styles/**/*.scss"],
+      "dist": "dist/styles"
+    },
+    "typescript": {
+      "app": ["app/scripts/**/*.ts"],
+      "watch": ["app/scripts/**/*.ts"],
+      "dist": "dist/scripts"
+    },
+    "javascript": {
+      "app": [
+        "app/scripts/libs/**/*.js",
+        "node_modules/angular-localforage/dist/angular-localForage.min.js",
+        "node_modules/angular-google-analytics/dist/angular-google-analytics.min.js"
+      ],
+      "watch": ["app/scripts/libs/**/*.js"],
+      "dist": "dist/scripts/libs"
+    },
+    "workers": {
+      "app": [
+        "app/scripts/workers/**/*.js",
+        "node_modules/sw-toolbox/sw-toolbox.js"
+      ],
+      "watch": ["app/scripts/workers/**/*.js"],
+      "dist": "dist/scripts/workers"
+    },
+    "images": {
+      "app": ["app/images/**/*"],
+      "watch": ["app/images/**/*"],
+      "dist": "dist/images"
+    },
+    "fonts": {
+      "app": ["app/fonts/**/*"],
+      "watch": ["app/fonts/**/*"],
+      "dist": "dist/fonts"
+    },
+    "index": {
+      "app": ["app/*.jade"],
+      "watch": ["app/*.jade"],
+      "dist": "dist"
+    },
+    "templates": {
+      "app": ["app/templates/**/*.jade"],
+      "watch": ["app/templates/**/*.jade"],
+      "dist": "dist/scripts"
+    }
+  }
+}

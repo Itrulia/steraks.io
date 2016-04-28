@@ -20,25 +20,11 @@ summonerApp.config(['$stateProvider', function ($stateProvider:any) {
         },
         component: 'summoner',
         resolve: {
-            summoner: ['$stateParams', 'SummonerService', function ($stateParams:any, SummonerService:App.SummonerService) {
+            summoner: ['$stateParams', 'SummonerService', (
+                $stateParams:any,
+                SummonerService:App.SummonerService
+            ) => {
                 return SummonerService.getSummoner($stateParams.summonerId);
-            }],
-            league: ['SummonerService', 'summoner', function (SummonerService:App.SummonerService, summoner) {
-                return SummonerService.getRank(summoner.id)
-                    .then((rank) => {
-                        return _.filter(rank[summoner.id], (entry) => {
-                            return entry.queue.toLowerCase() === 'ranked_solo_5x5';
-                        })[0];
-                    })
-                    .then((rank) => {
-                        let tier = rank.tier.charAt(0).toUpperCase() + rank.tier.slice(1).toLowerCase();
-                        let division = rank.entries[0].division;
-
-                        return [tier, division].join(' ');
-                    })
-                    .catch(() => {
-                        return 'UNRANKED';
-                    });
             }]
         }
     })

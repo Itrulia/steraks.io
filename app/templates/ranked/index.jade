@@ -1,0 +1,23 @@
+//.tabs(stick-to-top)
+//    .container
+//        .grid
+//            a.tab__header.grid__col--auto.text--center(ui-sref="ranked({matchId: ctrl.matchId})" ui-sref-active="tab__header--is-active")
+//                | Summary
+//            a.tab__header.grid__col--auto.text--center(ui-sref="summoner.matches.history({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
+//                | Matches
+
+
+.container.container--padded
+    match-award.hide--very-small(match="ctrl.match")
+    //participants(match="ctrl.match" selected="ctrl.selected" ng-if="ctrl.selected && ctrl.match")
+
+    .widget
+        .widget__header.match__info
+            .match__info__entry
+                span Winning Team: {{ ctrl.getWinningTeamId() | team }} Team
+            .match__info__entry
+                span Game Length: {{ ctrl.match.matchDuration | gameLength }}
+        .widget__body
+            div(ng-include="'ranked/score-board.html'")
+
+    div(ng-include="'ranked/participant-view.html'")

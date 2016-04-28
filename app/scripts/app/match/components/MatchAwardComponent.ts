@@ -3,7 +3,7 @@ module Match {
 
     export class MatchAwardComponent implements angular.IComponentOptions {
         public templateUrl = 'match/components/match-award.html';
-        public bindings = {match: '<'};
+        public bindings:any = {match: '<'};
         public controller = 'MatchAwardController as ctrl';
     }
 

@@ -1,3 +1,17 @@
+.header.landing__hero
+    .header__background
+    sidemenu.header__sidemenu
+    .header__search.landing__hero__search(ng-controller="SearchController as ctrl")
+        .header__input-wrapper
+            form(name="form" ng-submit="form.$valid && ctrl.search()" autocomplete="off" novalidate)
+                input.header__input(ng-model="ctrl.summoner" placeholder="Summoner" name="summoner" autofocus required)
+                button.header__input-addon
+                    span.icon--material search
+        .header__spinner(ng-if="ctrl.loading")
+            spinner
+    a.landing__button.button.button--jumbo.button--primary(ui-sref="authentication.register")
+        | Register Now
+
 .showcase.highlight--secondary
     .container
         h1.text--center.baseline--none Awesome Features
@@ -33,9 +47,9 @@
             p.baseline--small
                 | Without this, you are
                 em  donezo.
-        cite.credentials__name &mdash; Reddit User 2016
+        cite.credentials__name &mdash; Reddit User, 2016
 
-.showcase.highlight--dark-secondary
+.showcase.highlight--secondary
     .container
         .grid
             .grid__col--12.m-grid__col--6.d-grid__col--4
@@ -46,22 +60,22 @@
                         h2.baseline--small
                             | Beautiful Interface
                         p.baseline--none
-                            | Steraks.io
+                            | daw
 
             .grid__col--12.m-grid__col--6.d-grid__col--4
                 .whisper-box
                     span.whisper-box__icon.icon--material.color--red
-                        | palette
+                        | cloud
                     .whisper-box__text
                         h2.baseline--small
-                            | Beautiful Interface
+                            | Build for speed
                         p.baseline--none
-                            | Steraks.io
+                            | The technologies stack uses the latest web and server technologies to serve match data as fast as possible
 
             .grid__col--12.m-grid__col--6.d-grid__col--4
                 .whisper-box
                     span.whisper-box__icon.icon--material.color--red
-                        | palette
+                        | phonelink
                     .whisper-box__text
                         h2.baseline--small
                             | Beautiful Interface

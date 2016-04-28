@@ -32,6 +32,11 @@
 
 // accent
 .highlight--accent {
-  color: $secondary-text;
+  color: $icon-text;
   background: $accent;
+}
+
+.highlight--secondary-accent {
+  color: $icon-text;
+  background: $secondary-accent;
 }

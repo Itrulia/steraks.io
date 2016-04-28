@@ -3,7 +3,7 @@ module App {
 
     export class MatchSummaryComponent implements angular.IComponentOptions {
         public templateUrl = 'components/match-summary.html';
-        public bindings = {summoner: '<', match: '<'};
+        public bindings:any = {summoner: '<', match: '<'};
         public controller = 'MatchSummaryController as ctrl';
     }
 

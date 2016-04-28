@@ -9,5 +9,8 @@
             )
             .paper-select__label
 spinner(ng-if="ctrl.loading")
-error(text="'No matches have been found'" ng-if="!ctrl.loading && !ctrl.error && !ctrl.matches[0]")
+error(
+    text="'No matches with ' + ctrl.champion.name + ' in this season have been found'"
+    ng-if="!ctrl.loading && !ctrl.error && !ctrl.matches[0]"
+)
 match-summary(match="match" summoner="ctrl.summoner" ng-repeat="match in ctrl.matches track by match.matchId")

@@ -1,0 +1,8 @@
+.widget
+    .widget__header
+        span Masteries
+    .widget__body
+        .widget__item(ng-if="ctrl.loading")
+            spinner
+        .widget__item(ng-if="!ctrl.loading && ctrl.participant")
+            summoner-mastery-page(trees="ctrl.trees" page="ctrl.participant")

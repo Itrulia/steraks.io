@@ -1,5 +1,6 @@
 .notification {
   position: fixed;
+  font-weight: 400;
   max-width: 100%;
   padding: 0.75em 1em;
   bottom: 0;
@@ -8,8 +9,7 @@
   z-index: 9;
   backface-visibility: hidden;
   will-change: opacity, transform;
-  transition: opacity 500ms cubic-bezier(.55, 0, .1, 1),
-  transform 500ms cubic-bezier(.55, 0, .1, 1);
+  transition: opacity 500ms cubic-bezier(.55, 0, .1, 1), transform 500ms cubic-bezier(.55, 0, .1, 1);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
   @media (min-width: 840px) {
@@ -32,26 +32,26 @@
 }
 
 .notification--info {
-  color: #2D3434;
+  color: #2d3434;
   background-color: #a7cecb;
 }
 
 .notification--ok {
-  color: #FCF7F8;
-  background-color: #7BC087;
+  color: #fcf7f8;
+  background-color: #7bc087;
 }
 
 .notification--watchout {
-  color: #2D3434;
-  background-color: #FFE066;
+  color: #2d3434;
+  background-color: #ffE066;
 }
 
 .notification--important {
-  color: #FCF7F8;
-  background-color: #F25F5C;
+  color: #fcf7f8;
+  background-color: #f25f5c;
 }
 
 .notification--dark {
-  color: #FCF7F8;
-  background-color: #50514F;
+  color: #fcf7f8;
+  background-color: #212121;
 }

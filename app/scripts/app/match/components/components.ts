@@ -3,6 +3,7 @@
 /// <reference path='ParticipantBuildOrderComponent.ts' />
 /// <reference path='ParticipantSkillOrderComponent.ts' />
 /// <reference path='ParticipantRunesComponent.ts' />
+/// <reference path='ParticipantMasteriesComponent.ts' />
 /// <reference path='MatchAwardComponent.ts' />
 
 let matchComponentsApp:angular.IModule = angular.module('match.components', []);
@@ -16,6 +17,9 @@ matchComponentsApp.controller('ParticipantBuildOrderController', Match.Participa
 // Runes
 matchComponentsApp.component('participantRunes', new Match.ParticipantRunesComponent());
 matchComponentsApp.controller('ParticipantRunesController', Match.ParticipantRunesController);
+// Masteries
+matchComponentsApp.component('participantMasteries', new Match.ParticipantMasteriesComponent());
+matchComponentsApp.controller('ParticipantMasteriesController', Match.ParticipantMasteriesController);
 // Damage Distribution
 matchComponentsApp.component('participantDamageDistribution', new Match.ParticipantDamageDistributionComponent());
 matchComponentsApp.controller('ParticipantDamageDistributionController', Match.ParticipantDamageDistributionController);

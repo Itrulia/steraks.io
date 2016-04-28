@@ -18,7 +18,7 @@
   position: relative;
   min-height: 100vh;
   min-width: 100vw;
-  color: #FFF;
+  color: #fff;
   display: flex;
   flex-flow: column;
   background-image: url(https://static.lolwallpapers.net/2015/09/Project-Fiora.jpg);
@@ -32,8 +32,7 @@
     height: 31.25rem;
     width: 37.5rem;
     border-radius: 5px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
-      0 6px 12px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 12px rgba(0, 0, 0, 0.23);
   }
 }
 
@@ -81,7 +80,7 @@
   padding: 0 0.5em;
 
   &.is-active {
-    color: #FFF;
+    color: #fff;
   }
 }
 
@@ -118,11 +117,11 @@
 .login__input {
 
   .paper-input {
-    border-bottom: 1px solid #AAA;
+    border-bottom: 1px solid #aaa;
   }
 
   .paper-input__label {
-    color: #AAA;
+    color: #aaa;
   }
 
   // on enter
@@ -145,7 +144,7 @@
     color: #d34336;
   }
 
-  .paper-input.is-dirty:invalid ~ .paper-input__label:after {
+  .paper-input.is-dirty:invalid ~ .paper-input__label::after {
     background-color: #d34336;
   }
 }

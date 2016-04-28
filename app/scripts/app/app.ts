@@ -2,6 +2,7 @@
 
 let app:angular.IModule = angular.module('app', [
     'match',
+    'ranked',
     'summoner',
     'search',
     'sidemenu',
@@ -35,9 +36,14 @@ app.factory('ServerErrorInterceptor', App.ServerErrorInterceptor);
 app.filter('team', App.Filter.team);
 app.filter('gameLength', App.Filter.gameLength);
 
+// Date
+app.filter('humanizeDate', App.Filter.humanizeDate);
+app.filter('duration', App.Filter.duration);
+
 //
 app.directive('stickToTop', App.StickToTopDirective.instance());
 app.directive('paperInput', App.PaperInputDirective.instance());
+app.directive('paperDropdown', App.PaperDropdownDirective.instance());
 
 /////////////////////////
 /// General
@@ -71,6 +77,19 @@ app.config(['$locationProvider', '$httpProvider', '$compileProvider', (
 	$compileProvider.debugInfoEnabled(false);
 }]);
 
+app.config(['ChartJsProvider', (
+    ChartJsProvider
+) => {
+    ChartJsProvider.setOptions({
+        colours: [
+            '#FF6384',
+            '#36A2EB',
+            '#FFCE56'
+        ],
+        responsive: true
+    });
+}]);
+
 app.config(['$httpProvider', ($httpProvider:angular.IHttpProvider) => {
     $httpProvider.interceptors.push('ServerErrorInterceptor');
 }]);
@@ -91,8 +110,8 @@ app.config(['$urlRouterProvider', '$stateProvider', (
         url: '/',
         templateUrl: 'index.html',
         data: {
-            toolbar: true,
-            search: true,
+            toolbar: false,
+            search: false,
             footer: true,
             title: 'Steraks'
         }
@@ -211,10 +230,10 @@ app.run(['$rootScope', '$state', '$window', '$transitions', (
         let lane = player.timeline.lane.toLowerCase();
         let role = player.timeline.role.toLowerCase();
 
-        if (role === "duo_carry") {
-            return "adc"
-        } else if (role === "duo_support") {
-            return "support";
+        if (role === 'duo_carry') {
+            return 'adc'
+        } else if (role === 'duo_support') {
+            return 'support';
         }
 
         if (lane === 'top') {
@@ -223,8 +242,8 @@ app.run(['$rootScope', '$state', '$window', '$transitions', (
             return 'mid';
         } else if (lane === 'jungle') {
             return 'jungle';
-        } else if (lane === "bottom") {
-            return "bot";
+        } else if (lane === 'bottom') {
+            return 'bot';
         }
 
         return 'unknown';

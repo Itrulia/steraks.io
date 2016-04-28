@@ -26,7 +26,6 @@
     "block-closing-brace-newline-after": "always",
     "block-closing-brace-newline-before": "always-multi-line",
     "block-closing-brace-space-before": "always-single-line",
-    "block-no-empty": true,
     "block-opening-brace-newline-after": "always-multi-line",
     "block-opening-brace-space-after": "always-single-line",
     "block-opening-brace-space-before": "always",
@@ -61,7 +60,7 @@
     "function-parentheses-newline-inside": "always-multi-line",
     "function-parentheses-space-inside": "never-single-line",
     "function-whitespace-after": "always",
-    "function-url-quotes": "double",
+    "function-url-quotes": "none",
     "indentation": 2,
     "max-empty-lines": 1,
     "media-feature-colon-space-after": "always",
@@ -73,7 +72,6 @@
     "media-query-list-comma-space-before": "never",
     "media-query-parentheses-space-inside": "never",
     "no-eol-whitespace": true,
-    "no-missing-eof-newline": true,
     "number-leading-zero": "always",
     "number-no-trailing-zeros": true,
     "number-zero-length-no-unit": true,
@@ -92,9 +90,9 @@
     "selector-list-comma-newline-after": "always",
     "selector-list-comma-space-before": "never",
     "selector-pseudo-element-colon-notation": "double",
-    "string-quotes": "double",
+    "string-quotes": "single",
     "value-list-comma-newline-after": "always-multi-line",
     "value-list-comma-space-after": "always-single-line",
-    "value-list-comma-space-before": "never",
+    "value-list-comma-space-before": "never"
   }
 }

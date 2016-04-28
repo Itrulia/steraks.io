@@ -1,4 +1,4 @@
-@mixin grid($prefix: "", $gutter: 0.75rem) {
+@mixin grid($prefix: '', $gutter: 0.75rem) {
   .#{$prefix}grid__col--auto {
     width: auto;
     flex-grow: 1;

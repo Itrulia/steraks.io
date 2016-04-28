@@ -1,18 +1,15 @@
-module Summoner {
-    'use strict';
+'use strict';
 
-    export class SummonerCounterComponent implements angular.IComponentOptions {
-        public templateUrl = 'summoner/components/summoner-counter.html';
-        public bindings = {counter: '<'};
-        public controller = 'SummonerCounterController as ctrl'
-    }
+@Component('summoner.components', 'summonerCounter', {
+    bindings: {counter: '<'},
+    templateUrl: 'summoner/components/summoner-counter.html',
+    controllerAs: 'ctrl',
+})
+class SummonerCounterController {
+    public counter:any;
 
     // @ngInject
-    export class SummonerCounterController {
-        public counter:any;
+    public constructor() {
 
-        public constructor(public $scope:any) {
-
-        }
     }
 }

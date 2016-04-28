@@ -18,6 +18,7 @@
 
 /// <reference path='filters/Team.ts' />
 /// <reference path='filters/Game.ts' />
+/// <reference path='filters/Date.ts' />
 
 /// <reference path='components/ErrorComponent.ts' />
 /// <reference path='components/SpinnerComponent.ts' />
@@ -26,10 +27,12 @@
 
 /// <reference path='directives/StickToTopDirective.ts' />
 /// <reference path='directives/PaperInputDirective.ts' />
+/// <reference path='directives/PaperDropdownDirective.ts' />
 
 /// <reference path='interceptors/ServerErrorInterceptor.ts' />
 
 /// <reference path='match/match.ts' />
+/// <reference path='ranked/ranked.ts' />
 /// <reference path='summoner/summoner.ts' />
 /// <reference path='sidemenu/sidemenu.ts' />
 /// <reference path='search/search.ts' />

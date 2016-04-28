@@ -1,5 +1,6 @@
 /// <reference path='../../typings/browser.d.ts' />
 /// <reference path='app/app.ts' />
+/// <reference path='decorators/AngularComponent.ts' />
 
 jQuery(document).ready(function ($:any) {
     $.notification({

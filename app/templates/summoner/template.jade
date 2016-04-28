@@ -14,19 +14,19 @@
 
     .tabs(stick-to-top)
         .container
-            a.tab__header(ui-sref="summoner.index({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
+            a.tab__header(ui-sref="summoner.index({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active" ripple)
                 | Summary
-            a.tab__header(ui-sref="summoner.matches.history({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
+            a.tab__header(ui-sref="summoner.matches.history({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active" ripple)
                 | Matches
-            a.tab__header(ui-sref="summoner.champions({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
+            a.tab__header(ui-sref="summoner.champions({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active" ripple)
                 | Champions
-            a.tab__header(ui-sref="summoner.counters({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
+            a.tab__header(ui-sref="summoner.counters({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active" ripple)
                 | Counters
-            a.tab__header(ui-sref="summoner.synergy({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
+            a.tab__header(ui-sref="summoner.synergy({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active" ripple)
                 | Synergizes
-            a.tab__header(ui-sref="summoner.runes({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
+            a.tab__header(ui-sref="summoner.runes({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active" ripple)
                 | Runes
-            a.tab__header(ui-sref="summoner.masteries({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active")
+            a.tab__header(ui-sref="summoner.masteries({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active" ripple)
                 | Masteries
 
 main.container(ui-view="")

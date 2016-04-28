@@ -1,6 +1,10 @@
 'use strict';
 
-@Component('authentication.views', 'passwordRestore', {
+import {AuthenticationViews} from './AuthenticationViews';
+import {AuthenticationService} from '../service/AuthenticationService';
+import {Component} from "../../../decorators/AngularComponent";
+
+@Component(AuthenticationViews, 'passwordRestore', {
     templateUrl: 'authentication/password-restore.html',
     controllerAs: 'ctrl',
 })
@@ -10,7 +14,7 @@ class PasswordRestoreController {
     public password;
 
     // @ngInject
-    constructor(private AuthenticationService:Authentication.AuthenticationService) {
+    constructor(private AuthenticationService:AuthenticationService) {
 
     }
 

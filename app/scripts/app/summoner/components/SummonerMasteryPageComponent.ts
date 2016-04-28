@@ -1,6 +1,9 @@
+import {SummonerComponents} from "./SummonerComponents";
+import {Component} from "../../../decorators/AngularComponent";
+
 'use strict';
 
-@Component('summoner.components', 'summonerMasteryPage', {
+@Component(SummonerComponents, 'summonerMasteryPage', {
     bindings: {page: '<', trees: '<'},
     templateUrl: 'components/mastery-page.html',
     controllerAs: 'ctrl',

@@ -1,15 +1,13 @@
-module App.Filter {
-    'use strict';
+'use strict';
 
-    export function humanizeDate() {
-        return (timestamp:any):string => {
-            return moment(timestamp).fromNow();
-        }
+export function HumanizeDate() {
+    return (timestamp:any):string => {
+        return moment(timestamp).fromNow();
     }
+}
 
-    export function duration() {
-        return (timestamp:any):string => {
-            return moment.duration(timestamp, 'seconds').asMinutes().toFixed(0);
-        }
+export function Duration() {
+    return (timestamp:any):string => {
+        return moment.duration(timestamp, 'seconds').asMinutes().toFixed(0);
     }
 }

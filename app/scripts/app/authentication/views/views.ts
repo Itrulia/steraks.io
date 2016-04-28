@@ -1,6 +1,5 @@
-angular.module('authentication.views', []);
+'use strict';
 
-/// <reference path='LoginView.ts' />
-/// <reference path='RegisterView.ts' />
-/// <reference path='PasswordRestoreView.ts' />
-
+import './LoginView';
+import './PasswordRestoreView';
+import './RegisterView';

@@ -1,14 +1,17 @@
-/// <reference path='../_reference.d.ts' />
-/// <reference path='components/components.ts' />
-/// <reference path='views/views.ts' />
+import {SummonerComponents} from './components/SummonerComponents';
+import {StaticService} from '../service/StaticService';
+import {SummonerService} from '../service/SummonerService';
+import {SummonerViews} from "./views/SummonerViews";
+import './views/views';
+import './components/components';
 
-let summonerApp:angular.IModule = angular.module('summoner', [
-    'summoner.components',
-    'summoner.views',
+export let Summoner:angular.IModule = angular.module('summoner', [
+    SummonerComponents.name,
+    SummonerViews.name,
     'ui.router'
 ]);
 
-summonerApp.config(['$stateProvider', function ($stateProvider:any) {
+Summoner.config(['$stateProvider', function ($stateProvider:any) {
 
     $stateProvider.state('summoner', {
         abstract: true,
@@ -22,7 +25,7 @@ summonerApp.config(['$stateProvider', function ($stateProvider:any) {
         resolve: {
             summoner: ['$stateParams', 'SummonerService', (
                 $stateParams:any,
-                SummonerService:App.SummonerService
+                SummonerService:SummonerService
             ) => {
                 return SummonerService.getSummoner($stateParams.summonerId);
             }]
@@ -70,7 +73,7 @@ summonerApp.config(['$stateProvider', function ($stateProvider:any) {
             matchIds: null
         },
         resolve: {
-            champion: ['$stateParams', 'StaticService', function ($stateParams:any, StaticService:App.StaticService) {
+            champion: ['$stateParams', 'StaticService', function ($stateParams:any, StaticService:StaticService) {
                 return StaticService.getChampions().then((champions) => {
                     return _.filter(champions, {'name': $stateParams.championId})[0];
                 });
@@ -84,7 +87,7 @@ summonerApp.config(['$stateProvider', function ($stateProvider:any) {
             matchIds: null
         },
         resolve: {
-            champion: ['$stateParams', 'StaticService', function ($stateParams:any, StaticService:App.StaticService) {
+            champion: ['$stateParams', 'StaticService', function ($stateParams:any, StaticService:StaticService) {
                 return StaticService.getChampions().then((champions) => {
                     return _.filter(champions, {'name': $stateParams.championId})[0];
                 });
@@ -98,7 +101,7 @@ summonerApp.config(['$stateProvider', function ($stateProvider:any) {
             matchIds: null
         },
         resolve: {
-            champion: ['$stateParams', 'StaticService', function ($stateParams:any, StaticService:App.StaticService) {
+            champion: ['$stateParams', 'StaticService', function ($stateParams:any, StaticService:StaticService) {
                 return StaticService.getChampions().then((champions) => {
                     return _.filter(champions, {'name': $stateParams.championId})[0];
                 });

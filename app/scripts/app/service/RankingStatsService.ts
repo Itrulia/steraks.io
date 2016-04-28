@@ -1,24 +1,30 @@
-module App {
-    'use strict';
+import {CacheService} from "./CacheService";
+import {RankingStatsResource} from "../resource/RankingStatsResource";
+
+'use strict';
+
+export class RankingStatsService {
+
     // @ngInject
+    constructor(
+        private $q:angular.IQService,
+        private CacheService:CacheService,
+        private RankingStatsResource:RankingStatsResource
+    ) {
 
-    export class RankingStatsService {
-        constructor(private $q:angular.IQService, private CacheService:App.CacheService, private RankingStatsResource:App.RankingStatsResource) {
+    }
 
+    public getRankedStats(summonerId:number) {
+        let cacheKey = 'stats:' + summonerId;
+        let data:any = this.CacheService.pull(cacheKey);
+
+        if (data === null) {
+            data = this.RankingStatsResource.getRankedStats(summonerId).then((stats) => {
+                this.CacheService.remember(cacheKey, stats);
+                return stats;
+            })
         }
 
-        public getRankedStats(summonerId:number) {
-            let cacheKey = 'stats:' + summonerId;
-            let data:any = this.CacheService.pull(cacheKey);
-
-            if (data === null) {
-                data = this.RankingStatsResource.getRankedStats(summonerId).then((stats) => {
-                    this.CacheService.remember(cacheKey, stats);
-                    return stats;
-                })
-            }
-
-            return this.$q.when(data)
-        }
+        return this.$q.when(data)
     }
 }

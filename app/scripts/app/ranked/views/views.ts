@@ -1,3 +1,4 @@
-angular.module('ranked.views', []);
-/// <reference path='RankedView.ts' />
+import './RankedView';
+
+'use strict';
 

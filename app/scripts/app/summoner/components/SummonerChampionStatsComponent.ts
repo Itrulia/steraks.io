@@ -1,6 +1,10 @@
+import {SummonerComponents} from "./SummonerComponents";
+import {SummonerService} from "../../service/SummonerService";
+import {Component} from "../../../decorators/AngularComponent";
+
 'use strict';
 
-@Component('summoner.components', 'summonerChampionStats', {
+@Component(SummonerComponents, 'summonerChampionStats', {
     bindings: {summoner: '<'},
     templateUrl: 'summoner/components/summoner-champion-stat.html',
     controllerAs: 'ctrl',
@@ -12,7 +16,7 @@ class SummonerChampionStatsController {
     public summoner:any;
 
     // @ngInject
-    public constructor(protected SummonerService:App.SummonerService) {
+    public constructor(protected SummonerService:SummonerService) {
         SummonerService.getStats(this.summoner.id)
             .then((stats:any) => {
                 stats = _.filter(stats, (champion:any) => {

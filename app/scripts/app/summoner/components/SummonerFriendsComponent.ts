@@ -1,6 +1,10 @@
+import {SummonerComponents} from "./SummonerComponents";
+import {SummonerService} from "../../service/SummonerService";
+import {Component} from "../../../decorators/AngularComponent";
+
 'use strict';
 
-@Component('summoner.components', 'summonerFriends', {
+@Component(SummonerComponents, 'summonerFriends', {
     bindings: {summoner: '<'},
     templateUrl: 'summoner/components/summoner-friends.html',
     controllerAs: 'ctrl',
@@ -11,7 +15,7 @@ class SummonerFriendsController {
     public loading = true;
 
     // @ngInject
-    public constructor(protected SummonerService:App.SummonerService) {
+    public constructor(protected SummonerService:SummonerService) {
         this.SummonerService.getFriends(this.summoner.id)
             .then((friends:any[]) => {
                 let summonerIds:any = _.map(friends, (friend) => {

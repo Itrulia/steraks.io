@@ -1,6 +1,9 @@
 'use strict';
 
-@Component('ranked.components', 'participants', {
+import {RankedComponents} from './RankedComponents';
+import {Component} from "../../../decorators/AngularComponent";
+
+@Component(RankedComponents, 'participants', {
     bindings: {match: '<', selected: '='},
     templateUrl: 'ranked/components/participants.html',
     controllerAs: 'ctrl',

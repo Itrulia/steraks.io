@@ -1,10 +1,10 @@
-angular.module('summoner.components', []);
+'use strict';
 
-/// <reference path='SummonerChampionStatsComponent.ts' />
-/// <reference path='SummonerRankComponent.ts' />
-/// <reference path='SummonerCounterComponent.ts' />
-/// <reference path='SummonerChampionComponent.ts' />
-/// <reference path='SummonerRunesComponent.ts' />
-/// <reference path='SummonerMasteryPageComponent.ts' />
-/// <reference path='SummonerFriendsComponent.ts' />
-/// <reference path='SummonerChampionMasteryComponent.ts' />
+import './SummonerChampionComponent';
+import './SummonerChampionMasteryComponent';
+import './SummonerChampionStatsComponent';
+import './SummonerCounterComponent';
+import './SummonerFriendsComponent';
+import './SummonerMasteryPageComponent';
+import './SummonerRankComponent';
+import './SummonerRunesComponent';

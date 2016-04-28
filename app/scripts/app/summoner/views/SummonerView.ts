@@ -1,8 +1,10 @@
-/// <reference path='../../_reference.d.ts' />
+import {SummonerViews} from "./SummonerViews";
+import {SummonerService} from "../../service/SummonerService";
+import {Component} from "../../../decorators/AngularComponent";
 
 'use strict';
 
-@Component('summoner.views', 'summoner', {
+@Component(SummonerViews, 'summoner', {
     bindings: {summoner: '<'},
     templateUrl: 'summoner/template.html',
     controllerAs: 'ctrl',
@@ -12,7 +14,7 @@ class SummonerController {
     public league:any;
 
     // @ngInject
-    constructor(private SummonerService:App.SummonerService) {
+    constructor(private SummonerService:SummonerService) {
 
         this.SummonerService.getRank(this.summoner.id)
             .then((rank) => {

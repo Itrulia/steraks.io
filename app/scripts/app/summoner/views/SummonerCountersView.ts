@@ -1,8 +1,10 @@
-/// <reference path='../../_reference.d.ts' />
+import {SummonerViews} from "./SummonerViews";
+import {SummonerService} from "../../service/SummonerService";
+import {Component} from "../../../decorators/AngularComponent";
 
 'use strict';
 
-@Component('summoner.views', 'summonerCounters', {
+@Component(SummonerViews, 'summonerCounters', {
     bindings: {summoner: '<'},
     templateUrl: 'summoner/counters.html',
     controllerAs: 'ctrl',
@@ -14,7 +16,7 @@ class SummonerCountersController {
     public summoner:any;
 
     // @ngInject
-    constructor(private $state, private SummonerService:App.SummonerService) {
+    constructor(private $state, private SummonerService:SummonerService) {
         this.$state.current.data.title = this.summoner.name + '\'s Counters';
 
         this.SummonerService.getCounters(this.summoner.id)

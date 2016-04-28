@@ -1,18 +1,18 @@
-module Match {
-    'use strict';
+import {MatchComponents} from './MatchComponents';
+import {Component} from "../../../decorators/AngularComponent";
 
-    export class ParticipantRunesComponent implements angular.IComponentOptions {
-        public templateUrl = 'match/components/participant-runes.html';
-        public bindings:any = {participant: '<'};
-        public controller = 'ParticipantRunesController as ctrl'
-    }
+'use strict';
+
+@Component(MatchComponents, 'participantRunes', {
+    bindings: {participant: '<'},
+    templateUrl: 'match/components/participant-runes.html',
+    controllerAs: 'ctrl',
+})
+class ParticipantRunesController {
+    public participant:any;
 
     // @ngInject
-    export class ParticipantRunesController {
-        public participant:any;
+    public constructor() {
 
-        public constructor() {
-
-        }
     }
 }

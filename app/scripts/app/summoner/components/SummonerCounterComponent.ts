@@ -1,6 +1,9 @@
+import {SummonerComponents} from "./SummonerComponents";
+import {Component} from "../../../decorators/AngularComponent";
+
 'use strict';
 
-@Component('summoner.components', 'summonerCounter', {
+@Component(SummonerComponents, 'summonerCounter', {
     bindings: {counter: '<'},
     templateUrl: 'summoner/components/summoner-counter.html',
     controllerAs: 'ctrl',

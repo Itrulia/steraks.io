@@ -1,49 +1,44 @@
-module App {
-    'use strict';
-    // @ngInject
+'use strict';
 
-    export class StickToTopDirective {
-        public link:(scope:angular.IScope, element:angular.IAugmentedJQuery, attrs) => void;
-        public restrict = 'A';
-        public replace = false;
-        public scope = false;
-        public timeout:any;
+export class StickToTopDirective {
+    public link:(scope:angular.IScope, element:angular.IAugmentedJQuery, attrs) => void;
+    public restrict = 'A';
+    public replace = false;
+    public scope = false;
+    public timeout:any;
 
-        constructor(public $window: angular.IWindowService) {
-            StickToTopDirective.prototype.link = (
-                scope:angular.IScope,
-                element:angular.IAugmentedJQuery,
-                attrs
-            ) => {
-                let $:any = jQuery;
+    constructor(public $window:angular.IWindowService) {
+        StickToTopDirective.prototype.link = (scope:angular.IScope,
+                                              element:angular.IAugmentedJQuery,
+                                              attrs) => {
+            let $:any = jQuery;
 
-                // $(window).scroll(this.onScroll());
-            };
-        }
+            // $(window).scroll(this.onScroll());
+        };
+    }
 
-        private onScroll() {
-            return _.debounce(() => {
+    private onScroll() {
+        return _.debounce(() => {
+            this.stickToTop();
+
+            clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => {
                 this.stickToTop();
-                
-                clearTimeout(this.timeout);
-                this.timeout = setTimeout(() => {
-                    this.stickToTop();
-                }, 100, this);
-            }, 50);
-        }
+            }, 100, this);
+        }, 50);
+    }
 
-        private stickToTop() {
-            console.log('lel');
-        }
+    private stickToTop() {
+        console.log('lel');
+    }
 
-        public static instance() {
-            let directive = ($window) => {
-                return new StickToTopDirective($window);
-            };
+    public static instance() {
+        let directive = ($window) => {
+            return new StickToTopDirective($window);
+        };
 
-            directive.$inject = ['$window'];
+        directive.$inject = ['$window'];
 
-            return directive;
-        }
+        return directive;
     }
 }

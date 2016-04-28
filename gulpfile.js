@@ -11,6 +11,11 @@ var swPrecache = require('sw-precache');
 var critical = require('critical').stream;
 var psi = require('psi');
 
+// Browserify
+var source = require('vinyl-source-stream');
+var browserify = require('browserify');
+var tsify = require('tsify');
+
 // Browser Sync
 var browserSync = require('browser-sync');
 var modRewrite = require('connect-modrewrite');
@@ -155,15 +160,16 @@ gulp.task('templates', function () {
 });
 
 gulp.task('typescript', function () {
-    return gulp.src(config.paths.typescript.app)
+    return browserify()
+        .add(config.paths.typescript.app + '/app.ts')
+        .plugin(tsify, {
+            experimentalDecorators: true
+        })
+        .bundle()
+        .on('error', function (error) { console.error(error.toString()); })
         .pipe($.plumber())
-        .pipe($.typescript({
-            target: 'ES5',
-            experimentalDecorators: true,
-            out: 'app.js',
-            typescript: require('typescript')
-        }))
-        .pipe($.stripLine('/// <reference path='))
+        .pipe(source('app.js'))
+        // .pipe($.stripLine('/// <reference path='))
         .pipe($.ngAnnotate())
         .pipe($.if(isProduction(), $.uglify()))
         .pipe($.if(isProduction(), $.replace('http://vanilla.app', 'https://api.steraks.io')))

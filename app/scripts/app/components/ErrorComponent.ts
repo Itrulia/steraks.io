@@ -1,18 +1,16 @@
-module App {
-    'use strict';
+'use strict';
 
-    export class ErrorComponent implements angular.IComponentOptions {
-        public bindings:any = {text: '<'};
-        public templateUrl = 'components/error.html';
-        public controller = 'ErrorComponentController as ctrl'
-    }
+export class ErrorComponent implements angular.IComponentOptions {
+    public bindings:any = {text: '<'};
+    public templateUrl = 'components/error.html';
+    public controller = 'ErrorComponentController as ctrl'
+}
+
+export class ErrorComponentController {
+    public champion:any;
 
     // @ngInject
-    export class ErrorComponentController {
-        public champion:any;
+    public constructor() {
 
-        public constructor(public $scope:any) {
-
-        }
     }
 }

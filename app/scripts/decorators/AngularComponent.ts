@@ -1,4 +1,4 @@
-function Component(moduleOrName:string | ng.IModule, selector:string, options:{
+export function Component(moduleOrName:string | ng.IModule, selector:string, options:{
     controllerAs?:string,
     bindings?:any,
     template?:string,

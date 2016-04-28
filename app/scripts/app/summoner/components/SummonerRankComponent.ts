@@ -1,6 +1,10 @@
+import {SummonerComponents} from "./SummonerComponents";
+import {SummonerService} from "../../service/SummonerService";
+import {Component} from "../../../decorators/AngularComponent";
+
 'use strict';
 
-@Component('summoner.components', 'summonerRank', {
+@Component(SummonerComponents, 'summonerRank', {
     bindings: {summoner: '<'},
     templateUrl: 'summoner/components/summoner-rank.html',
     controllerAs: 'ctrl',
@@ -13,7 +17,7 @@ class SummonerRankController {
     public loading = true;
 
     // @ngInject
-    public constructor(protected SummonerService:App.SummonerService) {
+    public constructor(protected SummonerService:SummonerService) {
         SummonerService.getRank(this.summoner.id)
             .then((rank:any) => {
                 return _.filter(rank[this.summoner.id], (entry:any) => {

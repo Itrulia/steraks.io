@@ -1,8 +1,10 @@
-/// <reference path='../../_reference.d.ts' />
+import {SummonerService} from "../../service/SummonerService";
+import {SummonerViews} from "./SummonerViews";
+import {Component} from "../../../decorators/AngularComponent";
 
 'use strict';
 
-@Component('summoner.views', 'summonerSynergy', {
+@Component(SummonerViews, 'summonerSynergy', {
     bindings: {summoner: '<'},
     templateUrl: 'summoner/synergy.html',
     controllerAs: 'ctrl',
@@ -14,7 +16,7 @@ class SummonerSynergyController {
     public summoner:any;
 
     // @ngInject
-    constructor(private $state, private SummonerService:App.SummonerService) {
+    constructor(private $state, private SummonerService:SummonerService) {
         this.$state.current.data.title = this.summoner.name + '\'s Synergizing Champions';
 
         this.SummonerService.getSynergies(this.summoner.id)

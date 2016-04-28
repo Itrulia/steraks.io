@@ -1,6 +1,10 @@
 'use strict';
 
-@Component('authentication.views', 'login', {
+import {AuthenticationViews} from './AuthenticationViews';
+import {AuthenticationService} from '../service/AuthenticationService';
+import {Component} from "../../../decorators/AngularComponent";
+
+@Component(AuthenticationViews, 'login', {
     templateUrl: 'authentication/login.html',
     controllerAs: 'ctrl',
 })
@@ -11,7 +15,7 @@ class LoginController {
 
     // @ngInject
     constructor(
-        private AuthenticationService:Authentication.AuthenticationService,
+        private AuthenticationService:AuthenticationService,
         private Analytics:any
     ) {
 

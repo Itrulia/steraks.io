@@ -1,6 +1,23 @@
-/// <reference path='../_reference.d.ts' />
-/// <reference path='SidemenuComponent.ts' />
+'use strict';
 
-let sidemenuApp:angular.IModule = angular.module('sidemenu', []);
-sidemenuApp.component('sidemenu', new SideMenu.Components.SideMenuDirective());
+import {Component} from "../../decorators/AngularComponent";
+
+export let SideMenu:angular.IModule = angular.module('sidemenu', []);
+
+@Component(SideMenu, 'sidemenu', {
+    templateUrl: 'sidemenu/sidemenu.html',
+    controllerAs: 'ctrl',
+})
+class SidemenuController {
+    public sideMenuOpen = false;
+    public regionMenuOpen = false;
+
+    // @ngInject
+    public constructor(private $scope) {
+        $scope.$root.$on('$stateChangeStart', () => {
+            this.sideMenuOpen = false;
+            this.regionMenuOpen = false;
+        });
+    }
+}
 

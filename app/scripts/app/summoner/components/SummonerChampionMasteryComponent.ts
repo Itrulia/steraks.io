@@ -1,6 +1,9 @@
+import {SummonerComponents} from "./SummonerComponents";
+import {Component} from "../../../decorators/AngularComponent";
+
 'use strict';
 
-@Component('summoner.components', 'summonerChampionMastery', {
+@Component(SummonerComponents, 'summonerChampionMastery', {
     bindings: {champion: '<'},
     templateUrl: 'summoner/components/summoner-champion-mastery.html',
     controllerAs: 'ctrl',

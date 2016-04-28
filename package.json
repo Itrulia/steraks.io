@@ -24,6 +24,7 @@
   "devDependencies": {
     "autoprefixer": "^6.2.1",
     "browser-sync": "^2.2.1",
+    "browserify": "^13.0.0",
     "connect-modrewrite": "^0.8.2",
     "critical": "^0.7.2",
     "del": "^2.2.0",
@@ -63,7 +64,9 @@
     "stylelint": "^4.2.0",
     "stylelint-selector-bem-pattern": "^0.2.1",
     "sw-precache": "^3.1.1",
+    "tsify": "^0.15.2",
     "tslint": "^3.8.1",
-    "typescript": "^1.8.10"
+    "typescript": "^1.8.10",
+    "vinyl-source-stream": "^1.1.0"
   }
 }

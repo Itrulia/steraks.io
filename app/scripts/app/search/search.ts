@@ -1,5 +1,6 @@
-/// <reference path='../_reference.d.ts' />
-/// <reference path='SearchController.ts' />
+import {SearchController} from "./SearchController";
 
-let searchApp:angular.IModule = angular.module('search', ['ui.router']);
-searchApp.controller('SearchController', Search.SearchController);
+'use strict';
+
+export let Search:angular.IModule = angular.module('search', ['ui.router']);
+Search.controller('SearchController', SearchController);

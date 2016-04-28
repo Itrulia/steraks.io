@@ -1,6 +1,11 @@
+import {RankedViews} from './RankedViews';
+import {MatchStaticDataService} from "../../service/MatchStaticDataService";
+import {MatchService} from "../../service/MatchService";
+import {Component} from "../../../decorators/AngularComponent";
+
 'use strict';
 
-@Component('ranked.views', 'ranked', {
+@Component(RankedViews, 'ranked', {
     templateUrl: 'ranked/index.html',
     controllerAs: 'ctrl',
 })
@@ -13,8 +18,8 @@ class RankedController {
     // @ngInject
     constructor(
         private $stateParams:any,
-        private MatchService:App.MatchService,
-        private MatchStaticDataService:App.MatchStaticDataService
+        private MatchService:MatchService,
+        private MatchStaticDataService:MatchStaticDataService
     ) {
         this.loading = true;
         this.match = null;

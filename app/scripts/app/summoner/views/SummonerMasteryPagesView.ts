@@ -1,8 +1,11 @@
-/// <reference path='../../_reference.d.ts' />
+import {SummonerService} from "../../service/SummonerService";
+import {StaticService} from "../../service/StaticService";
+import {SummonerViews} from "./SummonerViews";
+import {Component} from "../../../decorators/AngularComponent";
 
 'use strict';
 
-@Component('summoner.views', 'summonerMasteryPages', {
+@Component(SummonerViews, 'summonerMasteryPages', {
     bindings: {summoner: '<'},
     templateUrl: 'summoner/masteries.html',
     controllerAs: 'ctrl',
@@ -18,8 +21,8 @@ class SummonerMasteryPagesController {
     constructor(
         private $state:any,
         private $q:angular.IQService,
-        private SummonerService:App.SummonerService,
-        private StaticService:App.StaticService
+        private SummonerService:SummonerService,
+        private StaticService:StaticService
     ) {
         this.$state.current.data.title = this.summoner.name + '\'s Masteries';
         let realm:any = this.StaticService.getRealm();

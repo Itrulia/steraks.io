@@ -1,6 +1,9 @@
+import {SummonerComponents} from "./SummonerComponents";
+import {Component} from "../../../decorators/AngularComponent";
+
 'use strict';
 
-@Component('summoner.components', 'summonerRunes', {
+@Component(SummonerComponents, 'summonerRunes', {
     bindings: {page: '<'},
     templateUrl: 'summoner/components/summoner-runes.html',
     controllerAs: 'ctrl',

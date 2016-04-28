@@ -6,7 +6,7 @@
       "dist": "dist/styles"
     },
     "typescript": {
-      "app": ["app/scripts/**/*.ts"],
+      "app": "app/scripts",
       "watch": ["app/scripts/**/*.ts"],
       "dist": "dist/scripts"
     },

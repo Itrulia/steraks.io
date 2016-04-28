@@ -1,8 +1,12 @@
-/// <reference path='../../_reference.d.ts' />
+import {SummonerViews} from "./SummonerViews";
+import {MatchService} from "../../service/MatchService";
+import {SummonerService} from "../../service/SummonerService";
+import {StaticService} from "../../service/StaticService";
+import {Component} from "../../../decorators/AngularComponent";
 
 'use strict';
 
-@Component('summoner.views', 'summonerMatchesHistory', {
+@Component(SummonerViews, 'summonerMatchesHistory', {
     bindings: {summoner: '<'},
     templateUrl: 'summoner/matches.history.html',
     controllerAs: 'ctrl',
@@ -19,9 +23,9 @@ class SummonerMatchesHistoryController {
     constructor(
         private $q:angular.IQService,
         private $state:any,
-        private MatchService:App.MatchService,
-        private SummonerService:App.SummonerService,
-        private StaticService:App.StaticService
+        private MatchService:MatchService,
+        private SummonerService:SummonerService,
+        private StaticService:StaticService
     ) {
         this.$state.current.data.title = this.summoner.name + '\'s Match History';
         this.getMatches();

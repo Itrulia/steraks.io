@@ -2,7 +2,7 @@
     .summoner.container
         .flag.flag--fit
             .flag__figure
-                img.summoner__avatar(ng-src="//ddragon.leagueoflegends.com/cdn/6.3.1/img/profileicon/{{ ctrl.summoner.profileIconId }}.png")
+                img.summoner__avatar(ng-src="{{ ::ctrl.summoner.iconAvatar }}")
             .flag__body
                 h1.summoner__name {{ ctrl.summoner.name }}
                 span {{ ctrl.league }}

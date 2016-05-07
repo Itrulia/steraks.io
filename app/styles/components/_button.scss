@@ -1,5 +1,7 @@
 %button,
 .button {
+  position: relative;
+  overflow: hidden;
   font-weight: 300;
   font-size: 1em;
   line-height: 1;
@@ -15,22 +17,10 @@
   }
 }
 
-.button--jumbo {
-  padding: 1rem 2rem;
-  font-size: 1.3em;
-  font-weight: 400;
-}
-
-.button--primary {
-  color: #FFF;
-  background: $accent;
-
-  .icon-button__addon {
-    background: #4191ea;
-  }
-}
-
 .icon-button {
+  overflow: hidden;
+  position: relative;
+  text-align: left;
   font-weight: 500;
   display: inline-flex;
   flex-flow: row wrap;
@@ -40,21 +30,93 @@
 }
 
 .icon-button__text {
-  border-radius: 2px 0 0 2px;
   padding: 0.375rem 0.625rem;
   flex-grow: 1;
+
+  &:first-child {
+    border-radius: 2px 0 0 2px;
+  }
+
+  &:last-child {
+    border-radius: 0 2px 2px 0;
+  }
 }
 
 .icon-button__addon {
-  border-radius: 0 2px 2px 0;
   padding: 0.375rem;
   display: inline-flex;
   justify-content: center;
   align-items: center;
+
+  &:first-child {
+    border-radius: 2px 0 0 2px;
+  }
+
+  &:last-child {
+    border-radius: 0 2px 2px 0;
+  }
+}
+
+.button--jumbo {
+  padding: 1em 2em;
+  font-size: 1.3em;
+  font-weight: 400;
+}
+
+.icon-button--jumbo {
+  .icon-button__text {
+    padding: 1em 1.5em;
+  }
+
+  .icon-button__addon {
+    padding: 1em;
+  }
+}
+
+.button--full {
+  width: 100%;
+}
+
+.button--primary {
+  color: #fff;
+  background: $accent;
+
+  &:focus,
+  &:hover {
+    background: darken($accent, 10%);
+
+    .icon-button__addon {
+      background: darken($accent, 5%);
+    }
+  }
+
+  .icon-button__addon {
+    background: lighten($accent, 5%);
+  }
+}
+
+.button--secondary {
+  color: #fff;
+  background: $secondary-accent;
+
+  &:focus,
+  &:hover {
+    background: darken($secondary-accent, 10%);
+
+    .icon-button__addon {
+      background: darken($secondary-accent, 5%);
+    }
+  }
+
+  .icon-button__addon {
+    background: lighten($secondary-accent, 5%);
+  }
 }
 
 .icon-button[disabled],
-.icon-button--is-disabled {
+.icon-button.is-disabled,
+.button[disabled],
+.button.is-disabled {
   color: $disabled-text;
   background: $disabled;
   cursor: not-allowed;

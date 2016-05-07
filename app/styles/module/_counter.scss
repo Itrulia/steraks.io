@@ -12,6 +12,20 @@
   height: auto;
 }
 
+.counter__chest {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  line-height: 1;
+  font-size: 1.25em;
+  color: $color-support;
+  opacity: 1;
+
+  &.is-granted {
+    opacity: 0.5;
+  }
+}
+
 .counter__text {
   width: 6em;
   flex-grow: 1;
@@ -39,10 +53,10 @@
 }
 
 .counter__percentage {
-  color: lighten(#F00, 10%);
+  color: lighten(#f00, 10%);
   font-weight: 500;
 }
 
 .counter__percentage--positive {
-  color: darken(#0F0, 15%);
+  color: darken(#0f0, 15%);
 }

@@ -17,16 +17,14 @@
                         ng-options="option.label for option in ctrl.masteryLevels"
                     )
                     .paper-select__label
-            .widget__body
-                .widget__item
-                    .grid
-                        .grid__col--12(ng-if="ctrl.loading.championMastery")
-                            spinner
-                        .grid__col--12(ng-if="!ctrl.filterChampionsByLevel(ctrl.masteryLevelFilter).length && !ctrl.loading.championMastery")
-                            error(text="'No level ' + ctrl.masteryLevelFilter.value + ' champion have been found'")
-                        .grid__col--6.m-grid__col--3.t-grid__col--4.d-grid__col--3.baseline--small(
-                            ng-repeat="championMastery in ctrl.filterChampionsByLevel(ctrl.masteryLevelFilter) track by championMastery.championId"
-                        )
-                            a(ui-sref="summoner.matches.as({championId: championMastery.championName})")
-                                summoner-champion-mastery(champion="championMastery")
+        .grid
+            .grid__col--12(ng-if="ctrl.loading.championMastery")
+                spinner
+            .grid__col--12(ng-if="!ctrl.filterChampionsByLevel(ctrl.masteryLevelFilter).length && !ctrl.loading.championMastery")
+                error(text="'No level ' + ctrl.masteryLevelFilter.value + ' champion have been found'")
+            .grid__col--6.m-grid__col--3.t-grid__col--4.d-grid__col--3.baseline--small(
+                ng-repeat="championMastery in ctrl.filterChampionsByLevel(ctrl.masteryLevelFilter) track by championMastery.championId"
+            )
+                a(ui-sref="summoner.matches.as({championId: championMastery.championName})")
+                    summoner-champion-mastery(champion="championMastery")
 

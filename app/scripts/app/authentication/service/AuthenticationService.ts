@@ -5,7 +5,7 @@ import {CacheService} from "../../service/CacheService";
 
 export class AuthenticationService {
     //@ngInject
-    public constructor(
+    constructor(
         private CacheService:CacheService,
         private AuthenticationResource:AuthenticationResource
     ) {

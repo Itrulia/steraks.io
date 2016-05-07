@@ -9,4 +9,9 @@
 
 .rank__tier {
   display: block;
+  margin-bottom: 0.5em;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }

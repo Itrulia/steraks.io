@@ -12,7 +12,7 @@ class SummonerChampionController {
     public champion:any;
 
     // @ngInject
-    public constructor() {
+    constructor() {
 
     }
 }

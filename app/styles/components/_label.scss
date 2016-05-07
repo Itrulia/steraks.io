@@ -18,25 +18,25 @@
 }
 
 .label--adc {
-  color: #FFF;
-  background-color: #E84855;
+  color: #fff;
+  background-color: $color-adc;
 }
 
 .label--support {
-  background-color: #FDE74C;
+  background-color: $color-support;
 }
 
 .label--mid {
-  color: #FFF;
-  background-color: #3F91EB;
+  color: #fff;
+  background-color: $color-mid;
 }
 
 .label--jungle {
-  color: #FFF;
-  background-color: #08A045;
+  color: #fff;
+  background-color: $color-jungle;
 }
 
 .label--top {
-  color: #FFF;
-  background: #7E5A9B;
+  color: #fff;
+  background: $color-top;
 }

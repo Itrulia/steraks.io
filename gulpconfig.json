@@ -10,13 +10,21 @@
       "watch": ["app/scripts/**/*.ts"],
       "dist": "dist/scripts"
     },
-    "javascript": {
-      "app": [
-        "app/scripts/libs/**/*.js",
-        "node_modules/angular-localforage/dist/angular-localForage.min.js",
-        "node_modules/angular-google-analytics/dist/angular-google-analytics.min.js"
-      ],
-      "watch": ["app/scripts/libs/**/*.js"],
+    "libraries": {
+      "app": {
+        "libs": [
+          "node_modules/moment/moment.js",
+          "node_modules/jquery/dist/jquery.js",
+          "node_modules/localforage/dist/localforage.js",
+          "node_modules/chart.js/Chart.js",
+          "node_modules/lodash/lodash.js",
+          "node_modules/angular/angular.js",
+          "node_modules/angular-google-analytics/dist/angular-google-analytics.js",
+          "node_modules/angular-chart.js/angular-chart.js",
+          "node_modules/angular-localforage/dist/angular-localForage.js"
+        ]
+      },
+      "watch": [],
       "dist": "dist/scripts/libs"
     },
     "workers": {
@@ -28,14 +36,20 @@
       "dist": "dist/scripts/workers"
     },
     "images": {
-      "app": ["app/images/**/*"],
-      "watch": ["app/images/**/*"],
+      "app": ["app/images/**/*", "!app/images/sprites/**/*"],
+      "watch": ["app/images/**/*", "!app/images/sprites/**/*"],
       "dist": "dist/images"
     },
-    "fonts": {
-      "app": ["app/fonts/**/*"],
-      "watch": ["app/fonts/**/*"],
-      "dist": "dist/fonts"
+    "sprites": {
+      "logos": {
+        "app": ["app/images/sprites/logos/*.svg"],
+        "dist": "dist/images/sprites/logos"
+      },
+      "material": {
+        "app": ["app/images/sprites/material/*.svg"],
+        "dist": "dist/images/sprites/material"
+      },
+      "watch": ["app/images/sprites/**/*.svg"]
     },
     "index": {
       "app": ["app/*.jade"],

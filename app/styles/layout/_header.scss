@@ -26,6 +26,21 @@
   z-index: 2;
 }
 
+.header__logo-container {
+  z-index: 1;
+  display: flex;
+  flex: 0 0 auto;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+.header__logo {
+  width: 50%;
+  height: auto;
+  max-width: 15rem;
+}
+
 .header__search {
   z-index: 1;
   padding: 2rem 0.75rem;
@@ -45,7 +60,7 @@
 .header__input {
   display: block;
   font-weight: 400;
-  padding: 1rem 1.5rem 1rem 1rem;
+  padding: 1rem 2.5rem 1rem 1rem;
   font-size: 1.1rem;
   line-height: 1.25rem;
   background: $light-primary;
@@ -59,15 +74,15 @@
 .header__input-addon {
   position: absolute;
   color: $primary-text;
-  padding: 0;
   display: block;
-  right: 0.75rem;
+  right: 0.25rem;
   top: 50%;
   transform: translate3d(0, -50%, 0);
   background: transparent;
   border: 0;
   line-height: 0;
   font-size: 1.5rem;
+  padding: 0.5rem;
 }
 
 .header__spinner {

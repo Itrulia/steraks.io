@@ -1,11 +1,9 @@
 .widget
-    .widget__header
-        span Dynamic Queue League Information
     .widget__body.rank
         .widget__item(ng-if="ctrl.loading")
             spinner
         .widget__item(ng-if="!ctrl.loading && !ctrl.rank")
-            error(text="'You are still in your provisionals'")
+            error(text="'Summoner is still in his provisionals'")
         .widget__item(ng-if="!ctrl.loading && ctrl.rank")
             .flag
                 .flag__figure

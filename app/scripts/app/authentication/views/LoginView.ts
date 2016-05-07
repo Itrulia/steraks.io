@@ -3,6 +3,8 @@
 import {AuthenticationViews} from './AuthenticationViews';
 import {AuthenticationService} from '../service/AuthenticationService';
 import {Component} from "../../../decorators/AngularComponent";
+import * as _ from 'lodash';
+import {notify} from "../../../libs/notification";
 
 @Component(AuthenticationViews, 'login', {
     templateUrl: 'authentication/login.html',
@@ -10,8 +12,9 @@ import {Component} from "../../../decorators/AngularComponent";
 })
 class LoginController {
     public loading = false;
-    public email;
-    public password;
+    public email:string;
+    public password:string;
+    public showPassword = false;
 
     // @ngInject
     constructor(
@@ -31,7 +34,31 @@ class LoginController {
                 // todo redirect
             }).catch((reason) => {
             this.Analytics.trackEvent('login', 'error', reason.config.data.email);
-            console.log(reason);
+
+            if (reason.status === 422) {
+
+                if (!_.isUndefined(reason.data.email)) {
+                    notify({
+                        message: 'Account does not exists.',
+                        type: 'dark'
+                    });
+
+                    return;
+                }
+
+                notify({
+                    message: 'Your password is invalid.',
+                    type: 'dark'
+                });
+
+                return;
+            }
+
+            notify({
+                message: 'There has been an error, please retry.',
+                type: 'error'
+            });
+
             // todo handle errors
         }).finally(() => {
             this.loading = false;

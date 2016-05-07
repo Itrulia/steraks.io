@@ -1,16 +1,10 @@
 .login
+    .login__background
+
     .login__box
-        .login__box__background
+        .login__background.login__background--small
         header.login__box__header
-            .login__logo
-                span Fiora
-                span.login__logo__highlight
-                    | .gg
-            .login__tabs
-                a.login__tab(ui-sref="authentication.login" ui-sref-active="is-active")
-                    | Login
-                a.login__tab(ui-sref="authentication.register" ui-sref-active="is-active")
-                    | Sign Up
+            h1.baseline--none Login
         .login__box__body
             form.login__form(name="form" autocomplete="off" novalidate ng-submit="form.$valid && ctrl.login()")
                 .paper-input__wrapper.login__input
@@ -19,12 +13,33 @@
                     span.paper-input__error Input should contain a valid email!
 
                 .paper-input__wrapper.login__input
-                    input.paper-input.paper-input--floating(required type="password" name="password" ng-model="ctrl.password")
+                    button.paper-input__addon(type="button" tabindex="-1" ng-click="ctrl.showPassword = !ctrl.showPassword")
+                        svg.icon--material
+                            use(ng-show="ctrl.showPassword" xlink:href="/images/sprites/material/action.svg#ic_visibility_24px")
+                            use(ng-show="!ctrl.showPassword" xlink:href="/images/sprites/material/action.svg#ic_visibility_off_24px")
+                    input.paper-input.paper-input--floating(required type="{{ (ctrl.showPassword) ? 'text' : 'password' }}" name="password" ng-model="ctrl.password")
                     label.paper-input__label Password
                     span.paper-input__error Password is required!
 
-                .login_button-wrapper
-                    button.login__button(ng-disabled="{{ ctrl.loading }}")
-                        | Log in
+                button.baseline.icon-button--jumbo.button--full.icon-button.button--secondary(
+                    type="submit"
+                    ng-click="ctrl.showPassword = false"
+                    ng-disabled="ctrl.loading"
+                    paper-ripple
+                )
+                    .icon-button__text(ng-if="!ctrl.loading") Log in
+                    .icon-button__addon(ng-if="!ctrl.loading")
+                        svg.icon--material
+                            use(xlink:href="/images/sprites/material/navigation.svg#ic_check_24px")
+                    .icon-button__text(ng-if="ctrl.loading") Loading...
+                    .icon-button__addon(ng-if="ctrl.loading")
+                        svg.icon--material
+                            use(xlink:href="/images/sprites/material/action.svg#ic_cached_24px")
+
+                a.login__restore(ui-sref="authentication.restore")
+                    | Udyr, have you forgotten your password?
+
         footer.login__box__footer
-            a(ui-sref="authentication.restore") Uhdyr, have you forgotten your password?
+            a(ui-sref="authentication.register")
+                | Don't have an account?
+                strong  Sign up

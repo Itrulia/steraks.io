@@ -1,26 +1,33 @@
 .toolbar
-    button.toolbar__button.toolbar__hamburger
-        span.icon--material(ng-click="ctrl.sideMenuOpen = true") menu
+    button.toolbar__button.toolbar__hamburger(ng-click="ctrl.sideMenuOpen = true")
+        svg.icon--material
+            use(xlink:href="/images/sprites/material/navigation.svg#ic_menu_24px")
+        span.toolbar__button__label Menu
 
     button.toolbar__button.toolbar__kebab(ng-click="ctrl.regionMenuOpen = true")
-        span.icon--material more_vert
-        .paper-dropdown
-            a.paper-dropdown__item EUW
-            a.paper-dropdown__item EUNE
-            a.paper-dropdown__item Korea
+        svg.icon--material
+            use(xlink:href="/images/sprites/material/navigation.svg#ic_more_vert_24px")
+        //.paper-dropdown
+        //    a.paper-dropdown__item(
+        //        ng-repeat="region in ::ctrl.RegionService.getAvailableRegions() track by region"
+        //        ng-click="ctrl.RegionService.setRegion(region)"
+        //    )
+        //        | {{ region | uppercase }}
 
 nav.sidemenu(ng-class="{'sidemenu--is-open': ctrl.sideMenuOpen}")
     .sidemenu__header
     a.sidemenu__item(ui-sref="index" ui-sref-active="sidemenu__item--is-active")
         .flag
             .flag__figure.sidemenu__item__icon
-                span.icon--material home
+                svg.icon--material
+                    use(xlink:href="/images/sprites/material/action.svg#ic_home_24px")
             .flag__body
                 span Home
     a.sidemenu__item(ui-sref="authentication.login" ui-sref-active="sidemenu__item--is-active")
         .flag
             .flag__figure.sidemenu__item__icon
-                span.icon--material lock
+                svg.icon--material
+                    use(xlink:href="/images/sprites/material/action.svg#ic_lock_24px")
             .flag__body
                 span Login
 

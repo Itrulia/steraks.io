@@ -1,8 +1,9 @@
+'use strict';
+
+import * as _ from 'lodash';
 import {SummonerComponents} from "./SummonerComponents";
 import {SummonerService} from "../../service/SummonerService";
 import {Component} from "../../../decorators/AngularComponent";
-
-'use strict';
 
 @Component(SummonerComponents, 'summonerChampionStats', {
     bindings: {summoner: '<'},
@@ -16,7 +17,7 @@ class SummonerChampionStatsController {
     public summoner:any;
 
     // @ngInject
-    public constructor(protected SummonerService:SummonerService) {
+    constructor(protected SummonerService:SummonerService) {
         SummonerService.getStats(this.summoner.id)
             .then((stats:any) => {
                 stats = _.filter(stats, (champion:any) => {

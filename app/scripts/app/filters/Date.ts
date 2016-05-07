@@ -1,5 +1,7 @@
 'use strict';
 
+import * as moment from "moment";
+
 export function HumanizeDate() {
     return (timestamp:any):string => {
         return moment(timestamp).fromNow();

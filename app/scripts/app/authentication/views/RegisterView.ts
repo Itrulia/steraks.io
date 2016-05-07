@@ -10,8 +10,9 @@ import {Component} from "../../../decorators/AngularComponent";
 })
 class RegisterController {
     public loading = false;
-    public email;
-    public password;
+    public email:string;
+    public password:string;
+    public showPassword = false;
 
     // @ngInject
     constructor(

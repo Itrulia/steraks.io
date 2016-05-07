@@ -12,7 +12,7 @@ class SummonerCounterController {
     public counter:any;
 
     // @ngInject
-    public constructor() {
+    constructor() {
 
     }
 }

@@ -5,6 +5,7 @@ export class PaperInputDirective implements angular.IDirective {
     public restrict = 'C';
     public scope = false;
 
+    // @ngInject
     constructor() {
         PaperInputDirective.prototype.link = (scope:any, element:angular.IAugmentedJQuery, attrs:any) => {
 

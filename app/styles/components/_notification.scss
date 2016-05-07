@@ -9,7 +9,7 @@
   z-index: 9;
   backface-visibility: hidden;
   will-change: opacity, transform;
-  transition: opacity 500ms cubic-bezier(.55, 0, .1, 1), transform 500ms cubic-bezier(.55, 0, .1, 1);
+  transition: opacity 500ms cubic-bezier(0.55, 0, 0.1, 1), transform 500ms cubic-bezier(0.55, 0, 0.1, 1);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
   @media (min-width: 840px) {
@@ -43,7 +43,7 @@
 
 .notification--watchout {
   color: #2d3434;
-  background-color: #ffE066;
+  background-color: #ffe066;
 }
 
 .notification--important {

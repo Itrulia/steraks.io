@@ -1,5 +1,7 @@
 'use strict';
 
+import * as moment from "moment";
+
 export function GameLength() {
     return (seconds:number):string => {
         if (seconds === null) return null;

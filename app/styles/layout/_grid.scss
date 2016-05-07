@@ -11,18 +11,17 @@
   }
 
   @for $index from 0 through 12 {
-
     @if ($index > 0) {
-      .#{$prefix}grid__col--#{$index}{
+      .#{$prefix}grid__col--#{$index} {
         flex-grow: 0;
         flex-shrink: 0;
         padding-left: $gutter;
         padding-right: $gutter;
-        width: (100%/12)*$index;
+        width: (100%/12) * $index;
       }
     }
 
-    .#{$prefix}grid__col--order--#{$index}{
+    .#{$prefix}grid__col--order--#{$index} {
       order: $index;
     }
   }

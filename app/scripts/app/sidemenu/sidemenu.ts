@@ -1,6 +1,9 @@
 'use strict';
 
+//import * as angular from 'angular';
+//import * as uiRouter from 'angular-ui-router';
 import {Component} from "../../decorators/AngularComponent";
+import {RegionService} from "../service/RegionService";
 
 export let SideMenu:angular.IModule = angular.module('sidemenu', []);
 
@@ -13,7 +16,7 @@ class SidemenuController {
     public regionMenuOpen = false;
 
     // @ngInject
-    public constructor(private $scope) {
+    constructor(private $scope, public RegionService:RegionService) {
         $scope.$root.$on('$stateChangeStart', () => {
             this.sideMenuOpen = false;
             this.regionMenuOpen = false;

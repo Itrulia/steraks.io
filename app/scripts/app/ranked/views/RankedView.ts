@@ -1,9 +1,11 @@
+'use strict';
+
+import * as _ from 'lodash';
 import {RankedViews} from './RankedViews';
 import {MatchStaticDataService} from "../../service/MatchStaticDataService";
 import {MatchService} from "../../service/MatchService";
 import {Component} from "../../../decorators/AngularComponent";
 
-'use strict';
 
 @Component(RankedViews, 'ranked', {
     templateUrl: 'ranked/index.html',

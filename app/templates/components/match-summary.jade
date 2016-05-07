@@ -6,7 +6,7 @@ a(ui-sref="ranked({matchId: ctrl.match.matchId, player: ctrl.player})")
                 span.hide--very-small  &mdash; {{ ::ctrl.player | position }} {{ ::ctrl.player.championName }}
             span.match-summary__header__text
                 | {{ ::ctrl.match.matchDuration | duration }} minutes
-            span.match-summary__header__text
+            time.match-summary__header__text(datetime="{{ ::ctrl.match.matchCreation | date }}")
                 | {{ ::ctrl.match.matchCreation | humanizeDate }}
 
         .match-summary__body

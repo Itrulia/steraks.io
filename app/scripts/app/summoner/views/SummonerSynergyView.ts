@@ -1,8 +1,8 @@
+'use strict';
+
 import {SummonerService} from "../../service/SummonerService";
 import {SummonerViews} from "./SummonerViews";
 import {Component} from "../../../decorators/AngularComponent";
-
-'use strict';
 
 @Component(SummonerViews, 'summonerSynergy', {
     bindings: {summoner: '<'},

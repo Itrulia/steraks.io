@@ -1,11 +1,12 @@
-/// <reference path='../../typings/browser.d.ts' />
-/// <reference path='decorators/AngularComponent.ts' />
+// import $ from "jquery";
 
-import './app/app';
+import "../../typings/main.d";
+import "./app/app";
+import {notify} from "./libs/notification";
 
 jQuery(document).ready(function ($:any) {
-    $.notification({
-        message: 'This website is under construction and thus slow and has not a productive api key yet.',
-        type: 'info'
+    notify({
+        message: "This website is under construction and thus slow and has not a productive api key yet.",
+        type: "info"
     });
 });

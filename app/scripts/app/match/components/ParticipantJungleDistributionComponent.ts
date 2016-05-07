@@ -12,7 +12,7 @@ class ParticipantJungleDistributionController {
     public participant:any;
 
     // @ngInject
-    public constructor() {
+    constructor() {
 
     }
 }

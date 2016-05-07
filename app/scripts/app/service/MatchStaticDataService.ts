@@ -1,6 +1,7 @@
-import {StaticService} from "./StaticService";
-
 'use strict';
+
+import * as _ from 'lodash';
+import {StaticService} from "./StaticService";
 
 export class MatchStaticDataService {
     public realm:any;
@@ -9,7 +10,7 @@ export class MatchStaticDataService {
     public champions:any;
 
     // @ngInject
-    public constructor(
+    constructor(
         private $q:angular.IQService,
         private StaticService:StaticService
     ) {

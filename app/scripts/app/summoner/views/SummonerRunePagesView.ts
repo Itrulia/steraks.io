@@ -17,7 +17,7 @@ class SummonerRunePagesController {
 
     // @ngInject
     constructor(
-        private $state:angular.ui.IStateProvider,
+        private $state:any,
         private SummonerService:SummonerService
     ) {
         this.$state.current.data.title = this.summoner.name + '\'s Runes';

@@ -1,5 +1,6 @@
 .error
     .error__icon
-        span.icon--material error_outline
+        svg.icon--material
+            use(xlink:href="/images/sprites/material/alert.svg#ic_error_outline_24px")
     .error__text
         span {{ ctrl.text }}

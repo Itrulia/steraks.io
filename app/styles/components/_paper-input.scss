@@ -6,6 +6,7 @@
 }
 
 .paper-input {
+  text-align: inherit;
   display: block;
   width: 100%;
   margin: 0;
@@ -16,7 +17,7 @@
   background: transparent;
 
   &[disabled] {
-    border-bottom: 1px dashed rgba(0,0,0, 0.12);
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.12);
     background-color: transparent;
   }
 }
@@ -38,9 +39,13 @@
   position: absolute;
   pointer-events: none;
   left: 0;
-  top: 0.625rem;
+  top: 0;
   bottom: 0;
   color: #666;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &::after {
     content: '';
@@ -60,6 +65,16 @@
   visibility: hidden;
 }
 
+.paper-input__addon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  font-size: 1.75em;
+  display: flex;
+  align-items: center;
+}
+
 // Floating
 .paper-input--floating ~ .paper-input__label {
   transition: 0.2s ease all;
@@ -69,14 +84,16 @@
 .paper-input--floating.is-touched ~ .paper-input__label,
 .paper-input--floating.ng-touched ~ .paper-input__label {
   visibility: visible;
-  top: -1rem;
+  top: -0.85rem;
   font-size: 0.75rem;
   color: #3f51b5;
+  display: inline-block;
 }
 
 // Errors
 .paper-input__error {
   float: left;
+  width: 100%;
   margin-top: 3px;
   color: #d34336;
   font-size: 0.75rem;
@@ -85,13 +102,13 @@
 
 .paper-input--floating.is-dirty:invalid ~ .paper-input__label,
 .paper-input--floating.ng-dirty:invalid ~ .paper-input__label {
-  top: -1rem;
+  top: -0.85rem;
   font-size: 0.75rem;
   color: #d34336;
 }
 
-.paper-input.is-dirty:invalid ~ .paper-input__label:after,
-.paper-input.ng-dirty:invalid ~ .paper-input__label:after {
+.paper-input.is-dirty:invalid ~ .paper-input__label::after,
+.paper-input.ng-dirty:invalid ~ .paper-input__label::after {
   background-color: #d34336;
 }
 

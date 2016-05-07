@@ -13,7 +13,7 @@ class ParticipantsController {
     public selected:any;
 
     // @ngInject
-    public constructor() {
+    constructor() {
         console.log(this.match, this.selected);
     }
 }

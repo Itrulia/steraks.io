@@ -1,0 +1,23 @@
+.paper-ripple {
+  display: block;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.175);
+  border-radius: 50%;
+  transform: scale3d(0, 0, 0);
+
+  &.is-active {
+    animation: effect 0.5s ease-in-out;
+  }
+}
+
+.paper-ripple--center {
+  left: 50%;
+  top: 50%;
+}
+
+@keyframes effect {
+  100% {
+    opacity: 0;
+    transform: scale3d(2.5, 2.5, 2.5);
+  }
+}

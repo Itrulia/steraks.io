@@ -1,4 +1,5 @@
 'use strict';
+import {notify} from "../../libs/notification";
 
 export function ServerErrorInterceptor($q, $injector) {
     return {
@@ -6,13 +7,11 @@ export function ServerErrorInterceptor($q, $injector) {
             return response;
         },
         responseError: (response) => {
-            let $:any = jQuery;
-
             if (response.status === 'xxx') {
                 let authenticationService = $injector.get('AuthenticationService');
                 let $state = $injector.get('$state');
 
-                $.notification({
+                notify({
                     message: 'Your session has expired.',
                     type: 'important'
                 });
@@ -20,7 +19,7 @@ export function ServerErrorInterceptor($q, $injector) {
                 authenticationService.logout();
                 $state.go('login');
             } else if (response.status >= 500 || response.status < 100) {
-                $.notification({
+                notify({
                     message: 'Server Error',
                     type: 'important'
                 });

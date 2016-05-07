@@ -12,7 +12,7 @@ class ParticipantRunesController {
     public participant:any;
 
     // @ngInject
-    public constructor() {
+    constructor() {
 
     }
 }

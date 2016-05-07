@@ -5,6 +5,7 @@ export class PaperDropdownDirective implements angular.IDirective {
     public restrict = 'C';
     public scope = false;
 
+    // @ngInject
     constructor() {
         PaperDropdownDirective.prototype.link = (scope:any, element:angular.IAugmentedJQuery, attrs:any) => {
             element.parent().click(function (e) {

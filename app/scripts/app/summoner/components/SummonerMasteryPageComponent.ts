@@ -1,7 +1,8 @@
+'use strict';
+
+import * as _ from 'lodash';
 import {SummonerComponents} from "./SummonerComponents";
 import {Component} from "../../../decorators/AngularComponent";
-
-'use strict';
 
 @Component(SummonerComponents, 'summonerMasteryPage', {
     bindings: {page: '<', trees: '<'},

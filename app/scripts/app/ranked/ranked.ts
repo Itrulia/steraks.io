@@ -1,5 +1,7 @@
 'use strict';
 
+//import * as angular from 'angular';
+//import * as uiRouter from 'angular-ui-router';
 import {RankedViews} from './views/RankedViews';
 import {RankedComponents} from './components/RankedComponents';
 import './views/views';

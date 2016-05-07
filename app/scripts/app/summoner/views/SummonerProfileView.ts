@@ -20,6 +20,7 @@ class SummonerProfileController {
         {label: 'Level 3', value: 3},
         {label: 'Level 2', value: 2},
         {label: 'Level 1', value: 1},
+        {label: 'All', value: 0},
     ];
     public loading = {
         championMastery: true
@@ -41,12 +42,17 @@ class SummonerProfileController {
                 this.chestsGranted = _.filter(championMasteries, (championMastery:any) => {
                     return championMastery.chestGranted;
                 }).length;
-            }).finally(() => {
-            this.loading.championMastery = false;
-        });
+            })
+            .finally(() => {
+                this.loading.championMastery = false;
+        }   );
     }
 
     public filterChampionsByLevel(masteryLevel:any) {
+        if (masteryLevel.value === 0) {
+          return this.championMasteries;
+        }
+
         return _.filter(this.championMasteries, (championMastery:any) => {
             return championMastery.championLevel === masteryLevel.value;
         });

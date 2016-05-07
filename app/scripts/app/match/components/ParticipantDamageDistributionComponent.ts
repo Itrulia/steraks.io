@@ -12,7 +12,7 @@ class ParticipantDamageDistributionController {
     public participant:any;
 
     // @ngInject
-    public constructor() {
+    constructor() {
 
     }
 }

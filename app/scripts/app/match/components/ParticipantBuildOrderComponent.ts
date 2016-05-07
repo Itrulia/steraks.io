@@ -1,5 +1,6 @@
 'use strict';
 
+import * as _ from 'lodash';
 import {MatchComponents} from './MatchComponents';
 import {Component} from "../../../decorators/AngularComponent";
 
@@ -14,7 +15,7 @@ class ParticipantBuildOrderController {
     public buildOrder:any = {};
 
     // @ngInject
-    public constructor(private $scope) {
+    constructor(private $scope) {
         this.$scope.$watch('ctrl.participant', () => {
             let buildOrder = {};
 

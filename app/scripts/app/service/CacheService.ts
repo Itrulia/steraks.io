@@ -1,9 +1,13 @@
 'use strict';
 
+import * as moment from 'moment';
+// import * as localForage from 'localforage';
+// import * as angularForage from 'angular-localforage';
+
 export class CacheService {
 
     //@ngInject
-    public constructor(
+    constructor(
         protected $q:angular.IQService,
         protected $localForage:angular.localForage.ILocalForageService
     ) {

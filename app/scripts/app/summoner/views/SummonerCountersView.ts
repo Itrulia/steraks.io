@@ -1,8 +1,9 @@
+'use strict';
+
+import * as _ from 'lodash';
 import {SummonerViews} from "./SummonerViews";
 import {SummonerService} from "../../service/SummonerService";
 import {Component} from "../../../decorators/AngularComponent";
-
-'use strict';
 
 @Component(SummonerViews, 'summonerCounters', {
     bindings: {summoner: '<'},

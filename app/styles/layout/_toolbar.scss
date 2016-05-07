@@ -6,10 +6,17 @@
 }
 
 .toolbar__button {
+  display: inline-flex;
+  align-items: center;
   position: relative;
   font-size: 2.2rem;
-  padding: 0 1rem 0 0.5rem;
-  line-height: 0; // inline-block fix
+  padding: 0.25rem 1rem 0.25rem 0.5rem;
+}
+
+.toolbar__button__label {
+  font-size: 0.5em;
+  padding-left: 0.5em;
+  font-weight: 400;
 }
 
 .toolbar__kebab {

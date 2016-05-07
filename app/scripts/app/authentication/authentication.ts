@@ -1,11 +1,13 @@
+'use strict';
+
+//import * as angular from 'angular';
+//import * as uiRouter from 'angular-ui-router';
 import {AuthenticationResource} from './service/AuthenticationResource';
 import {AuthenticationService} from './service/AuthenticationService';
 import {NeedAuthenticationInterceptor} from "./interceptors/NeedAuthenticationInterceptor";
 import {TokenInterceptor} from "./interceptors/TokenInterceptor";
 import {AuthenticationViews} from "./views/AuthenticationViews";
 import "./views/views";
-
-'use strict';
 
 export let Authentication:angular.IModule = angular.module('authentication', [
     'ui.router',

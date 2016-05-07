@@ -1,6 +1,7 @@
 'use strict';
 
 export class StaticResource {
+
     // @ngInject
     constructor(private $http:angular.IHttpService) {
 

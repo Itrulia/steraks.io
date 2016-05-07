@@ -1,8 +1,9 @@
+'use strict';
+
+import * as _ from 'lodash';
 import {MatchComponents} from './MatchComponents';
 import {StaticService} from "../../service/StaticService";
 import {Component} from "../../../decorators/AngularComponent";
-
-'use strict';
 
 @Component(MatchComponents, 'participantSkillOrder', {
     bindings: {participant: '<', match: '<'},
@@ -15,7 +16,7 @@ export class ParticipantSkillOrderController {
     public skillOrder:any[];
 
     // @ngInject
-    public constructor(
+    constructor(
         private $scope,
         private $q:angular.IQService,
         private StaticService:StaticService

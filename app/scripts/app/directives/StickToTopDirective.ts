@@ -1,5 +1,7 @@
 'use strict';
 
+import * as _ from 'lodash';
+
 export class StickToTopDirective {
     public link:(scope:angular.IScope, element:angular.IAugmentedJQuery, attrs) => void;
     public restrict = 'A';
@@ -7,10 +9,13 @@ export class StickToTopDirective {
     public scope = false;
     public timeout:any;
 
-    constructor(public $window:angular.IWindowService) {
-        StickToTopDirective.prototype.link = (scope:angular.IScope,
-                                              element:angular.IAugmentedJQuery,
-                                              attrs) => {
+    // @ngInject
+    constructor(private $window:angular.IWindowService) {
+        StickToTopDirective.prototype.link = (
+            scope:angular.IScope,
+            element:angular.IAugmentedJQuery,
+            attrs
+        ) => {
             let $:any = jQuery;
 
             // $(window).scroll(this.onScroll());

@@ -1,6 +1,7 @@
-import {KeystoneMasteryService} from "../service/KeystoneMasteryService";
-
 'use strict';
+
+import * as _ from 'lodash';
+import {KeystoneMasteryService} from "../service/KeystoneMasteryService";
 
 export class MatchSummaryComponent implements angular.IComponentOptions {
     public templateUrl = 'components/match-summary.html';
@@ -14,7 +15,7 @@ export class MatchSummaryController {
     public player:any;
 
     // @ngInject
-    public constructor(private KeystoneMasteryService:KeystoneMasteryService) {
+    constructor(private KeystoneMasteryService:KeystoneMasteryService) {
         this.player = _.filter(this.match.participants, (element:any) => {
             return element.player.summonerId === this.summoner.id;
         })[0];

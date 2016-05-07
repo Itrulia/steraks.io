@@ -12,7 +12,7 @@ class SummonerRunesController {
     public page:any;
 
     // @ngInject
-    public constructor() {
+    constructor() {
 
     }
 }

@@ -1,8 +1,10 @@
 'use strict';
 
 export class SummonerResource {
+
     // @ngInject
     constructor(private $http:angular.IHttpService) {
+
     }
 
     public getSummoner(summonerId:number, region:string = 'euw') {

@@ -12,7 +12,7 @@ class SummonerChampionMasteryController {
     public champion:any;
 
     // @ngInject
-    public constructor() {
+    constructor() {
         this.champion.championPoints = this.shortVal(this.champion.championPoints);
     }
 

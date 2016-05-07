@@ -6,7 +6,12 @@
   font-weight: 400;
 }
 
-.tab__header {
+.tabs__container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.tab {
   display: inline-block;
   font-size: 0.875rem;
   padding: 1rem 0.75rem;
@@ -14,9 +19,11 @@
   color: inherit;
   text-decoration: inherit;
   border-bottom: 2px solid transparent;
+  overflow: hidden;
+  position: relative;
 }
 
-.tab__header--is-active {
+.tab.is-active {
   border-bottom-color: rgba(0, 0, 0, 0.75);
   font-weight: 500;
 }

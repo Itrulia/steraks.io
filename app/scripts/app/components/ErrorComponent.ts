@@ -10,7 +10,7 @@ export class ErrorComponentController {
     public champion:any;
 
     // @ngInject
-    public constructor() {
+    constructor() {
 
     }
 }

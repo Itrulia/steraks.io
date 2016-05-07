@@ -17,11 +17,11 @@
 }
 
 .match-summary--won {
-  border-left-color: #4EA1ED;
+  border-left-color: $color-win;
 }
 
 .match-summary--loss {
-  border-left-color: #CF4545;
+  border-left-color: $color-loss;
 }
 
 .match-summary__header {

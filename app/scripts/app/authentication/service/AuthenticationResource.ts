@@ -2,7 +2,7 @@
 
 export class AuthenticationResource {
     //@ngInject
-    public constructor(private $http:any) {
+    constructor(private $http:any) {
 
     }
 

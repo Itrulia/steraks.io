@@ -1,15 +1,23 @@
 .header.landing__hero
     .header__background
+
     sidemenu.header__sidemenu
+
     .header__search.landing__hero__search(ng-controller="SearchController as ctrl")
+        .header__logo-container
+            svg.header__logo(viewBox="0 0 565.48 256.57")
+                use(xlink:href="/images/sprites/logos/logos.svg#medium")
+
         .header__input-wrapper
             form(name="form" ng-submit="form.$valid && ctrl.search()" autocomplete="off" novalidate)
-                input.header__input(ng-model="ctrl.summoner" placeholder="Summoner" name="summoner" autofocus required)
-                button.header__input-addon
-                    span.icon--material search
+                input.header__input(ng-model="ctrl.summoner" placeholder="Summoner" name="summoner" required)
+                button.header__input-addon(tabIndex="-1")
+                    svg.icon--material
+                        use(xlink:href="/images/sprites/material/action.svg#ic_search_24px")
+
         .header__spinner(ng-if="ctrl.loading")
             spinner
-    a.landing__button.button.button--jumbo.button--primary(ui-sref="authentication.register")
+    a.landing__button.button.button--jumbo.button--secondary(ui-sref="authentication.register" paper-ripple)
         | Register Now
 
 .showcase.highlight--secondary
@@ -20,7 +28,8 @@
             .grid__col--12.m-grid__col--6.d-grid__col--4
                 .media
                     .media__figure.media__icon
-                        span.icon--material trending_up
+                        svg.icon--material
+                            use(xlink:href="/images/sprites/material/action.svg#ic_trending_up_24px")
                     .media__body
                         h2.baseline--none Match Statistics
                         p Get detailed information about your ranked games.
@@ -28,7 +37,8 @@
             .grid__col--12.m-grid__col--6.d-grid__col--4
                 .media
                     .media__figure.media__icon
-                        span.icon--material track_changes
+                        svg.icon--material
+                            use(xlink:href="/images/sprites/material/action.svg#ic_track_changes_24px")
                     .media__body
                         h2.baseline--none Oponent information
                         p Receive valuable information about your enemies gameplay.
@@ -36,7 +46,8 @@
             .grid__col--12.m-grid__col--6.d-grid__col--4
                 .media
                     .media__figure.media__icon
-                        span.icon--material group_add
+                        svg.icon--material
+                            use(xlink:href="/images/sprites/material/social.svg#ic_group_add_24px")
                     .media__body
                         h2.baseline--none Follow a summoners progress
                         p Check out your friends progress and congratz them on their wins.
@@ -54,8 +65,8 @@
         .grid
             .grid__col--12.m-grid__col--6.d-grid__col--4
                 .whisper-box
-                    span.whisper-box__icon.icon--material.color--red
-                        | palette
+                    svg.icon--material.whisper-box__icon
+                        use(xlink:href="/images/sprites/material/image.svg#ic_style_24px")
                     .whisper-box__text
                         h2.baseline--small
                             | Beautiful Interface
@@ -64,8 +75,8 @@
 
             .grid__col--12.m-grid__col--6.d-grid__col--4
                 .whisper-box
-                    span.whisper-box__icon.icon--material.color--red
-                        | cloud
+                    svg.icon--material.whisper-box__icon
+                        use(xlink:href="/images/sprites/material/file.svg#ic_cloud_24px")
                     .whisper-box__text
                         h2.baseline--small
                             | Build for speed
@@ -74,8 +85,8 @@
 
             .grid__col--12.m-grid__col--6.d-grid__col--4
                 .whisper-box
-                    span.whisper-box__icon.icon--material.color--red
-                        | phonelink
+                    svg.icon--material.whisper-box__icon
+                        use(xlink:href="/images/sprites/material/hardware.svg#ic_phonelink_24px")
                     .whisper-box__text
                         h2.baseline--small
                             | Beautiful Interface

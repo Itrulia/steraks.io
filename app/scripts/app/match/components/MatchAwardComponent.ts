@@ -15,7 +15,7 @@ class MatchAwardController {
     public mostWards:any;
 
     // @ngInject
-    public constructor(public $scope) {
+    constructor(public $scope) {
         this.$scope.$watch('ctrl.match', () => {
             if (this.match !== null) {
                 this.firstBlood = this.match.participants.filter((participant:any) => {

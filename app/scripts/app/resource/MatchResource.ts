@@ -1,8 +1,10 @@
 'use strict';
 
 export class MatchResource {
+
     // @ngInject
     constructor(private $http:angular.IHttpService) {
+        
     }
 
     public getMatch(matchId:number, region:string = 'euw') {

@@ -1,8 +1,9 @@
+'use strict';
+
+import * as _ from 'lodash';
 import {MatchComponents} from './MatchComponents';
 import {StaticService} from "../../service/StaticService";
 import {Component} from "../../../decorators/AngularComponent";
-
-'use strict';
 
 @Component(MatchComponents, 'participantMasteries', {
     bindings: {participant: '<'},
@@ -15,7 +16,7 @@ class ParticipantMasteriesController {
     public loading = true;
 
     // @ngInject
-    public constructor(
+    constructor(
         private $q:angular.IQService,
         private StaticService:StaticService
     ) {

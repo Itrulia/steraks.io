@@ -1,6 +1,9 @@
 .counter
     .counter__wrapper
         img.counter__avatar(ng-src="{{ ::ctrl.champion.championAvatar }}" title="{{ ::ctrl.champion.championName }}")
+        .counter__chest(ng-class="::{'is-granted': ctrl.champion.chestGranted}")
+            svg.icon--material
+                use(xlink:href="/images/sprites/material/places.svg#ic_business_center_24px")
     .counter__text
         .counter__name
             span {{ ::ctrl.champion.championName }}

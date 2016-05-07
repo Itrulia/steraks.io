@@ -4,29 +4,24 @@
             .flag__figure
                 img.summoner__avatar(ng-src="{{ ::ctrl.summoner.iconAvatar }}")
             .flag__body
-                h1.summoner__name {{ ctrl.summoner.name }}
+                h1.summoner__name {{ ::ctrl.summoner.name }}
                 span {{ ctrl.league }}
-            //.flag__figure
-            //    button.button.button--primary(title="Follow {{ ctrl.summoner.name }} to be kept up2date about his games" type="button")
-            //        .button__text Follow
-            //        .button__addon
-            //            span.icon--material favorite_border
 
     .tabs(stick-to-top)
-        .container
-            a.tab__header(ui-sref="summoner.index({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active" ripple)
+        .container.tabs__container
+            a.tab(ui-sref="summoner.index({summonerId: ctrl.summoner.name})" ui-sref-active="is-active" paper-ripple)
                 | Summary
-            a.tab__header(ui-sref="summoner.matches.history({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active" ripple)
+            a.tab(ui-sref="summoner.matches.history({summonerId: ctrl.summoner.name})" ui-sref-active="is-active" paper-ripple)
                 | Matches
-            a.tab__header(ui-sref="summoner.champions({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active" ripple)
+            a.tab(ui-sref="summoner.champions({summonerId: ctrl.summoner.name})" ui-sref-active="is-active" paper-ripple)
                 | Champions
-            a.tab__header(ui-sref="summoner.counters({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active" ripple)
+            a.tab(ui-sref="summoner.counters({summonerId: ctrl.summoner.name})" ui-sref-active="is-active" paper-ripple)
                 | Counters
-            a.tab__header(ui-sref="summoner.synergy({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active" ripple)
+            a.tab(ui-sref="summoner.synergy({summonerId: ctrl.summoner.name})" ui-sref-active="is-active" paper-ripple)
                 | Synergizes
-            a.tab__header(ui-sref="summoner.runes({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active" ripple)
+            a.tab(ui-sref="summoner.runes({summonerId: ctrl.summoner.name})" ui-sref-active="is-active" paper-ripple)
                 | Runes
-            a.tab__header(ui-sref="summoner.masteries({summonerId: ctrl.summoner.name})" ui-sref-active="tab__header--is-active" ripple)
+            a.tab(ui-sref="summoner.masteries({summonerId: ctrl.summoner.name})" ui-sref-active="is-active" paper-ripple)
                 | Masteries
 
 main.container(ui-view="")

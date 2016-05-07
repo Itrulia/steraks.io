@@ -1,24 +1,28 @@
+'use strict';
+
+import * as moment from 'moment';
+import {RegionService} from "./RegionService";
 import {SummonerResource} from "../resource/SummonerResource";
 import {CacheService} from "./CacheService";
-
-'use strict';
 
 export class SummonerService {
 
     // @ngInject
     constructor(
         private SummonerResource:SummonerResource,
+        private RegionService:RegionService,
         private CacheService:CacheService
     ) {
 
     }
 
-    public getSummoner(summonerId:number) {
-        let cacheKey = 'summoner:' + summonerId;
+    public getSummoner(summonerId:number, region?:string) {
+        let cacheKey = `summoner:${region}:${summonerId}`;
+        region = region || this.RegionService.getRegion();
 
         return this.CacheService.pull(cacheKey)
             .catch(() => {
-                return this.SummonerResource.getSummoner(summonerId)
+                return this.SummonerResource.getSummoner(summonerId, region)
                     .then((summoner) => {
                         this.CacheService.remember(cacheKey, summoner);
                         return summoner;
@@ -26,12 +30,13 @@ export class SummonerService {
             });
     }
 
-    public getChampionMastery(summonerId:number) {
-        let cacheKey = 'summoner:' + summonerId + ':championmastery';
+    public getChampionMastery(summonerId:number, region?:string) {
+        let cacheKey = `summoner:${region}:${summonerId}:championmastery`;
+        region = region || this.RegionService.getRegion();
 
         return this.CacheService.pull(cacheKey)
             .catch(() => {
-                return this.SummonerResource.getChampionMastery(summonerId)
+                return this.SummonerResource.getChampionMastery(summonerId, region)
                     .then((championMastery) => {
                         this.CacheService.remember(cacheKey, championMastery);
                         return championMastery;
@@ -39,12 +44,13 @@ export class SummonerService {
             });
     }
 
-    public getRank(summonerId:number) {
-        let cacheKey = 'summoner:' + summonerId + ':rank';
+    public getRank(summonerId:number, region?:string) {
+        let cacheKey = `summoner:${region}:${summonerId}:rank`;
+        region = region || this.RegionService.getRegion();
 
         return this.CacheService.pull(cacheKey)
             .catch(() => {
-                return this.SummonerResource.getRank(summonerId)
+                return this.SummonerResource.getRank(summonerId, region)
                     .then((rank) => {
                         this.CacheService.remember(cacheKey, rank);
                         return rank;
@@ -52,12 +58,13 @@ export class SummonerService {
             });
     }
 
-    public getStats(summonerId:number) {
-        let cacheKey = 'summoner:' + summonerId + ':stats';
+    public getStats(summonerId:number, region?:string) {
+        let cacheKey = `summoner:${region}:${summonerId}:stats`;
+        region = region || this.RegionService.getRegion();
 
         return this.CacheService.pull(cacheKey)
             .catch(() => {
-                return this.SummonerResource.getStats(summonerId)
+                return this.SummonerResource.getStats(summonerId, region)
                     .then((stats) => {
                         this.CacheService.remember(cacheKey, stats);
                         return stats;
@@ -65,12 +72,13 @@ export class SummonerService {
             });
     }
 
-    public getMasteries(summonerId:number) {
-        let cacheKey = 'summoner:' + summonerId + ':masteries';
+    public getMasteries(summonerId:number, region?:string) {
+        let cacheKey = `summoner:${region}:${summonerId}:masteries`;
+        region = region || this.RegionService.getRegion();
 
         return this.CacheService.pull(cacheKey)
             .catch(() => {
-                return this.SummonerResource.getMasteries(summonerId)
+                return this.SummonerResource.getMasteries(summonerId, region)
                     .then((masteries) => {
                         this.CacheService.remember(cacheKey, masteries);
                         return masteries;
@@ -78,12 +86,13 @@ export class SummonerService {
             });
     }
 
-    public getCounters(summonerId:number) {
-        let cacheKey = 'summoner:' + summonerId + ':counters';
+    public getCounters(summonerId:number, region?:string) {
+        let cacheKey = `summoner:${region}:${summonerId}:counters`;
+        region = region || this.RegionService.getRegion();
 
         return this.CacheService.pull(cacheKey)
             .catch(() => {
-                return this.SummonerResource.getCounters(summonerId)
+                return this.SummonerResource.getCounters(summonerId, region)
                     .then((counters) => {
                         this.CacheService.remember(cacheKey, counters);
                         return counters;
@@ -91,12 +100,13 @@ export class SummonerService {
             });
     }
 
-    public getSynergies(summonerId:number) {
-        let cacheKey = 'summoner:' + summonerId + ':synergies';
+    public getSynergies(summonerId:number, region?:string) {
+        let cacheKey = `summoner:${region}:${summonerId}:synergies`;
+        region = region || this.RegionService.getRegion();
 
         return this.CacheService.pull(cacheKey)
             .catch(() => {
-                return this.SummonerResource.getSynergies(summonerId)
+                return this.SummonerResource.getSynergies(summonerId, region)
                     .then((synergies) => {
                         this.CacheService.remember(cacheKey, synergies);
                         return synergies;
@@ -104,12 +114,13 @@ export class SummonerService {
             });
     }
 
-    public getFriends(summonerId:number) {
-        let cacheKey = 'summoner:' + summonerId + ':friends';
+    public getFriends(summonerId:number, region?:string) {
+        let cacheKey = `summoner:${region}:${summonerId}:friends`;
+        region = region || this.RegionService.getRegion();
 
         return this.CacheService.pull(cacheKey)
             .catch(() => {
-                return this.SummonerResource.getFriends(summonerId)
+                return this.SummonerResource.getFriends(summonerId, region)
                     .then((friends) => {
                         this.CacheService.remember(cacheKey, friends);
                         return friends;
@@ -117,12 +128,13 @@ export class SummonerService {
             });
     }
 
-    public getRunes(summonerId:number) {
-        let cacheKey = 'summoner:' + summonerId + ':runes';
+    public getRunes(summonerId:number, region?:string) {
+        let cacheKey = `summoner:${region}:${summonerId}:runes`;
+        region = region || this.RegionService.getRegion();
 
         return this.CacheService.pull(cacheKey)
             .catch(() => {
-                return this.SummonerResource.getRunes(summonerId)
+                return this.SummonerResource.getRunes(summonerId, region)
                     .then((runes) => {
                         this.CacheService.remember(cacheKey, runes);
                         return runes;
@@ -130,12 +142,13 @@ export class SummonerService {
             });
     }
 
-    public getMatches(summonerId:number) {
-        let cacheKey = 'summoner:' + summonerId + ':matches';
+    public getMatches(summonerId:number, region?:string) {
+        let cacheKey = `summoner:${region}:${summonerId}:matches`;
+        region = region || this.RegionService.getRegion();
 
         return this.CacheService.pull(cacheKey)
             .catch(() => {
-                return this.SummonerResource.getMatches(summonerId)
+                return this.SummonerResource.getMatches(summonerId, region)
                     .then((matches) => {
                         this.CacheService.remember(cacheKey, matches, moment.utc().add(1, 'minutes'));
                         return matches;

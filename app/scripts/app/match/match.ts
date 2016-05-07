@@ -1,5 +1,8 @@
 'use strict';
 
+//import * as angular from 'angular';
+//import * as uiRouter from 'angular-ui-router';
+// import * as chart from 'chart';
 import {MatchComponents} from './components/MatchComponents';
 import {MatchMode} from './filters/MatchMode';
 import {MinionsPerMinute} from './filters/MinionsPerMinute';

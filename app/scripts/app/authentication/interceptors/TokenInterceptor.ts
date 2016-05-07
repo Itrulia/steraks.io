@@ -1,8 +1,9 @@
 'use strict';
 
-import { AuthenticationService } from '../service/AuthenticationService';
+import * as _ from 'lodash';
+import {AuthenticationService} from '../service/AuthenticationService';
 
-export function TokenInterceptor($q:angular.IQService, $injector:any) {
+export function TokenInterceptor($injector:any) {
     let authenticationService:AuthenticationService;
 
     var getAuthenticationService = () => {
@@ -33,4 +34,4 @@ export function TokenInterceptor($q:angular.IQService, $injector:any) {
     }
 }
 
-TokenInterceptor.$inject = ['$q', '$injector'];
+TokenInterceptor.$inject = ['$injector'];

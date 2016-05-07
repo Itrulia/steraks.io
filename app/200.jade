@@ -1,5 +1,5 @@
 doctype html
-html(ng-app="app" ng-strict-di ng-csp)
+html(ng-app="steraks" ng-strict-di ng-csp)
     head
         meta(charset="UTF-8")
         meta(name="language" content="en_US")
@@ -27,7 +27,6 @@ html(ng-app="app" ng-strict-di ng-csp)
         // Styles
         link(href="/styles/app.css" rel="stylesheet")
         link(href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,300italic,400italic,500italic' rel='stylesheet')
-        link(href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet')
 
         style.
             [ng\:cloak],
@@ -35,7 +34,8 @@ html(ng-app="app" ng-strict-di ng-csp)
             [data-ng-cloak],
             [x-ng-cloak],
             .ng-cloak,
-            .x-ng-cloak {
+            .x-ng-cloak,
+            .ng-hide:not(.ng-hide-animate) {
                 display: none !important;
             }
 
@@ -54,14 +54,15 @@ html(ng-app="app" ng-strict-di ng-csp)
             .header__search(ng-controller="SearchController as ctrl")
                 .header__input-wrapper
                     form(name="form" ng-submit="form.$valid && ctrl.search()" autocomplete="off" novalidate)
-                        input.header__input(ng-model="ctrl.summoner" placeholder="Summoner" name="summoner" autofocus required)
-                        button.header__input-addon
-                            span.icon--material search
+                        input.header__input(ng-model="ctrl.summoner" placeholder="Summoner" name="summoner" required)
+                        button.header__input-addon(tabIndex="-1")
+                            svg.icon--material
+                                use(xlink:href="/images/sprites/material/action.svg#ic_search_24px")
                 .header__spinner(ng-if="ctrl.loading")
                     spinner
 
 
-        div(ui-view="")
+        div(ui-view="" style="flex: 1 0 auto;")
             spinner
 
         footer.footer(ng-if="$state.current.data.footer" ng-cloak)
@@ -72,16 +73,7 @@ html(ng-app="app" ng-strict-di ng-csp)
                 .container
                     span &copy; Karl Merkli
 
-        script(src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js")
-        script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js")
-        script(src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js")
-        script(src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.5.0/lodash.min.js")
-        script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js")
+        script(src="/scripts/libs/libs.js")
         script(src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.0-alpha.3/angular-ui-router.min.js")
-        script(src="//cdnjs.cloudflare.com/ajax/libs/angular-chart.js/0.8.8/angular-chart.min.js")
-        script(src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.4.0/localforage.min.js")
-        script(src="/scripts/libs/notification.js")
-        script(src="/scripts/libs/angular-localForage.min.js")
-        script(src="/scripts/libs/angular-google-analytics.min.js")
-        script(src="/scripts/templates.js")
         script(src="/scripts/app.js")
+        script(src="/scripts/templates.js")

@@ -1,3 +1,8 @@
+'use strict';
+
+import * as angular from 'angular';
+//import * as uiRouter from 'angular-ui-router';
+import * as _ from 'lodash';
 import {SummonerComponents} from './components/SummonerComponents';
 import {StaticService} from '../service/StaticService';
 import {SummonerService} from '../service/SummonerService';
@@ -23,11 +28,22 @@ Summoner.config(['$stateProvider', function ($stateProvider:any) {
         },
         component: 'summoner',
         resolve: {
-            summoner: ['$stateParams', 'SummonerService', (
+            summoner: ['$q', '$timeout', '$stateParams', 'SummonerService', (
+                $q:angular.IQService,
+                $timeout:angular.ITimeoutService,
                 $stateParams:any,
                 SummonerService:SummonerService
             ) => {
-                return SummonerService.getSummoner($stateParams.summonerId);
+                return SummonerService.getSummoner($stateParams.summonerId)
+                    .catch((reason:any) => {
+                        if (reason.status >= 500) {
+                            return $timeout(() => {
+                                return SummonerService.getSummoner($stateParams.summonerId);
+                            }, 100);
+                        }
+
+                        return $q.reject(reason);
+                    });
             }]
         }
     })

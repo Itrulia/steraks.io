@@ -1,11 +1,13 @@
 'use strict';
+
+import * as moment from 'moment';
 import {MatchResource} from "../resource/MatchResource";
 import {CacheService} from "./CacheService";
 
 export class MatchService {
 
     // @ngInject
-    public constructor(
+    constructor(
         private MatchResource:MatchResource,
         private CacheService:CacheService
     ) {

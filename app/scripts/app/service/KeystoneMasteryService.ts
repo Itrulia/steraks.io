@@ -1,5 +1,7 @@
 'use strict';
 
+import * as _ from 'lodash';
+
 export class KeystoneMasteryService {
     private keystoneIds = [
         6161, // warlords bloodlust

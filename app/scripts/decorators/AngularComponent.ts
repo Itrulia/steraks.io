@@ -1,3 +1,7 @@
+"use strict";
+
+import * as angular from 'angular';
+
 export function Component(moduleOrName:string | ng.IModule, selector:string, options:{
     controllerAs?:string,
     bindings?:any,
